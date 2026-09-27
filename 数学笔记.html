@@ -42,8 +42,8 @@
 <div class="subtitle">高数 + 线性代数（不考概率论）　｜　每章四栏：定义定理 · 必背公式 · 常考题型 · 易错点</div>
 
 <div class="note">
-说明：本版已填<b>第一章（等价无穷小替换 / 泰勒展开）</b>、<b>第二章（三角函数及反三角导数）</b>，
-以及<b>专题 · 常见不等式</b>。符号为手写体（分数横杠、根号横跨覆盖根号下内容），其余章节保留框架。
+说明：本版已填<b>第一章（等价无穷小替换 / 泰勒展开）</b>、<b>第二章（三角函数及反三角导数）</b>、
+<b>第三章（一元函数积分学）</b>，以及<b>专题 · 常见不等式</b>。符号为手写体（分数横杠、根号横跨覆盖根号下内容），其余章节保留框架。
 </div>
 
 <h2>一、高等数学</h2>
@@ -157,12 +157,74 @@
 
 <div class="ch">
 <h3>3. 一元函数积分学</h3>
+
+<h4>① 核心定义 / 定理</h4>
 <ul>
-<li><span class="field">① 定义/定理：</span></li>
-<li><span class="field">② 必背公式：</span></li>
-<li><span class="field">③ 常考题型：</span></li>
-<li><span class="field">④ 易错点：</span></li>
+<li><b>原函数与不定积分</b>：\(F'(x)=f(x)\)，则 \(\int f(x)\,dx=F(x)+C\)（全体原函数）。</li>
+<li><b>变上限积分（微积分基本定理）</b>：\(\Phi(x)=\int_{a}^{x} f(t)\,dt\)，则 \(\Phi'(x)=f(x)\)。</li>
+<li><b>牛顿–莱布尼茨公式</b>：\(\int_{a}^{b} f(x)\,dx=F(b)-F(a)\)。</li>
+<li><b>定积分性质</b>：线性、区间可加、保号性、估值定理、积分中值定理 \(\int_a^b f= f(\xi)(b-a)\)。</li>
+<li><b>可积条件</b>：连续必可积；有界且只有有限个间断点可积。</li>
 </ul>
+
+<h4>② 必背公式 — 基本积分表</h4>
+<table>
+<tr><th>被积函数</th><th>积分结果</th><th>被积函数</th><th>积分结果</th></tr>
+<tr><td>\(x^{n}\)</td><td>\(\dfrac{x^{n+1}}{n+1}+C\ (n\ne -1)\)</td><td>\(\dfrac{1}{x}\)</td><td>\(\ln|x|+C\)</td></tr>
+<tr><td>\(e^{x}\)</td><td>\(e^{x}+C\)</td><td>\(a^{x}\)</td><td>\(\dfrac{a^{x}}{\ln a}+C\)</td></tr>
+<tr><td>\(\sin x\)</td><td>\(-\cos x+C\)</td><td>\(\cos x\)</td><td>\(\sin x+C\)</td></tr>
+<tr><td>\(\sec^2 x\)</td><td>\(\tan x+C\)</td><td>\(\csc^2 x\)</td><td>\(-\cot x+C\)</td></tr>
+<tr><td>\(\sec x\tan x\)</td><td>\(\sec x+C\)</td><td>\(\csc x\cot x\)</td><td>\(-\csc x+C\)</td></tr>
+<tr><td>\(\dfrac{1}{1+x^{2}}\)</td><td>\(\arctan x+C\)</td><td>\(\dfrac{1}{\sqrt{1-x^{2}}}\)</td><td>\(\arcsin x+C\)</td></tr>
+<tr><td>\(\tan x\)</td><td>\(-\ln|\cos x|+C\)</td><td>\(\cot x\)</td><td>\(\ln|\sin x|+C\)</td></tr>
+<tr><td>\(\sec x\)</td><td>\(\ln|\sec x+\tan x|+C\)</td><td>\(\csc x\)</td><td>\(\ln|\csc x-\cot x|+C\)</td></tr>
+</table>
+
+<h4>② 必背公式 — 含参数的常用积分</h4>
+<table>
+<tr><th>被积函数</th><th>积分结果</th></tr>
+<tr><td>\(\dfrac{1}{a^{2}+x^{2}}\)</td><td>\(\dfrac{1}{a}\arctan\dfrac{x}{a}+C\)</td></tr>
+<tr><td>\(\dfrac{1}{\sqrt{a^{2}-x^{2}}}\)</td><td>\(\arcsin\dfrac{x}{a}+C\)</td></tr>
+<tr><td>\(\dfrac{1}{x^{2}-a^{2}}\)</td><td>\(\dfrac{1}{2a}\ln\left|\dfrac{x-a}{x+a}\right|+C\)</td></tr>
+<tr><td>\(\dfrac{1}{\sqrt{x^{2}\pm a^{2}}}\)</td><td>\(\ln\left|x+\sqrt{x^{2}\pm a^{2}}\right|+C\)</td></tr>
+</table>
+
+<h4>② 必背公式 — 三大方法</h4>
+<ul>
+<li><b>分部积分</b>：\(\int u\,dv=uv-\int v\,du\)。选 \(u\) 口诀：<b>反 · 对 · 幂 · 指 · 三</b>（反三角、对数、幂、指数、三角，谁在前谁当 \(u\)）。</li>
+<li><b>换元积分</b>：第一类「凑微分」\(\int f(\varphi(x))\varphi'(x)\,dx=\int f(u)\,du\)；
+第二类「三角代换」：\(\sqrt{a^{2}-x^{2}}\Rightarrow x=a\sin t\)，\(\sqrt{a^{2}+x^{2}}\Rightarrow x=a\tan t\)，\(\sqrt{x^{2}-a^{2}}\Rightarrow x=a\sec t\)。</li>
+<li><b>有理函数</b>：假分式（分子次数 ≥ 分母）先做多项式除法降成真分式，再裂项为部分分式逐项积。</li>
+</ul>
+
+<h4>② 必背公式 — 定积分的应用（主要几何量）</h4>
+<ul>
+<li>平面图形面积：\(S=\int_{a}^{b}\big|f(x)-g(x)\big|\,dx\)。</li>
+<li>绕 \(x\) 轴旋转体体积：\(V_x=\pi\int_{a}^{b} y^{2}\,dx\)。</li>
+<li>绕 \(y\) 轴（柱壳法）：\(V_y=2\pi\int_{a}^{b} x\,y\,dx\)。</li>
+<li>变上限积分求导：\(\dfrac{d}{dx}\int_{a}^{\varphi(x)} f(t)\,dt=f(\varphi(x))\,\varphi'(x)\)。</li>
+</ul>
+
+<h4>③ 常考题型</h4>
+<ul>
+<li>直接积分 / 凑微分（把 \(f'(x)dx\) 收进微分号）。</li>
+<li>分部积分（含递推，如 \(\int x^{n}e^{x}\,dx\)、\(\int \ln x\,dx\)）。</li>
+<li>三角代换、根式积分、有理函数裂项。</li>
+<li>变上限积分求导 + 求极限（常与洛必达、等价无穷小混合）。</li>
+<li>定积分几何应用：面积、旋转体体积。</li>
+<li>对称区间上用奇偶性：奇函数积分为 0，偶函数折半。</li>
+</ul>
+
+<div class="warn">
+<b>④ 易错点</b>
+<ul>
+<li>\(\int\dfrac{1}{x}\,dx=\ln|x|+C\)，<b>绝对值不能丢</b>；同理 \(\int\tan x\,dx=-\ln|\cos x|+C\)。</li>
+<li>\(\int x^{n}\,dx\) 的公式要求 \(n\ne -1\)，\(n=-1\) 时结果是对数。</li>
+<li>分部积分注意负号与 \(u,v\) 的对应；换元后<b>不定积分要回代、定积分要换限</b>。</li>
+<li>三角代换要写清范围（如 \(x=a\sin t\) 取 \(t\in[-\pi/2,\pi/2]\)），否则去根号时符号会错。</li>
+<li>变上限积分求导时，上限是复合函数别漏乘内层导数。</li>
+</ul>
+</div>
 </div>
 
 <div class="ch">
