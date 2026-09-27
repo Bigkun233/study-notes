@@ -53,6 +53,26 @@ header .sub{font-size:12px;opacity:.85;margin-top:4px;}
 .intro p{margin:3px 0;}
 footer{text-align:center;color:#9aa4af;font-size:11px;padding:20px;}
 @media(max-width:520px){header h1{font-size:17px;} .item .txt{font-size:13.5px;}}
+/* 补充笔记 / 题型卡片 */
+.note{padding:12px 16px 16px;}
+.note h4{margin:14px 0 6px;font-size:13.5px;color:#2c5c8a;border-left:4px solid #2c5c8a;padding-left:8px;}
+.note h4:first-child{margin-top:4px;}
+.note p{margin:4px 0;font-size:13.5px;}
+.note ul{margin:4px 0 8px;padding-left:22px;}
+.note li{margin:3px 0;font-size:13.5px;}
+.note code{font-family:"DejaVu Sans Mono",monospace;background:#eef2f7;color:#b0483a;
+  padding:1px 5px;border-radius:4px;font-size:12.5px;}
+.note .kb{background:#eef2f7;border:1px solid #d7e0ea;border-radius:6px;padding:1px 6px;
+  font-family:"DejaVu Sans Mono",monospace;color:#2c5c8a;font-size:12.5px;}
+.note table{border-collapse:collapse;width:100%;margin:8px 0;font-size:12.5px;}
+.note th,.note td{border:1px solid #999;padding:5px 8px;text-align:center;}
+.note th{background:#e8f0f7;}
+.note .key{background:#fffaf0;border:1px solid #f0dcc0;border-radius:6px;padding:6px 10px;
+  margin:6px 0;font-size:13px;}
+.note .key b{color:#b06a1f;}
+.note .tag{display:inline-block;background:#e7f5ee;color:#2c8a5c;border-radius:4px;
+  padding:1px 7px;font-size:11.5px;margin-right:6px;}
+@media(max-width:520px){.note h4{font-size:13px;} .note li,.note p{font-size:13px;}}
 </style></head><body>
 <header>
   <h1>408 考点笔记 · 目录</h1>
@@ -325,6 +345,44 @@ footer{text-align:center;color:#9aa4af;font-size:11px;padding:20px;}
 </section>
 <section class="subject">
 <h2 style="background:#555">补充笔记</h2>
+<div class="note">
+
+<h4>数据结构 · 队列 · 题型笔记</h4>
+<p><span class="tag">FIFO</span>队列：只允许在<b>队尾</b>插入（入队）、<b>队头</b>删除（出队）的线性表。</p>
+
+<h4>一、循环队列的一般约定（王道口径）</h4>
+<p>数组 <code>Q[0..n-1]</code>，<code>front</code> 指向<b>队头元素</b>，<code>rear</code> 指向<b>队尾元素的下一个位置</b>。</p>
+<table>
+<tr><th>约定方式</th><th>队空条件</th><th>队满条件</th><th>元素个数</th></tr>
+<tr><td>牺牲一个单元</td><td><code>front == rear</code></td><td><code>(rear+1)%n == front</code></td><td><code>(rear-front+n)%n</code></td></tr>
+<tr><td>增设 size 变量</td><td><code>size == 0</code></td><td><code>size == n</code></td><td><code>size</code></td></tr>
+<tr><td>增设 tag 标志</td><td><code>front==rear 且 tag==0</code></td><td><code>front==rear 且 tag==1</code></td><td><code>(rear-front+n)%n</code></td></tr>
+</table>
+<div class="key"><b>口诀：</b>牺牲单元「<b>少用一个，满时留空</b>」；tag 的取值为「<b>删 0 插 1</b>」（最近一次操作是删除→tag=0，此时 front==rear 是队空）。</div>
+
+<h4>二、必考题型</h4>
+<p><b>题型 1｜判空判满</b>　给 <code>front/rear</code> 值，问队列空/满/当前元素个数。<br>
+　→ 先看约定（牺牲单元 / size / tag），再套公式；元素个数一律 <code>(rear-front+n)%n</code>（牺牲单元法）。</p>
+<p><b>题型 2｜元素个数</b>　<code>count = (rear - front + n) % n</code>。<br>
+　→ 注意 <code>+n</code> 不能漏，否则 rear&lt;front 时算出负数。</p>
+<p><b>题型 3｜入队/出队模拟</b>　连续插入删除后，求此时 front/rear 与存储的元素。<br>
+　→ 画一个环形数组，指针按 <code>(x±1+n)%n</code> 走，最稳。</p>
+<p><b>题型 4｜入队后能否再加</b>　牺牲单元法下，<b>最多存 n−1 个元素</b>；问「还能入队几个」用满判据反推。</p>
+<p><b>题型 5｜双端队列</b>　输入受限/输出受限，问某序列「能否由该双端队列得到」。<br>
+　→ 逐个枚举出入顺序，抓住「<b>两端进出</b>」与「<b>只能某端出</b>」的限制。</p>
+<p><b>题型 6｜队列应用</b>　层次遍历（二叉树/BFS）、OS 缓冲区与作业调度、打印机缓冲、消息队列。<br>
+　→ 记住「<b>先来先服务</b>」的本质，能解释为什么用队列而非栈。</p>
+
+<h4>三、易错点</h4>
+<ul>
+<li><b>假溢出</b>：顺序队列不用循环时，出队后 front 后移留下的空间无法再入队 → 必须用循环队列解决。</li>
+<li>牺牲单元法的队满条件是 <code>(rear+1)%n==front</code>，<b>不是</b> <code>rear==front</code>（那是队空）。</li>
+<li>链队列若<b>带头结点</b>，队空条件是 <code>front==rear</code>（都指向头结点）；不带头结点时队空是 <code>front==NULL</code>。</li>
+<li>入队只动 <code>rear</code>，出队只动 <code>front</code>；循环移动一律取模。</li>
+<li>元素个数公式里 <code>-front</code> 在前，别写成 <code>(front-rear+n)%n</code>。</li>
+</ul>
+
+</div>
 </section>
 <footer>408 考点笔记 · 离线单文件版 · 状态仅存本机浏览器</footer></div>
 
