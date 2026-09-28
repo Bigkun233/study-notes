@@ -487,7 +487,10 @@
 <p>所以 \(2I=\pi\cdot\dfrac{\pi}{2}=\dfrac{\pi^{2}}{2}\)，\(A=2I=\dfrac{\pi^{2}}{2}\)。</p>
 <p>故 \(\boxed{f(x)=\dfrac{x}{1+\cos^{2}x}+\dfrac{\pi^{2}}{2}}\)。</p>
 <p class="small">关键两步：①「含未知函数的定积分设为常数 \(A\)」；② 定积分 \(\int_{0}^{\pi}\dfrac{x\sin x}{1+\cos^{2}x}\,dx\) 用<b>区间再现换元</b>（\(x\to\pi-x\)）把 \(x\) 消掉，化成可算的 \(\int_{0}^{\pi}\dfrac{\sin t}{1+\cos^{2}t}\,dt\)。</p>
-<p class="small"><b>官方详解写法</b>（等价）：\(A=2\displaystyle\int_0^{\pi}\dfrac{x\sin x}{1+\cos^2x}\,dx\overset{\text{区间再现}}{=}\pi\displaystyle\int_0^{\pi}\dfrac{\sin x}{1+\cos^2x}\,dx=\pi\big[-\arctan(\cos x)\big]_0^{\pi}=\dfrac{\pi^{2}}{2}\)。</p>
+<p class="small"><b>官方详解写法</b>（等价，用区间再现特例一步到位）：
+\(A=2\displaystyle\int_0^{\pi}\dfrac{x\sin x}{1+\cos^2x}\,dx\overset{x\to\pi-x}{=}\pi\displaystyle\int_0^{\pi}\dfrac{\sin x}{1+\cos^2x}\,dx=-\pi\displaystyle\int_0^{\pi}\dfrac{d(\cos x)}{1+\cos^2x}=-\pi\big[\arctan(\cos x)\big]_0^{\pi}=\dfrac{\pi^{2}}{2}\)。
+（最后一步：\(-\pi(-\tfrac{\pi}{4}-\tfrac{\pi}{4})=\pi\cdot\tfrac{\pi}{2}\)。）</p>
+<p class="small"><b>两种写法对照</b>：本题核心都是「先设常数 \(A\)，再用区间再现消去 \(x\)」。官方用特例 \(\int_0^{\pi}\!x f(\sin x)dx=\tfrac{\pi}{2}\!\int_0^{\pi}\!f(\sin x)dx\) 一步到位；笔记前面的写法多拆了一步 \(I\)，但殊途同归。</p>
 </div>
 
 <h2>四、错题本</h2>
