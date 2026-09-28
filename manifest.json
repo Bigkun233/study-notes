@@ -1,7 +1,7 @@
 {
   "name": "学习笔记",
   "short_name": "学习笔记",
-  "description": "考研 408 + 数学二 离线笔记",
+  "description": "考研 408 + 数学二 + 英语 离线笔记",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
