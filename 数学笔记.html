@@ -264,6 +264,29 @@
 <li>变上限积分求导时，上限是复合函数别漏乘内层导数。</li>
 </ul>
 </div>
+
+<h4>② 必背公式 — 反常积分与 p-积分（重要）</h4>
+<p>反常积分两类：<b>无穷限</b>（上限/下限为 \(\infty\)）与 <b>瑕积分</b>（被积函数在端点无界，称瑕点）。判断敛散先找这两类点。</p>
+<p><b>① p-积分（判敛基准）</b></p>
+<table>
+<tr><th>类型</th><th>p-积分</th><th>收敛条件</th></tr>
+<tr><td>无穷限</td><td>\(\displaystyle\int_{1}^{+\infty}\dfrac{1}{x^{p}}\,dx\)</td><td>\(p\gt 1\) 收敛（\(p\le 1\) 发散）</td></tr>
+<tr><td>瑕积分</td><td>\(\displaystyle\int_{0}^{1}\dfrac{1}{x^{p}}\,dx\)</td><td>\(p\lt 1\) 收敛（\(p\ge 1\) 发散）</td></tr>
+</table>
+<p class="small">记忆：<b>无穷限要 \(p\gt 1\)，瑕点要 \(p\lt 1\)</b>。直觉——无穷远处要衰减得够快；瑕点附近不能增长得太陡。（\(p=1\) 两种都是发散临界）</p>
+<p>收敛时的值：\(\displaystyle\int_{1}^{+\infty}\dfrac{dx}{x^{p}}=\dfrac{1}{p-1}\ (p\gt 1)\)；\(\displaystyle\int_{0}^{1}\dfrac{dx}{x^{p}}=\dfrac{1}{1-p}\ (p\lt 1)\)。</p>
+<p><b>② 比较判别法（与 p-积分对比）</b></p>
+<ul>
+<li><b>不等式形式</b>：\(x\) 充分大时 \(0\le f(x)\le g(x)\)：\(\int g\) 收敛 \(\Rightarrow \int f\) 收敛；\(\int f\) 发散 \(\Rightarrow \int g\) 发散。</li>
+<li><b>极限形式（无穷限）</b>：\(\lim\limits_{x\to+\infty} x^{p}f(x)=L\)，若 \(0\lt L\lt +\infty\)，则 \(\int_a^{+\infty} f\) 与 \(\int_1^{+\infty}\dfrac{dx}{x^{p}}\) <b>同敛散</b>。</li>
+<li><b>极限形式（瑕点 \(x=a\)）</b>：\(\lim\limits_{x\to a^{+}}(x-a)^{p}f(x)=L\)，\(0\lt L\lt+\infty\) 时与 \(\int_a\dfrac{dx}{(x-a)^{p}}\) 同敛散。</li>
+</ul>
+<p><b>③ 常用结论</b></p>
+<ul>
+<li>\(\displaystyle\int_{2}^{+\infty}\dfrac{dx}{x\,(\ln x)^{q}}\)：\(q\gt 1\) 收敛，\(q\le 1\) 发散。</li>
+<li>\(\displaystyle\int_{0}^{+\infty} e^{-x^{2}}\,dx=\dfrac{\sqrt{\pi}}{2}\)（高斯积分，收敛）。</li>
+<li>含参变限积分 \(\int_a^{+\infty} f(x)\,dx\) 收敛时，才可对其作极限、求导等运算。</li>
+</ul>
 </div>
 
 <div class="ch">
