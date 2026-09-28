@@ -456,6 +456,30 @@
 </div>
 </div>
 
+<div class="ch">
+<h3>专题 · 含未知函数的定积分（设常数 A 法）</h3>
+
+<h4>① 解题模板</h4>
+<p>遇到形如</p>
+<p class="eq">\(f(x)=g(x)+\displaystyle\int_a^b \varphi(x)\,f(x)\,dx\)</p>
+<p>（定积分里含未知的 \(f\)）的方程：</p>
+<ul>
+<li><b>第一步</b>：定积分 \(A=\int_a^b\varphi(x)f(x)\,dx\) 积完就是个<b>常数</b>，设它为 \(A\)，写成 \(f(x)=g(x)+A\)。</li>
+<li><b>第二步</b>：把 \(f(x)=g(x)+A\) <b>回代</b>到 \(A\) 的定义式，得到关于 \(A\) 的代数方程。</li>
+<li><b>第三步</b>：解出 \(A\)，代回得 \(f(x)=g(x)+A\)。</li>
+<li><b>常用捷径</b>：对称区间上，若被积函数是<b>奇函数则积分为 0</b>；偶函数可折半。很多题直接把 \(A\) 上面的项全部归零。</li>
+</ul>
+
+<h4>② 典型例题（北京市 2014 年竞赛题）</h4>
+<p>设 \(f(x)\) 在 \([-\pi,\pi]\) 上连续，满足</p>
+<p class="eq">\(f(x)=\dfrac{1}{1+\cos^2 x}+\displaystyle\int_{-\pi}^{\pi} f(x)\sin x\,dx\)，求 \(f(x)\)。</p>
+<p><b>解</b>：记 \(A=\displaystyle\int_{-\pi}^{\pi} f(x)\sin x\,dx\)（常数），则 \(f(x)=\dfrac{1}{1+\cos^2 x}+A\)。</p>
+<p>回代：\(A=\displaystyle\int_{-\pi}^{\pi}\dfrac{\sin x}{1+\cos^2 x}\,dx+A\int_{-\pi}^{\pi}\sin x\,dx\)。</p>
+<p>其中 \(\dfrac{\sin x}{1+\cos^2 x}\) 与 \(\sin x\) 均为<b>奇函数</b>，在对称区间上积分都为 \(0\)，故 \(A=0\)。</p>
+<p>所以 \(\boxed{f(x)=\dfrac{1}{1+\cos^2 x}}\)。</p>
+<p class="small">本题彩蛋：\(A\) 靠<b>奇偶性</b>直接归零，不用真去算积分。</p>
+</div>
+
 <h2>四、错题本</h2>
 <table>
 <tr><th>日期</th><th>来源</th><th>题目 / 考点</th><th>错因</th><th>改进</th></tr>
