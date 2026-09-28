@@ -468,16 +468,24 @@
 <li><b>第二步</b>：把 \(f(x)=g(x)+A\) <b>回代</b>到 \(A\) 的定义式，得到关于 \(A\) 的代数方程。</li>
 <li><b>第三步</b>：解出 \(A\)，代回得 \(f(x)=g(x)+A\)。</li>
 <li><b>常用捷径</b>：对称区间上，若被积函数是<b>奇函数则积分为 0</b>；偶函数可折半。很多题直接把 \(A\) 上面的项全部归零。</li>
+<li><b>重要补充 — 区间再现换元</b>：\(\displaystyle\int_a^b f(x)\,dx=\int_a^b f(a+b-x)\,dx\)。当 \(f(x)+f(a+b-x)\) 好算（为常数或简单式）时特别好用；常用来处理 \(x\sin x\)、\(x\,f(\sin x)\) 型，把带 \(x\) 的因子「再现」后消掉。</li>
 </ul>
 
 <h4>② 典型例题（北京市 2014 年竞赛题）</h4>
 <p>设 \(f(x)\) 在 \([-\pi,\pi]\) 上连续，满足</p>
-<p class="eq">\(f(x)=\dfrac{1}{1+\cos^2 x}+\displaystyle\int_{-\pi}^{\pi} f(x)\sin x\,dx\)，求 \(f(x)\)。</p>
-<p><b>解</b>：记 \(A=\displaystyle\int_{-\pi}^{\pi} f(x)\sin x\,dx\)（常数），则 \(f(x)=\dfrac{1}{1+\cos^2 x}+A\)。</p>
-<p>回代：\(A=\displaystyle\int_{-\pi}^{\pi}\dfrac{\sin x}{1+\cos^2 x}\,dx+A\int_{-\pi}^{\pi}\sin x\,dx\)。</p>
-<p>其中 \(\dfrac{\sin x}{1+\cos^2 x}\) 与 \(\sin x\) 均为<b>奇函数</b>，在对称区间上积分都为 \(0\)，故 \(A=0\)。</p>
-<p>所以 \(\boxed{f(x)=\dfrac{1}{1+\cos^2 x}}\)。</p>
-<p class="small">本题彩蛋：\(A\) 靠<b>奇偶性</b>直接归零，不用真去算积分。</p>
+<p class="eq">\(f(x)=\dfrac{x}{1+\cos^2 x}+\displaystyle\int_{-\pi}^{\pi} f(x)\sin x\,dx\)，求 \(f(x)\)。</p>
+<p><b>第一步（设常数）</b>：记 \(A=\displaystyle\int_{-\pi}^{\pi} f(x)\sin x\,dx\)（常数），则 \(f(x)=\dfrac{x}{1+\cos^2 x}+A\)。</p>
+<p><b>第二步（回代）</b>：</p>
+<p class="eq">\(A=\displaystyle\int_{-\pi}^{\pi}\dfrac{x\sin x}{1+\cos^2 x}\,dx+A\int_{-\pi}^{\pi}\sin x\,dx=\displaystyle\int_{-\pi}^{\pi}\dfrac{x\sin x}{1+\cos^2 x}\,dx\)（因 \(\int_{-\pi}^{\pi}\sin x\,dx=0\)）。</p>
+<p>被积函数 \(\dfrac{x\sin x}{1+\cos^2 x}\) 是<b>偶函数</b>（\(x\sin x\) 偶 × \(\dfrac{1}{1+\cos^2 x}\) 偶），故</p>
+<p class="eq">\(A=2I,\qquad I=\displaystyle\int_{0}^{\pi}\dfrac{x\sin x}{1+\cos^2 x}\,dx\)。</p>
+<p><b>第三步（区间再现换元求 \(I\)）</b>：作换元 \(x\mapsto \pi-x\)（区间再现 \(x\mapsto a+b-x\)）：</p>
+<p class="eq">\(I=\displaystyle\int_{0}^{\pi}\dfrac{(\pi-t)\sin t}{1+\cos^2 t}\,dt=\pi\int_{0}^{\pi}\dfrac{\sin t}{1+\cos^2 t}\,dt-I\)。</p>
+<p>于是 \(2I=\pi\displaystyle\int_{0}^{\pi}\dfrac{\sin t}{1+\cos^2 t}\,dt\)，而</p>
+<p class="eq">\(\displaystyle\int_{0}^{\pi}\dfrac{\sin t}{1+\cos^2 t}\,dt=\big[-\arctan(\cos t)\big]_{0}^{\pi}=\dfrac{\pi}{4}-\Big(-\dfrac{\pi}{4}\Big)=\dfrac{\pi}{2}\)。</p>
+<p>所以 \(2I=\pi\cdot\dfrac{\pi}{2}=\dfrac{\pi^{2}}{2}\)，\(A=2I=\dfrac{\pi^{2}}{2}\)。</p>
+<p>故 \(\boxed{f(x)=\dfrac{x}{1+\cos^{2}x}+\dfrac{\pi^{2}}{2}}\)。</p>
+<p class="small">关键两步：①「含未知函数的定积分设为常数 \(A\)」；② 定积分 \(\int_{0}^{\pi}\dfrac{x\sin x}{1+\cos^{2}x}\,dx\) 用<b>区间再现换元</b>（\(x\to\pi-x\)）把 \(x\) 消掉，化成可算的 \(\int_{0}^{\pi}\dfrac{\sin t}{1+\cos^{2}t}\,dt\)。</p>
 </div>
 
 <h2>四、错题本</h2>
