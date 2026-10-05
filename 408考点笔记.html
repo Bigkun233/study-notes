@@ -73,7 +73,22 @@ footer{text-align:center;color:#9aa4af;font-size:11px;padding:20px;}
 .note .tag{display:inline-block;background:#e7f5ee;color:#2c8a5c;border-radius:4px;
   padding:1px 7px;font-size:11.5px;margin-right:6px;}
 @media(max-width:520px){.note h4{font-size:13px;} .note li,.note p{font-size:13px;}}
-</style></head><body>
+</style><style id="toc-style">
+.tocbox{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 18px;
+  margin:18px auto;max-width:900px;box-shadow:0 1px 4px rgba(0,0,0,.06);
+  font-family:-apple-system,"Noto Sans CJK SC","Microsoft YaHei",sans-serif;
+  font-size:14px;line-height:1.75;color:#1f2937;}
+.tocbox .toc-t{font-weight:700;font-size:15px;color:#2c5c8a;margin:0 0 8px;
+  padding-bottom:6px;border-bottom:1px solid #e2e8f0;}
+.tocbox ul{list-style:none;margin:0;padding:0;}
+.tocbox li{margin:4px 0;}
+.tocbox a{color:#1f2937;text-decoration:none;border-bottom:1px dashed #cbd5e1;}
+.tocbox a:hover{color:#2c5c8a;border-bottom-color:#2c5c8a;}
+.tocbox li.lvl2{font-weight:600;}
+.tocbox li.lvl3{margin-left:1.4em;font-size:13px;font-weight:400;color:#4b5563;}
+.tocbox li.lvl3 a{color:#4b5563;}
+</style>
+</head><body>
 <header>
   <h1>408 考点笔记 · 目录</h1>
   <div class="sub">点击条目切换掌握状态：未掌握 → 模糊 → 已掌握　（进度自动保存在本机）</div>
@@ -93,10 +108,11 @@ footer{text-align:center;color:#9aa4af;font-size:11px;padding:20px;}
   <button onclick="setAll(' ')">全部重置</button>
   <span class="legend">图例：<span class="dot n"></span>未掌握<span class="dot h"></span>模糊<span class="dot y"></span>已掌握</span>
 </div>
+<nav class="tocbox"><div class="toc-t">📑 目录（点击跳转）</div><ul><li class="lvl2"><a href="#sec1">一、数据结构（DS）</a></li><li class="lvl3"><a href="#sec2">1. 绪论 / 算法</a></li><li class="lvl3"><a href="#sec3">2. 线性表</a></li><li class="lvl3"><a href="#sec4">3. 栈和队列</a></li><li class="lvl3"><a href="#sec5">4. 数组和特殊矩阵</a></li><li class="lvl3"><a href="#sec6">5. 串</a></li><li class="lvl3"><a href="#sec7">6. 树与二叉树</a></li><li class="lvl3"><a href="#sec8">7. 图</a></li><li class="lvl3"><a href="#sec9">8. 查找</a></li><li class="lvl3"><a href="#sec10">9. 排序</a></li><li class="lvl2"><a href="#sec11">二、计算机组成原理（CO）</a></li><li class="lvl3"><a href="#sec12">1. 计算机系统概述</a></li><li class="lvl3"><a href="#sec13">2. 数据的机器表示</a></li><li class="lvl3"><a href="#sec14">3. 存储系统</a></li><li class="lvl3"><a href="#sec15">4. 指令系统</a></li><li class="lvl3"><a href="#sec16">5. 中央处理器（CPU）</a></li><li class="lvl3"><a href="#sec17">6. 总线</a></li><li class="lvl3"><a href="#sec18">7. 输入/输出系统（IO）</a></li><li class="lvl2"><a href="#sec19">三、操作系统（OS）</a></li><li class="lvl3"><a href="#sec20">1. 操作系统概述</a></li><li class="lvl3"><a href="#sec21">2. 进程管理</a></li><li class="lvl3"><a href="#sec22">3. 内存管理</a></li><li class="lvl3"><a href="#sec23">4. 文件管理</a></li><li class="lvl3"><a href="#sec24">5. 输入/输出管理</a></li><li class="lvl2"><a href="#sec25">四、计算机网络（CN）</a></li><li class="lvl3"><a href="#sec26">1. 计算机网络体系结构</a></li><li class="lvl3"><a href="#sec27">2. 物理层</a></li><li class="lvl3"><a href="#sec28">3. 数据链路层</a></li><li class="lvl3"><a href="#sec29">4. 网络层</a></li><li class="lvl3"><a href="#sec30">5. 传输层</a></li><li class="lvl3"><a href="#sec31">6. 应用层</a></li><li class="lvl2"><a href="#sec32">补充笔记</a></li></ul></nav>
 <section class="subject">
-<h2 style="background:#2c5c8a">一、数据结构（DS）</h2>
+<h2 style="background:#2c5c8a" id="sec1">一、数据结构（DS）</h2>
 <div class="chap">
-<h3>1. 绪论 / 算法<span class="cnt" data-cnt></span></h3>
+<h3 id="sec2">1. 绪论 / 算法<span class="cnt" data-cnt></span></h3>
 <div class="item" data-s=" " data-key="1.1 数据结构基本概念（数据、数据元素、数据项、数据对象）" onclick="cyc(this)"><span class="box"></span><span class="txt">1.1 数据结构基本概念（数据、数据元素、数据项、数据对象）</span></div>
 <div class="item" data-s=" " data-key="1.2 逻辑结构与物理结构" onclick="cyc(this)"><span class="box"></span><span class="txt">1.2 逻辑结构与物理结构</span></div>
 <div class="item" data-s=" " data-key="1.3 算法的基本概念与特性" onclick="cyc(this)"><span class="box"></span><span class="txt">1.3 算法的基本概念与特性</span></div>
@@ -104,7 +120,7 @@ footer{text-align:center;color:#9aa4af;font-size:11px;padding:20px;}
 <div class="item" data-s=" " data-key="1.5 空间复杂度分析" onclick="cyc(this)"><span class="box"></span><span class="txt">1.5 空间复杂度分析</span></div>
 </div>
 <div class="chap">
-<h3>2. 线性表<span class="cnt" data-cnt></span></h3>
+<h3 id="sec3">2. 线性表<span class="cnt" data-cnt></span></h3>
 <div class="item" data-s=" " data-key="2.1 线性表的定义与基本操作" onclick="cyc(this)"><span class="box"></span><span class="txt">2.1 线性表的定义与基本操作</span></div>
 <div class="item" data-s=" " data-key="2.2 顺序表（插入、删除、查找）" onclick="cyc(this)"><span class="box"></span><span class="txt">2.2 顺序表（插入、删除、查找）</span></div>
 <div class="item" data-s=" " data-key="2.3 单链表（头插、尾插、插入删除）" onclick="cyc(this)"><span class="box"></span><span class="txt">2.3 单链表（头插、尾插、插入删除）</span></div>
@@ -113,7 +129,7 @@ footer{text-align:center;color:#9aa4af;font-size:11px;padding:20px;}
 <div class="item" data-s=" " data-key="2.6 常见应用（合并、就地逆置、找中间结点、判环）" onclick="cyc(this)"><span class="box"></span><span class="txt">2.6 常见应用（合并、就地逆置、找中间结点、判环）</span></div>
 </div>
 <div class="chap">
-<h3>3. 栈和队列<span class="cnt" data-cnt></span></h3>
+<h3 id="sec4">3. 栈和队列<span class="cnt" data-cnt></span></h3>
 <div class="item" data-s=" " data-key="3.1 栈的定义、顺序栈、链栈、共享栈" onclick="cyc(this)"><span class="box"></span><span class="txt">3.1 栈的定义、顺序栈、链栈、共享栈</span></div>
 <div class="item" data-s=" " data-key="3.2 栈的应用（括号匹配、表达式求值、递归、进制转换）" onclick="cyc(this)"><span class="box"></span><span class="txt">3.2 栈的应用（括号匹配、表达式求值、递归、进制转换）</span></div>
 <div class="item" data-s=" " data-key="3.3 队列的定义、顺序队列、循环队列、链队列" onclick="cyc(this)"><span class="box"></span><span class="txt">3.3 队列的定义、顺序队列、循环队列、链队列</span></div>
@@ -121,19 +137,19 @@ footer{text-align:center;color:#9aa4af;font-size:11px;padding:20px;}
 <div class="item" data-s=" " data-key="3.5 队列的应用（层次遍历、缓冲区）" onclick="cyc(this)"><span class="box"></span><span class="txt">3.5 队列的应用（层次遍历、缓冲区）</span></div>
 </div>
 <div class="chap">
-<h3>4. 数组和特殊矩阵<span class="cnt" data-cnt></span></h3>
+<h3 id="sec5">4. 数组和特殊矩阵<span class="cnt" data-cnt></span></h3>
 <div class="item" data-s=" " data-key="4.1 一维/多维数组的存储与地址计算" onclick="cyc(this)"><span class="box"></span><span class="txt">4.1 一维/多维数组的存储与地址计算</span></div>
 <div class="item" data-s=" " data-key="4.2 对称矩阵、三角矩阵、对角矩阵压缩" onclick="cyc(this)"><span class="box"></span><span class="txt">4.2 对称矩阵、三角矩阵、对角矩阵压缩</span></div>
 <div class="item" data-s=" " data-key="4.3 稀疏矩阵（三元组、十字链表）" onclick="cyc(this)"><span class="box"></span><span class="txt">4.3 稀疏矩阵（三元组、十字链表）</span></div>
 </div>
 <div class="chap">
-<h3>5. 串<span class="cnt" data-cnt></span></h3>
+<h3 id="sec6">5. 串<span class="cnt" data-cnt></span></h3>
 <div class="item" data-s=" " data-key="5.1 串的定义与存储结构" onclick="cyc(this)"><span class="box"></span><span class="txt">5.1 串的定义与存储结构</span></div>
 <div class="item" data-s=" " data-key="5.2 朴素模式匹配（BF）" onclick="cyc(this)"><span class="box"></span><span class="txt">5.2 朴素模式匹配（BF）</span></div>
 <div class="item" data-s=" " data-key="5.3 KMP 算法（next 数组、nextval）" onclick="cyc(this)"><span class="box"></span><span class="txt">5.3 KMP 算法（next 数组、nextval）</span></div>
 </div>
 <div class="chap">
-<h3>6. 树与二叉树<span class="cnt" data-cnt></span></h3>
+<h3 id="sec7">6. 树与二叉树<span class="cnt" data-cnt></span></h3>
 <div class="item" data-s=" " data-key="6.1 树的基本概念与性质" onclick="cyc(this)"><span class="box"></span><span class="txt">6.1 树的基本概念与性质</span></div>
 <div class="item" data-s=" " data-key="6.2 二叉树定义、性质、存储结构" onclick="cyc(this)"><span class="box"></span><span class="txt">6.2 二叉树定义、性质、存储结构</span></div>
 <div class="item" data-s=" " data-key="6.3 二叉树遍历（先序、中序、后序、层次）" onclick="cyc(this)"><span class="box"></span><span class="txt">6.3 二叉树遍历（先序、中序、后序、层次）</span></div>
@@ -147,7 +163,7 @@ footer{text-align:center;color:#9aa4af;font-size:11px;padding:20px;}
 <div class="item" data-s=" " data-key="6.11 红黑树" onclick="cyc(this)"><span class="box"></span><span class="txt">6.11 红黑树</span></div>
 </div>
 <div class="chap">
-<h3>7. 图<span class="cnt" data-cnt></span></h3>
+<h3 id="sec8">7. 图<span class="cnt" data-cnt></span></h3>
 <div class="item" data-s=" " data-key="7.1 图的基本概念（有向/无向、度、连通性）" onclick="cyc(this)"><span class="box"></span><span class="txt">7.1 图的基本概念（有向/无向、度、连通性）</span></div>
 <div class="item" data-s=" " data-key="7.2 存储结构（邻接矩阵、邻接表、十字链表、邻接多重表）" onclick="cyc(this)"><span class="box"></span><span class="txt">7.2 存储结构（邻接矩阵、邻接表、十字链表、邻接多重表）</span></div>
 <div class="item" data-s=" " data-key="7.3 图的遍历（BFS、DFS）" onclick="cyc(this)"><span class="box"></span><span class="txt">7.3 图的遍历（BFS、DFS）</span></div>
@@ -157,7 +173,7 @@ footer{text-align:center;color:#9aa4af;font-size:11px;padding:20px;}
 <div class="item" data-s=" " data-key="7.7 关键路径（AOE）" onclick="cyc(this)"><span class="box"></span><span class="txt">7.7 关键路径（AOE）</span></div>
 </div>
 <div class="chap">
-<h3>8. 查找<span class="cnt" data-cnt></span></h3>
+<h3 id="sec9">8. 查找<span class="cnt" data-cnt></span></h3>
 <div class="item" data-s=" " data-key="8.1 顺序查找" onclick="cyc(this)"><span class="box"></span><span class="txt">8.1 顺序查找</span></div>
 <div class="item" data-s=" " data-key="8.2 折半查找" onclick="cyc(this)"><span class="box"></span><span class="txt">8.2 折半查找</span></div>
 <div class="item" data-s=" " data-key="8.3 分块查找" onclick="cyc(this)"><span class="box"></span><span class="txt">8.3 分块查找</span></div>
@@ -166,7 +182,7 @@ footer{text-align:center;color:#9aa4af;font-size:11px;padding:20px;}
 <div class="item" data-s=" " data-key="8.6 散列表（构造、冲突处理、查找性能）" onclick="cyc(this)"><span class="box"></span><span class="txt">8.6 散列表（构造、冲突处理、查找性能）</span></div>
 </div>
 <div class="chap">
-<h3>9. 排序<span class="cnt" data-cnt></span></h3>
+<h3 id="sec10">9. 排序<span class="cnt" data-cnt></span></h3>
 <div class="item" data-s=" " data-key="9.1 插入排序、希尔排序" onclick="cyc(this)"><span class="box"></span><span class="txt">9.1 插入排序、希尔排序</span></div>
 <div class="item" data-s=" " data-key="9.2 交换排序（冒泡、快速排序）" onclick="cyc(this)"><span class="box"></span><span class="txt">9.2 交换排序（冒泡、快速排序）</span></div>
 <div class="item" data-s=" " data-key="9.3 选择排序（简单选择、堆排序）" onclick="cyc(this)"><span class="box"></span><span class="txt">9.3 选择排序（简单选择、堆排序）</span></div>
@@ -177,16 +193,16 @@ footer{text-align:center;color:#9aa4af;font-size:11px;padding:20px;}
 </div>
 </section>
 <section class="subject">
-<h2 style="background:#b06a1f">二、计算机组成原理（CO）</h2>
+<h2 style="background:#b06a1f" id="sec11">二、计算机组成原理（CO）</h2>
 <div class="chap">
-<h3>1. 计算机系统概述<span class="cnt" data-cnt></span></h3>
+<h3 id="sec12">1. 计算机系统概述<span class="cnt" data-cnt></span></h3>
 <div class="item" data-s=" " data-key="1.1 冯·诺依曼结构与哈佛结构" onclick="cyc(this)"><span class="box"></span><span class="txt">1.1 冯·诺依曼结构与哈佛结构</span></div>
 <div class="item" data-s=" " data-key="1.2 计算机硬件组成（五大部件）" onclick="cyc(this)"><span class="box"></span><span class="txt">1.2 计算机硬件组成（五大部件）</span></div>
 <div class="item" data-s=" " data-key="1.3 计算机层次结构与工作过程" onclick="cyc(this)"><span class="box"></span><span class="txt">1.3 计算机层次结构与工作过程</span></div>
 <div class="item" data-s=" " data-key="1.4 性能指标（主频、CPI、MIPS、FLOPS）" onclick="cyc(this)"><span class="box"></span><span class="txt">1.4 性能指标（主频、CPI、MIPS、FLOPS）</span></div>
 </div>
 <div class="chap">
-<h3>2. 数据的机器表示<span class="cnt" data-cnt></span></h3>
+<h3 id="sec13">2. 数据的机器表示<span class="cnt" data-cnt></span></h3>
 <div class="item" data-s=" " data-key="2.1 进位计数制与相互转换" onclick="cyc(this)"><span class="box"></span><span class="txt">2.1 进位计数制与相互转换</span></div>
 <div class="item" data-s=" " data-key="2.2 定点数表示（原码、反码、补码、移码）" onclick="cyc(this)"><span class="box"></span><span class="txt">2.2 定点数表示（原码、反码、补码、移码）</span></div>
 <div class="item" data-s=" " data-key="2.3 定点数运算与溢出判断" onclick="cyc(this)"><span class="box"></span><span class="txt">2.3 定点数运算与溢出判断</span></div>
@@ -196,7 +212,7 @@ footer{text-align:center;color:#9aa4af;font-size:11px;padding:20px;}
 <div class="item" data-s=" " data-key="2.7 校验码（奇偶、CRC、海明码）" onclick="cyc(this)"><span class="box"></span><span class="txt">2.7 校验码（奇偶、CRC、海明码）</span></div>
 </div>
 <div class="chap">
-<h3>3. 存储系统<span class="cnt" data-cnt></span></h3>
+<h3 id="sec14">3. 存储系统<span class="cnt" data-cnt></span></h3>
 <div class="item" data-s=" " data-key="3.1 存储器分类与层次结构" onclick="cyc(this)"><span class="box"></span><span class="txt">3.1 存储器分类与层次结构</span></div>
 <div class="item" data-s=" " data-key="3.2 主存（SRAM、DRAM、ROM）" onclick="cyc(this)"><span class="box"></span><span class="txt">3.2 主存（SRAM、DRAM、ROM）</span></div>
 <div class="item" data-s=" " data-key="3.3 主存与 CPU 连接、位/字扩展" onclick="cyc(this)"><span class="box"></span><span class="txt">3.3 主存与 CPU 连接、位/字扩展</span></div>
@@ -207,7 +223,7 @@ footer{text-align:center;color:#9aa4af;font-size:11px;padding:20px;}
 <div class="item" data-s=" " data-key="3.8 外存（磁盘、SSD）" onclick="cyc(this)"><span class="box"></span><span class="txt">3.8 外存（磁盘、SSD）</span></div>
 </div>
 <div class="chap">
-<h3>4. 指令系统<span class="cnt" data-cnt></span></h3>
+<h3 id="sec15">4. 指令系统<span class="cnt" data-cnt></span></h3>
 <div class="item" data-s=" " data-key="4.1 指令格式" onclick="cyc(this)"><span class="box"></span><span class="txt">4.1 指令格式</span></div>
 <div class="item" data-s=" " data-key="4.2 寻址方式" onclick="cyc(this)"><span class="box"></span><span class="txt">4.2 寻址方式</span></div>
 <div class="item" data-s=" " data-key="4.3 指令类型" onclick="cyc(this)"><span class="box"></span><span class="txt">4.3 指令类型</span></div>
@@ -215,7 +231,7 @@ footer{text-align:center;color:#9aa4af;font-size:11px;padding:20px;}
 <div class="item" data-s=" " data-key="4.5 高级语言与机器级表示（汇编）" onclick="cyc(this)"><span class="box"></span><span class="txt">4.5 高级语言与机器级表示（汇编）</span></div>
 </div>
 <div class="chap">
-<h3>5. 中央处理器（CPU）<span class="cnt" data-cnt></span></h3>
+<h3 id="sec16">5. 中央处理器（CPU）<span class="cnt" data-cnt></span></h3>
 <div class="item" data-s=" " data-key="5.1 CPU 功能与结构、寄存器" onclick="cyc(this)"><span class="box"></span><span class="txt">5.1 CPU 功能与结构、寄存器</span></div>
 <div class="item" data-s=" " data-key="5.2 指令周期与数据通路" onclick="cyc(this)"><span class="box"></span><span class="txt">5.2 指令周期与数据通路</span></div>
 <div class="item" data-s=" " data-key="5.3 控制器（硬布线、微程序）" onclick="cyc(this)"><span class="box"></span><span class="txt">5.3 控制器（硬布线、微程序）</span></div>
@@ -224,14 +240,14 @@ footer{text-align:center;color:#9aa4af;font-size:11px;padding:20px;}
 <div class="item" data-s=" " data-key="5.6 多处理器基本概念" onclick="cyc(this)"><span class="box"></span><span class="txt">5.6 多处理器基本概念</span></div>
 </div>
 <div class="chap">
-<h3>6. 总线<span class="cnt" data-cnt></span></h3>
+<h3 id="sec17">6. 总线<span class="cnt" data-cnt></span></h3>
 <div class="item" data-s=" " data-key="6.1 总线概念与分类" onclick="cyc(this)"><span class="box"></span><span class="txt">6.1 总线概念与分类</span></div>
 <div class="item" data-s=" " data-key="6.2 总线性能指标" onclick="cyc(this)"><span class="box"></span><span class="txt">6.2 总线性能指标</span></div>
 <div class="item" data-s=" " data-key="6.3 总线仲裁" onclick="cyc(this)"><span class="box"></span><span class="txt">6.3 总线仲裁</span></div>
 <div class="item" data-s=" " data-key="6.4 总线操作与定时" onclick="cyc(this)"><span class="box"></span><span class="txt">6.4 总线操作与定时</span></div>
 </div>
 <div class="chap">
-<h3>7. 输入/输出系统（IO）<span class="cnt" data-cnt></span></h3>
+<h3 id="sec18">7. 输入/输出系统（IO）<span class="cnt" data-cnt></span></h3>
 <div class="item" data-s=" " data-key="7.1 I/O 系统基本概念、I/O 接口" onclick="cyc(this)"><span class="box"></span><span class="txt">7.1 I/O 系统基本概念、I/O 接口</span></div>
 <div class="item" data-s=" " data-key="7.2 程序查询方式" onclick="cyc(this)"><span class="box"></span><span class="txt">7.2 程序查询方式</span></div>
 <div class="item" data-s=" " data-key="7.3 程序中断方式（中断处理、多重中断）" onclick="cyc(this)"><span class="box"></span><span class="txt">7.3 程序中断方式（中断处理、多重中断）</span></div>
@@ -239,15 +255,15 @@ footer{text-align:center;color:#9aa4af;font-size:11px;padding:20px;}
 </div>
 </section>
 <section class="subject">
-<h2 style="background:#2c8a5c">三、操作系统（OS）</h2>
+<h2 style="background:#2c8a5c" id="sec19">三、操作系统（OS）</h2>
 <div class="chap">
-<h3>1. 操作系统概述<span class="cnt" data-cnt></span></h3>
+<h3 id="sec20">1. 操作系统概述<span class="cnt" data-cnt></span></h3>
 <div class="item" data-s=" " data-key="1.1 概念、功能与特征" onclick="cyc(this)"><span class="box"></span><span class="txt">1.1 概念、功能与特征</span></div>
 <div class="item" data-s=" " data-key="1.2 发展历程与分类" onclick="cyc(this)"><span class="box"></span><span class="txt">1.2 发展历程与分类</span></div>
 <div class="item" data-s=" " data-key="1.3 运行环境（内核态/用户态、中断与异常、系统调用）" onclick="cyc(this)"><span class="box"></span><span class="txt">1.3 运行环境（内核态/用户态、中断与异常、系统调用）</span></div>
 </div>
 <div class="chap">
-<h3>2. 进程管理<span class="cnt" data-cnt></span></h3>
+<h3 id="sec21">2. 进程管理<span class="cnt" data-cnt></span></h3>
 <div class="item" data-s=" " data-key="2.1 进程与线程的概念" onclick="cyc(this)"><span class="box"></span><span class="txt">2.1 进程与线程的概念</span></div>
 <div class="item" data-s=" " data-key="2.2 进程状态与转换、PCB" onclick="cyc(this)"><span class="box"></span><span class="txt">2.2 进程状态与转换、PCB</span></div>
 <div class="item" data-s=" " data-key="2.3 进程控制与组织" onclick="cyc(this)"><span class="box"></span><span class="txt">2.3 进程控制与组织</span></div>
@@ -260,7 +276,7 @@ footer{text-align:center;color:#9aa4af;font-size:11px;padding:20px;}
 <div class="item" data-s=" " data-key="2.10 死锁（条件、预防、避免/银行家、检测与解除）" onclick="cyc(this)"><span class="box"></span><span class="txt">2.10 死锁（条件、预防、避免/银行家、检测与解除）</span></div>
 </div>
 <div class="chap">
-<h3>3. 内存管理<span class="cnt" data-cnt></span></h3>
+<h3 id="sec22">3. 内存管理<span class="cnt" data-cnt></span></h3>
 <div class="item" data-s=" " data-key="3.1 内存管理概念、装入与链接" onclick="cyc(this)"><span class="box"></span><span class="txt">3.1 内存管理概念、装入与链接</span></div>
 <div class="item" data-s=" " data-key="3.2 连续分配（固定分区、动态分区）" onclick="cyc(this)"><span class="box"></span><span class="txt">3.2 连续分配（固定分区、动态分区）</span></div>
 <div class="item" data-s=" " data-key="3.3 分页存储管理" onclick="cyc(this)"><span class="box"></span><span class="txt">3.3 分页存储管理</span></div>
@@ -271,7 +287,7 @@ footer{text-align:center;color:#9aa4af;font-size:11px;padding:20px;}
 <div class="item" data-s=" " data-key="3.8 抖动与工作集" onclick="cyc(this)"><span class="box"></span><span class="txt">3.8 抖动与工作集</span></div>
 </div>
 <div class="chap">
-<h3>4. 文件管理<span class="cnt" data-cnt></span></h3>
+<h3 id="sec23">4. 文件管理<span class="cnt" data-cnt></span></h3>
 <div class="item" data-s=" " data-key="4.1 文件与文件系统概念" onclick="cyc(this)"><span class="box"></span><span class="txt">4.1 文件与文件系统概念</span></div>
 <div class="item" data-s=" " data-key="4.2 文件的逻辑结构" onclick="cyc(this)"><span class="box"></span><span class="txt">4.2 文件的逻辑结构</span></div>
 <div class="item" data-s=" " data-key="4.3 目录结构" onclick="cyc(this)"><span class="box"></span><span class="txt">4.3 目录结构</span></div>
@@ -280,7 +296,7 @@ footer{text-align:center;color:#9aa4af;font-size:11px;padding:20px;}
 <div class="item" data-s=" " data-key="4.6 磁盘组织与空闲空间管理" onclick="cyc(this)"><span class="box"></span><span class="txt">4.6 磁盘组织与空闲空间管理</span></div>
 </div>
 <div class="chap">
-<h3>5. 输入/输出管理<span class="cnt" data-cnt></span></h3>
+<h3 id="sec24">5. 输入/输出管理<span class="cnt" data-cnt></span></h3>
 <div class="item" data-s=" " data-key="5.1 I/O 管理概述与 I/O 软件层次" onclick="cyc(this)"><span class="box"></span><span class="txt">5.1 I/O 管理概述与 I/O 软件层次</span></div>
 <div class="item" data-s=" " data-key="5.2 设备分配与 SPOOLing" onclick="cyc(this)"><span class="box"></span><span class="txt">5.2 设备分配与 SPOOLing</span></div>
 <div class="item" data-s=" " data-key="5.3 缓冲区管理" onclick="cyc(this)"><span class="box"></span><span class="txt">5.3 缓冲区管理</span></div>
@@ -289,16 +305,16 @@ footer{text-align:center;color:#9aa4af;font-size:11px;padding:20px;}
 </div>
 </section>
 <section class="subject">
-<h2 style="background:#6a2c8a">四、计算机网络（CN）</h2>
+<h2 style="background:#6a2c8a" id="sec25">四、计算机网络（CN）</h2>
 <div class="chap">
-<h3>1. 计算机网络体系结构<span class="cnt" data-cnt></span></h3>
+<h3 id="sec26">1. 计算机网络体系结构<span class="cnt" data-cnt></span></h3>
 <div class="item" data-s=" " data-key="1.1 概念、组成、功能与分类" onclick="cyc(this)"><span class="box"></span><span class="txt">1.1 概念、组成、功能与分类</span></div>
 <div class="item" data-s=" " data-key="1.2 性能指标（带宽、时延、吞吐量、利用率）" onclick="cyc(this)"><span class="box"></span><span class="txt">1.2 性能指标（带宽、时延、吞吐量、利用率）</span></div>
 <div class="item" data-s=" " data-key="1.3 分层结构、协议、接口、服务" onclick="cyc(this)"><span class="box"></span><span class="txt">1.3 分层结构、协议、接口、服务</span></div>
 <div class="item" data-s=" " data-key="1.4 OSI 七层模型与 TCP/IP 模型" onclick="cyc(this)"><span class="box"></span><span class="txt">1.4 OSI 七层模型与 TCP/IP 模型</span></div>
 </div>
 <div class="chap">
-<h3>2. 物理层<span class="cnt" data-cnt></span></h3>
+<h3 id="sec27">2. 物理层<span class="cnt" data-cnt></span></h3>
 <div class="item" data-s=" " data-key="2.1 基本概念与数据通信基础" onclick="cyc(this)"><span class="box"></span><span class="txt">2.1 基本概念与数据通信基础</span></div>
 <div class="item" data-s=" " data-key="2.2 编码与调制" onclick="cyc(this)"><span class="box"></span><span class="txt">2.2 编码与调制</span></div>
 <div class="item" data-s=" " data-key="2.3 传输介质" onclick="cyc(this)"><span class="box"></span><span class="txt">2.3 传输介质</span></div>
@@ -306,7 +322,7 @@ footer{text-align:center;color:#9aa4af;font-size:11px;padding:20px;}
 <div class="item" data-s=" " data-key="2.5 信道复用" onclick="cyc(this)"><span class="box"></span><span class="txt">2.5 信道复用</span></div>
 </div>
 <div class="chap">
-<h3>3. 数据链路层<span class="cnt" data-cnt></span></h3>
+<h3 id="sec28">3. 数据链路层<span class="cnt" data-cnt></span></h3>
 <div class="item" data-s=" " data-key="3.1 功能与组帧" onclick="cyc(this)"><span class="box"></span><span class="txt">3.1 功能与组帧</span></div>
 <div class="item" data-s=" " data-key="3.2 差错控制（检错与纠错）" onclick="cyc(this)"><span class="box"></span><span class="txt">3.2 差错控制（检错与纠错）</span></div>
 <div class="item" data-s=" " data-key="3.3 流量控制与可靠传输（停等、GBN、SR）" onclick="cyc(this)"><span class="box"></span><span class="txt">3.3 流量控制与可靠传输（停等、GBN、SR）</span></div>
@@ -315,7 +331,7 @@ footer{text-align:center;color:#9aa4af;font-size:11px;padding:20px;}
 <div class="item" data-s=" " data-key="3.6 交换机与 VLAN" onclick="cyc(this)"><span class="box"></span><span class="txt">3.6 交换机与 VLAN</span></div>
 </div>
 <div class="chap">
-<h3>4. 网络层<span class="cnt" data-cnt></span></h3>
+<h3 id="sec29">4. 网络层<span class="cnt" data-cnt></span></h3>
 <div class="item" data-s=" " data-key="4.1 功能、路由与转发" onclick="cyc(this)"><span class="box"></span><span class="txt">4.1 功能、路由与转发</span></div>
 <div class="item" data-s=" " data-key="4.2 IPv4 分组格式" onclick="cyc(this)"><span class="box"></span><span class="txt">4.2 IPv4 分组格式</span></div>
 <div class="item" data-s=" " data-key="4.3 IP 地址、子网划分与 CIDR" onclick="cyc(this)"><span class="box"></span><span class="txt">4.3 IP 地址、子网划分与 CIDR</span></div>
@@ -326,7 +342,7 @@ footer{text-align:center;color:#9aa4af;font-size:11px;padding:20px;}
 <div class="item" data-s=" " data-key="4.8 路由器" onclick="cyc(this)"><span class="box"></span><span class="txt">4.8 路由器</span></div>
 </div>
 <div class="chap">
-<h3>5. 传输层<span class="cnt" data-cnt></span></h3>
+<h3 id="sec30">5. 传输层<span class="cnt" data-cnt></span></h3>
 <div class="item" data-s=" " data-key="5.1 功能、端口与复用/分用" onclick="cyc(this)"><span class="box"></span><span class="txt">5.1 功能、端口与复用/分用</span></div>
 <div class="item" data-s=" " data-key="5.2 UDP" onclick="cyc(this)"><span class="box"></span><span class="txt">5.2 UDP</span></div>
 <div class="item" data-s=" " data-key="5.3 TCP 连接管理（三次握手、四次挥手）" onclick="cyc(this)"><span class="box"></span><span class="txt">5.3 TCP 连接管理（三次握手、四次挥手）</span></div>
@@ -335,7 +351,7 @@ footer{text-align:center;color:#9aa4af;font-size:11px;padding:20px;}
 <div class="item" data-s=" " data-key="5.6 TCP 拥塞控制" onclick="cyc(this)"><span class="box"></span><span class="txt">5.6 TCP 拥塞控制</span></div>
 </div>
 <div class="chap">
-<h3>6. 应用层<span class="cnt" data-cnt></span></h3>
+<h3 id="sec31">6. 应用层<span class="cnt" data-cnt></span></h3>
 <div class="item" data-s=" " data-key="6.1 网络应用模型（C/S、P2P）" onclick="cyc(this)"><span class="box"></span><span class="txt">6.1 网络应用模型（C/S、P2P）</span></div>
 <div class="item" data-s=" " data-key="6.2 DNS" onclick="cyc(this)"><span class="box"></span><span class="txt">6.2 DNS</span></div>
 <div class="item" data-s=" " data-key="6.3 FTP" onclick="cyc(this)"><span class="box"></span><span class="txt">6.3 FTP</span></div>
@@ -344,7 +360,7 @@ footer{text-align:center;color:#9aa4af;font-size:11px;padding:20px;}
 </div>
 </section>
 <section class="subject">
-<h2 style="background:#555">补充笔记</h2>
+<h2 style="background:#555" id="sec32">补充笔记</h2>
 <div class="note">
 
 <h4>数据结构 · 队列 · 题型笔记</h4>
