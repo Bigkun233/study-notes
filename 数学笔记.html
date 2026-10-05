@@ -29,6 +29,21 @@
   .katex { font-size: 1.25em; }
   .katex-display { margin: 0.7em 0; }
 </style>
+<style id="toc-style">
+.tocbox{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 18px;
+  margin:18px auto;max-width:900px;box-shadow:0 1px 4px rgba(0,0,0,.06);
+  font-family:-apple-system,"Noto Sans CJK SC","Microsoft YaHei",sans-serif;
+  font-size:14px;line-height:1.75;color:#1f2937;}
+.tocbox .toc-t{font-weight:700;font-size:15px;color:#2c5c8a;margin:0 0 8px;
+  padding-bottom:6px;border-bottom:1px solid #e2e8f0;}
+.tocbox ul{list-style:none;margin:0;padding:0;}
+.tocbox li{margin:4px 0;}
+.tocbox a{color:#1f2937;text-decoration:none;border-bottom:1px dashed #cbd5e1;}
+.tocbox a:hover{color:#2c5c8a;border-bottom-color:#2c5c8a;}
+.tocbox li.lvl2{font-weight:600;}
+.tocbox li.lvl3{margin-left:1.4em;font-size:13px;font-weight:400;color:#4b5563;}
+.tocbox li.lvl3 a{color:#4b5563;}
+</style>
 </head>
 <body>
 
@@ -40,10 +55,11 @@
 <b>第三章（一元函数积分学）</b>，以及<b>专题 · 常见不等式</b>、<b>专题 · 定积分几何应用（微元法）</b>。符号为手写体（分数横杠、根号横跨覆盖根号下内容），其余章节保留框架。
 </div>
 
-<h2>一、高等数学</h2>
+<nav class="tocbox"><div class="toc-t">📑 目录（点击跳转）</div><ul><li class="lvl2"><a href="#sec1">一、高等数学</a></li><li class="lvl3"><a href="#sec2">1. 函数、极限、连续</a></li><li class="lvl3"><a href="#sec3">2. 一元函数微分学</a></li><li class="lvl3"><a href="#sec4">3. 一元函数积分学</a></li><li class="lvl3"><a href="#sec5">4. 多元函数微分学</a></li><li class="lvl3"><a href="#sec6">5. 多元函数积分学（二重积分）</a></li><li class="lvl3"><a href="#sec7">6. 常微分方程</a></li><li class="lvl2"><a href="#sec8">二、线性代数</a></li><li class="lvl3"><a href="#sec9">1. 行列式</a></li><li class="lvl3"><a href="#sec10">2. 矩阵</a></li><li class="lvl3"><a href="#sec11">3. 向量（线性相关/无关、秩）</a></li><li class="lvl3"><a href="#sec12">4. 线性方程组</a></li><li class="lvl3"><a href="#sec13">5. 特征值与特征向量</a></li><li class="lvl3"><a href="#sec14">6. 二次型</a></li><li class="lvl2"><a href="#sec15">三、专题 / 解题套路</a></li><li class="lvl3"><a href="#sec16">专题 · 常见不等式</a></li><li class="lvl3"><a href="#sec17">专题 · 诱导公式</a></li><li class="lvl3"><a href="#sec18">专题 · 含未知函数的定积分（设常数 A 法）</a></li><li class="lvl3"><a href="#sec19">专题 · 定积分几何应用（微元法 + 绕斜线/竖线旋转）</a></li><li class="lvl2"><a href="#sec20">四、错题本</a></li></ul></nav>
+<h2 id="sec1">一、高等数学</h2>
 
 <div class="ch">
-<h3>1. 函数、极限、连续</h3>
+<h3 id="sec2">1. 函数、极限、连续</h3>
 
 <h4>① 核心定义 / 定理</h4>
 <ul>
@@ -99,7 +115,7 @@
 </div>
 
 <div class="ch">
-<h3>2. 一元函数微分学</h3>
+<h3 id="sec3">2. 一元函数微分学</h3>
 
 <h4>① 核心定义 / 定理</h4>
 <ul>
@@ -150,7 +166,7 @@
 </div>
 
 <div class="ch">
-<h3>3. 一元函数积分学</h3>
+<h3 id="sec4">3. 一元函数积分学</h3>
 
 <h4>① 核心定义 / 定理</h4>
 <ul>
@@ -290,7 +306,7 @@
 </div>
 
 <div class="ch">
-<h3>4. 多元函数微分学</h3>
+<h3 id="sec5">4. 多元函数微分学</h3>
 <ul>
 <li><span class="field">① 定义/定理：</span></li>
 <li><span class="field">② 必背公式：</span></li>
@@ -300,7 +316,7 @@
 </div>
 
 <div class="ch">
-<h3>5. 多元函数积分学（二重积分）</h3>
+<h3 id="sec6">5. 多元函数积分学（二重积分）</h3>
 <ul>
 <li><span class="field">① 定义/定理：</span></li>
 <li><span class="field">② 必背公式：</span></li>
@@ -310,7 +326,7 @@
 </div>
 
 <div class="ch">
-<h3>6. 常微分方程</h3>
+<h3 id="sec7">6. 常微分方程</h3>
 <ul>
 <li><span class="field">① 定义/定理：</span></li>
 <li><span class="field">② 必背公式：</span></li>
@@ -319,9 +335,9 @@
 </ul>
 </div>
 
-<h2>二、线性代数</h2>
+<h2 id="sec8">二、线性代数</h2>
 
-<div class="ch"><h3>1. 行列式</h3>
+<div class="ch"><h3 id="sec9">1. 行列式</h3>
 <ul>
 <li><span class="field">① 定义/定理：</span></li>
 <li><span class="field">② 必背公式：</span></li>
@@ -329,7 +345,7 @@
 <li><span class="field">④ 易错点：</span></li>
 </ul></div>
 
-<div class="ch"><h3>2. 矩阵</h3>
+<div class="ch"><h3 id="sec10">2. 矩阵</h3>
 <ul>
 <li><span class="field">① 定义/定理：</span></li>
 <li><span class="field">② 必背公式：</span></li>
@@ -337,7 +353,7 @@
 <li><span class="field">④ 易错点：</span></li>
 </ul></div>
 
-<div class="ch"><h3>3. 向量（线性相关/无关、秩）</h3>
+<div class="ch"><h3 id="sec11">3. 向量（线性相关/无关、秩）</h3>
 <ul>
 <li><span class="field">① 定义/定理：</span></li>
 <li><span class="field">② 必背公式：</span></li>
@@ -345,7 +361,7 @@
 <li><span class="field">④ 易错点：</span></li>
 </ul></div>
 
-<div class="ch"><h3>4. 线性方程组</h3>
+<div class="ch"><h3 id="sec12">4. 线性方程组</h3>
 <ul>
 <li><span class="field">① 定义/定理：</span></li>
 <li><span class="field">② 必背公式：</span></li>
@@ -353,7 +369,7 @@
 <li><span class="field">④ 易错点：</span></li>
 </ul></div>
 
-<div class="ch"><h3>5. 特征值与特征向量</h3>
+<div class="ch"><h3 id="sec13">5. 特征值与特征向量</h3>
 <ul>
 <li><span class="field">① 定义/定理：</span></li>
 <li><span class="field">② 必背公式：</span></li>
@@ -361,7 +377,7 @@
 <li><span class="field">④ 易错点：</span></li>
 </ul></div>
 
-<div class="ch"><h3>6. 二次型</h3>
+<div class="ch"><h3 id="sec14">6. 二次型</h3>
 <ul>
 <li><span class="field">① 定义/定理：</span></li>
 <li><span class="field">② 必背公式：</span></li>
@@ -369,7 +385,7 @@
 <li><span class="field">④ 易错点：</span></li>
 </ul></div>
 
-<h2>三、专题 / 解题套路</h2>
+<h2 id="sec15">三、专题 / 解题套路</h2>
 <ul>
 <li>求极限的常用手法：</li>
 <li>中值定理证明题模板：</li>
@@ -378,7 +394,7 @@
 </ul>
 
 <div class="ch">
-<h3>专题 · 常见不等式</h3>
+<h3 id="sec16">专题 · 常见不等式</h3>
 
 <h4>① 基本不等式（均值不等式链）</h4>
 <p>对正数 \(a,b\)：</p>
@@ -439,7 +455,7 @@
 </div>
 
 <div class="ch">
-<h3>专题 · 诱导公式</h3>
+<h3 id="sec17">专题 · 诱导公式</h3>
 
 <h4>① 总口诀</h4>
 <p class="eq"><b>奇变偶不变，符号看象限。</b></p>
@@ -494,7 +510,7 @@
 </div>
 
 <div class="ch">
-<h3>专题 · 含未知函数的定积分（设常数 A 法）</h3>
+<h3 id="sec18">专题 · 含未知函数的定积分（设常数 A 法）</h3>
 
 <h4>① 解题模板</h4>
 <p>遇到形如</p>
@@ -531,7 +547,7 @@
 </div>
 
 <div class="ch">
-<h3>专题 · 定积分几何应用（微元法 + 绕斜线/竖线旋转）</h3>
+<h3 id="sec19">专题 · 定积分几何应用（微元法 + 绕斜线/竖线旋转）</h3>
 
 <h4>① 核心思想 — 微元法</h4>
 <p>求几何量 \(Q\)（面积、体积、弧长…）的通用套路：</p>
@@ -576,7 +592,7 @@
 </div>
 
 
-<h2>四、错题本</h2>
+<h2 id="sec20">四、错题本</h2>
 <table>
 <tr><th>日期</th><th>来源</th><th>题目 / 考点</th><th>错因</th><th>改进</th></tr>
 <tr><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr>
