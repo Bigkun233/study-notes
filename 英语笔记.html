@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
-<title>英语 · 复习笔记</title>
+<title>英语（二）· 复习笔记</title>
 <link rel="stylesheet" href="assets/katex.min.css">
 <script src="assets/katex.min.js"></script>
 <script src="assets/auto-render.min.js"></script>
@@ -12,26 +12,29 @@
   body { font-family: "Noto Serif CJK SC", serif; font-size: 15pt; line-height: 1.8; color: #1a1a1a; }
   h1 { font-size: 26pt; text-align: center; border-bottom: 2px solid #2c5c8a; padding-bottom: 8px; margin-bottom: 4px; }
   .subtitle { text-align: center; color: #666; font-size: 13pt; margin-bottom: 16px; }
-  h2 { font-size: 20pt; color: #2c5c8a; border-left: 5px solid #2c5c8a; padding-left: 8px; margin-top: 24px; margin-bottom: 10px; }
-  h3 { font-size: 17pt; color: #333; margin: 16px 0 6px 0; padding-bottom: 2px; border-bottom: 1px dashed #bbb; }
+  h2 { font-size: 20pt; color: #2c5c8a; border-left: 5px solid #2c5c8a; padding-left: 8px; margin-top: 26px; margin-bottom: 10px; }
+  h3 { font-size: 17pt; color: #333; margin: 18px 0 6px 0; padding-bottom: 2px; border-bottom: 1px dashed #bbb; }
   h4 { font-size: 15.5pt; color: #2c5c8a; margin: 14px 0 4px 0; }
   .note { background: #f2f6fa; border: 1px solid #cfe0ee; border-radius: 4px; padding: 8px 12px; font-size: 13.5pt; color: #444; margin-bottom: 14px; }
   .warn { background: #fdf3f3; border: 1px solid #f0c9c9; border-radius: 4px; padding: 8px 12px; font-size: 13.5pt; color: #7a2a2a; margin: 8px 0; }
+  .tip { background: #f2fbf4; border: 1px solid #bfe3c8; border-radius: 4px; padding: 8px 12px; font-size: 13.5pt; color: #215c33; margin: 8px 0; }
+  .en { font-family: Georgia, "Times New Roman", serif; }
   ul { margin: 4px 0 8px 0; padding-left: 24px; }
   li { margin: 4px 0; }
   .field { color: #888; }
-  table { border-collapse: collapse; width: 100%; margin: 8px 0; font-size: 14pt; }
-  th, td { border: 1px solid #999; padding: 6px 9px; text-align: center; }
-  th { background: #e8f0f7; }
-  td.l { text-align: left; }
+  table { border-collapse: collapse; width: 100%; margin: 8px 0; font-size: 13.5pt; }
+  th, td { border: 1px solid #999; padding: 6px 9px; text-align: left; vertical-align: top; }
+  th { background: #e8f0f7; text-align: center; }
+  td.c { text-align: center; }
   .ch { page-break-inside: avoid; }
   .small { font-size: 12.5pt; color: #555; }
   .blank { color: #bbb; }
+  code { font-family: "SFMono-Regular", Consolas, monospace; font-size: 13pt; background:#f5f5f5; padding:1px 4px; border-radius:3px; }
 </style>
 
 <style id="toc-style">
 .tocbox{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 18px;
-  margin:18px auto;max-width:900px;box-shadow:0 1px 4px rgba(0,0,0,.06);
+  margin:18px auto;max-width:920px;box-shadow:0 1px 4px rgba(0,0,0,.06);
   font-family:-apple-system,"Noto Sans CJK SC","Microsoft YaHei",sans-serif;
   font-size:14px;line-height:1.75;color:#1f2937;}
 .tocbox .toc-t{font-weight:700;font-size:15px;color:#2c5c8a;margin:0 0 8px;
@@ -47,93 +50,240 @@
 </head>
 <body>
 
-<h1>英语 · 复习笔记</h1>
-<div class="subtitle">生词本 · 作文素材（初始空白，随复习填充）</div>
+<h1>英语（二）· 复习笔记</h1>
+<div class="subtitle">作文素材 · 翻译方法 · 亮点词句（英二专版）</div>
 
 <div class="note">
-说明：本页用于整理<b>考研英语</b>的 <b>生词 / 短语</b> 与 <b>写作素材</b>（句型、亮点词、话题模板）。
-初始为空表，滚动作答时逐条补充即可。
+说明：本页针对<b>考研英语（二）</b>整理——<b>写作</b>（小作文 A 节 + 图表大作文 B 节）与<b>翻译</b>的
+<b>高分句库 / 万能框架 / 方法步骤 / 亮点替换</b>。表内为可背诵、可套用的成品，复习时改动标灰即可。
 </div>
 
+<nav class="tocbox"><div class="toc-t">📑 目录（点击跳转）</div><ul>
+<li class="lvl2"><a href="#secA">一、写作 · 小作文（应用文 A 节）</a></li>
+<li class="lvl3"><a href="#secA1">① 通用三段式框架</a></li>
+<li class="lvl3"><a href="#secA2">② 七类书信句库</a></li>
+<li class="lvl3"><a href="#secA3">③ 通知 / 告示</a></li>
+<li class="lvl3"><a href="#secA4">④ 小作文高分细节</a></li>
+<li class="lvl2"><a href="#secB">二、写作 · 大作文（图表 B 节）</a></li>
+<li class="lvl3"><a href="#secB1">① 四段式结构</a></li>
+<li class="lvl3"><a href="#secB2">② 描述段句库（数据表达）</a></li>
+<li class="lvl3"><a href="#secB3">③ 分析段（原因/影响）</a></li>
+<li class="lvl3"><a href="#secB4">④ 结论建议段</a></li>
+<li class="lvl3"><a href="#secB5">⑤ 万能过渡 / 逻辑连接</a></li>
+<li class="lvl3"><a href="#secB6">⑥ 亮点词汇 · 高级替换</a></li>
+<li class="lvl2"><a href="#secC">三、翻译</a></li>
+<li class="lvl3"><a href="#secC1">① 题型与评分</a></li>
+<li class="lvl3"><a href="#secC2">② 四步翻译法</a></li>
+<li class="lvl3"><a href="#secC3">③ 六大核心技巧</a></li>
+<li class="lvl3"><a href="#secC4">④ 高频加分表达对照</a></li>
+<li class="lvl3"><a href="#secC5">⑤ 常见扣分点</a></li>
+<li class="lvl2"><a href="#secV">四、生词本 / 积累</a></li>
+</ul></nav>
 
-<nav class="tocbox"><div class="toc-t">📑 目录（点击跳转）</div><ul><li class="lvl2"><a href="#sec1">一、生词本（Vocabulary）</a></li><li class="lvl3"><a href="#sec2">易混词 / 近义词辨析</a></li><li class="lvl3"><a href="#sec3">高频短语 / 固定搭配</a></li><li class="lvl2"><a href="#sec4">二、作文素材（Writing）</a></li><li class="lvl3"><a href="#sec5">① 常用句型（高分句式）</a></li><li class="lvl3"><a href="#sec6">② 亮点词汇 / 高级替换</a></li><li class="lvl3"><a href="#sec7">③ 话题素材（观点 / 论据）</a></li><li class="lvl3"><a href="#sec8">④ 作文模板</a></li><li class="lvl2"><a href="#sec9">三、其他积累</a></li></ul></nav>
-<h2 id="sec1">一、生词本（Vocabulary）</h2>
-<p class="small">建议字段：单词 / 音标 · 词性 · 释义 · 例句或搭配 · 出现来源（阅读·真题·作文）。</p>
+<!-- ===================== 小作文 ===================== -->
+<h2 id="secA">一、写作 · 小作文（应用文 A 节）</h2>
+<p class="small">约 100 词，10 分。考「书信 / 通知 / 告示」。核心是<b>格式正确 + 三点信息全覆盖 + 语气得体</b>。英二近年以<b>书信</b>为主（邀请/建议/道歉/感谢/投诉/申请/推荐）。</p>
+
+<h3 id="secA1">① 通用三段式框架</h3>
 <table>
-<tr><th>单词</th><th>音标</th><th>词性</th><th>释义</th><th>例句 / 搭配</th><th>来源</th></tr>
-<tr><td><b>insidious</b></td><td>/ɪnˈsɪdiəs/</td><td>adj.</td><td class="l">常见：阴险的、狡猾的<br><b>少见：潜伏的、暗中为害的；不知不觉中恶化的</b></td><td class="l">an insidious disease 隐匿性疾病<br>the insidious effects of stress 压力的隐蔽危害</td><td>外刊</td></tr>
-<tr><td><b>prejudice</b></td><td>/ˈpredʒudɪs/</td><td>n. / v.</td><td class="l">常见：偏见、成见<br><b>少见（n.）：损害、不利；<br>固定：to the prejudice of 损害…；without prejudice to 不损害…（法律常用）</b></td><td class="l">racial prejudice 种族偏见<br>without prejudice to our rights 不损害我们的权利</td><td>真题/法律</td></tr>
-<tr><td><b>inferiority</b></td><td>/ɪnˌfɪəriˈɒrəti/</td><td>n.</td><td class="l">常见：低劣、劣势<br><b>少见：下位、次等身份（与 superiority 相对）</b></td><td class="l">a sense of inferiority 自卑感<br>inferiority complex 自卑情结</td><td>写作</td></tr>
-<tr><td><b>security</b></td><td>/sɪˈkjʊərəti/</td><td>n.</td><td class="l">常见：安全、保障、保安<br><b>少见：证券（常用复数 securities）；抵押品、担保（物）</b></td><td class="l">government securities 政府证券<br>lend money on security 以抵押放贷<br>security for a loan 贷款的担保</td><td>外刊/经济</td></tr>
-<tr><td><b>evaporate</b></td><td>/ɪˈvæpəreɪt/</td><td>v.</td><td class="l">常见：蒸发、汽化<br><b>少见/引申：（希望、信心）逐渐消失、破灭；（人）悄悄消失</b></td><td class="l">Water evaporates in the sun. 水在阳光下蒸发<br>My enthusiasm soon evaporated. 我的热情很快消失</td><td>真题</td></tr>
-<tr><td><b>subtle</b></td><td>/ˈsʌtl/</td><td>adj.</td><td class="l">常见：微妙的、细微的、难以察觉的<br><b>少见：敏锐的、洞察力强的（subtle mind）；巧妙的、精巧的（a subtle argument / plan）</b></td><td class="l">a subtle distinction 微妙的区别<br>a subtle observer 敏锐的观察者</td><td>外刊</td></tr>
-<tr><td><b>devaluing</b></td><td>/ˌdiːˈvæljuɪŋ/</td><td>v.（devalue 的动名词/现在分词）</td><td class="l">常见：贬低、轻视<br><b>少见/经济：使（货币）贬值</b></td><td class="l">devaluing women's work 贬低女性的劳动<br>devalue the currency 使货币贬值</td><td>考研经济类</td></tr>
-<tr><td><b>reluctant</b></td><td>/rɪˈlʌktənt/</td><td>adj.</td><td class="l">常见：不情愿的、勉强的<br><b>少见/书面：抵抗的、反抗的（词源 "struggle against"）</b></td><td class="l">be reluctant to do sth. 不愿做某事<br>a reluctant acceptance 勉强的接受</td><td>高频</td></tr>
+<tr><th>段落</th><th>功能</th><th>可套用句</th></tr>
+<tr><td class="c">称呼</td><td>对象决定称呼</td><td class="en">Dear Professor Smith, / Dear Sir or Madam, / Dear Mr. Wang,</td></tr>
+<tr><td class="c">首段</td><td>交待身份 + 写信目的</td><td class="en">I am a student who ... I am writing to <b>express my sincere gratitude for</b> ... / <b>apply for</b> ... / <b>make some suggestions concerning</b> ...</td></tr>
+<tr><td class="c">主体</td><td>展开 2–3 个要点</td><td class="en">To begin with, ... In addition, ... Last but not least, ...</td></tr>
+<tr><td class="c">尾段</td><td>客套 + 期待回音</td><td class="en">I would appreciate it if you could ... / I am looking forward to your early reply.</td></tr>
+<tr><td class="c">落款</td><td>正式程度决定用语</td><td class="en">Yours sincerely, Li Ming &nbsp;/&nbsp; Yours faithfully, Li Ming</td></tr>
+</table>
+<div class="tip"><b>记牢：</b>称呼后逗号、落款<b>不写日期</b>（考试通常不要求）；署名统一用 <span class="en">Li Ming</span>。目的句是评分关键，务必准确点题。</div>
+
+<h3 id="secA2">② 七类书信句库（开头 + 结尾）</h3>
+<table>
+<tr><th>类型</th><th>开头句</th><th>结尾句</th></tr>
+<tr><td class="c">邀请</td><td class="en">On behalf of ..., I am writing to invite you to ...</td><td class="en">We would be honored by your presence. Please let me know if you can make it.</td></tr>
+<tr><td class="c">建议</td><td class="en">I am writing to offer some suggestions with regard to ...</td><td class="en">I hope you will find these proposals useful and take them into consideration.</td></tr>
+<tr><td class="c">道歉</td><td class="en">I am writing to express my sincere apology for ...</td><td class="en">Please accept my apology and I hope you can forgive me for the inconvenience caused.</td></tr>
+<tr><td class="c">感谢</td><td class="en">I would like to extend my heartfelt thanks for ...</td><td class="en">Your help is deeply appreciated and I will always bear it in mind.</td></tr>
+<tr><td class="c">投诉</td><td class="en">I am writing to make a complaint about ...</td><td class="en">I do hope you will look into the matter and give me a satisfactory reply.</td></tr>
+<tr><td class="c">申请</td><td class="en">I am writing to apply for the position of ... / for admission to ...</td><td class="en">I would be grateful if you could give my application due consideration.</td></tr>
+<tr><td class="c">推荐</td><td class="en">It is my great pleasure to recommend ... for ...</td><td class="en">I am confident that he/she will prove to be a worthy candidate.</td></tr>
 </table>
 
-<h3 id="sec2">易混词 / 近义词辨析</h3>
+<h3 id="secA3">③ 通知 / 告示（Notice）</h3>
 <table>
-<tr><th>词 A</th><th>词 B</th><th>区别要点</th><th>例句</th></tr>
-<tr><td>&nbsp;</td><td></td><td></td><td></td></tr>
-<tr><td>&nbsp;</td><td></td><td></td><td></td></tr>
+<tr><th>部分</th><th>模板</th></tr>
+<tr><td class="c">标题</td><td class="en"><b>Notice</b>（居中；或 A Notice on ...）</td></tr>
+<tr><td class="c">开头</td><td class="en">To enrich campus life / improve ... , we are going to hold a ... on ...</td></tr>
+<tr><td class="c">细节</td><td class="en">The activity is scheduled for <b>Oct. 20th</b>, from 2:00 p.m. to 5:00 p.m. at the Students' Center. All students who are interested are welcome to take part.</td></tr>
+<tr><td class="c">要求/报名</td><td class="en">Those who wish to participate should sign up at the office before ... / sign up by emailing ...</td></tr>
+<tr><td class="c">落款</td><td class="en">The Students' Union / Department of ... &nbsp;&nbsp;（右下角）</td></tr>
 </table>
 
-<h3 id="sec3">高频短语 / 固定搭配</h3>
+<h3 id="secA4">④ 小作文高分细节</h3>
+<ul>
+<li><b>时态：</b>邀请/建议用一般现在时或将来时；感谢/道歉用现在完成或一般过去时。</li>
+<li><b>语气：</b>给陌生/上级用正式（I would be grateful if ...）；给朋友可稍随意（Hope you can come.）。</li>
+<li><b>信息完整：</b>题目给的三点（What/When/Where、原因、联系方式等）必须全部覆盖，缺一点扣分。</li>
+<li><b>亮点句一个就够：</b>避免通篇简单句。穿插一句定语从句或非谓语提升档次，如 <span class="en">I am writing to sincerely invite you to attend a lecture <b>to be given by</b> Prof. Li.</span></li>
+<li><b>控制字数：</b>100 词左右，别超 130；宁可精炼，不要啰嗦。</li>
+</ul>
+
+<!-- ===================== 大作文 ===================== -->
+<h2 id="secB">二、写作 · 大作文（图表 B 节）</h2>
+<p class="small">约 150 词，15 分。英二 B 节考<b>图表</b>（柱状图 / 折线图 / 饼图 / 表格）。结构清晰 + 数据准确 + 分析到位 = 高分。</p>
+
+<h3 id="secB1">① 四段式结构</h3>
 <table>
-<tr><th>短语</th><th>释义</th><th>例句</th></tr>
-<tr><td>&nbsp;</td><td></td><td></td></tr>
-<tr><td>&nbsp;</td><td></td><td></td></tr>
+<tr><th>段落</th><th>内容</th><th>篇幅</th></tr>
+<tr><td class="c">P1 描述</td><td>概述图表主题 + 点出最突出数据</td><td class="c">2–3 句</td></tr>
+<tr><td class="c">P2 分析</td><td>解释原因 / 说明意义（2 点足矣）</td><td class="c">3–4 句</td></tr>
+<tr><td class="c">P3 结论</td><td>总结趋势 + 建议 / 展望</td><td class="c">2–3 句</td></tr>
+<tr><td class="c">（P4 可选）</td><td>若字数不够，P2 拆成“原因段 + 影响段”</td><td class="c">—</td></tr>
+</table>
+<div class="tip"><b>三段即够，稳字当头。</b>英二 150 词，重点是<b>描述准确</b>和<b>分析有逻辑</b>，别硬凑四段。</div>
+
+<h3 id="secB2">② 描述段句库（数据表达）</h3>
+<table>
+<tr><th>图表类型</th><th>万能描述句</th></tr>
+<tr><td class="c">柱状图</td><td class="en">As is vividly shown in the bar chart, the number of ... rose/declined from ... to ... over the past ... years.</td></tr>
+<tr><td class="c">折线图</td><td class="en">The line graph clearly depicts the changing trend of ... , which increased steadily from ... in ... to ... in ... .</td></tr>
+<tr><td class="c">饼图</td><td class="en">The pie chart presents the proportions of ... . As can be seen, ... accounts for the largest share, taking up ... %.</td></tr>
+<tr><td class="c">表格</td><td class="en">According to the table, there is a striking contrast between ... and ... .</td></tr>
+</table>
+<table>
+<tr><th>功能</th><th>可套用表达</th></tr>
+<tr><td class="c">总体概述</td><td class="en">Overall, ... / In general, the figures reveal a clear upward/downward tendency.</td></tr>
+<tr><td class="c">点最高/最低</td><td class="en">The most striking feature is that ... / The figure for ... ranks first at ...%.</td></tr>
+<tr><td class="c">上升</td><td class="en">rise / increase / climb / soar / surge (by ...% / to ...)</td></tr>
+<tr><td class="c">下降</td><td class="en">fall / decline / drop / decrease / plunge</td></tr>
+<tr><td class="c">占比</td><td class="en">account for / make up / constitute / take up ...% of the total</td></tr>
+<tr><td class="c">对比</td><td class="en">while / whereas / in contrast / by comparison</td></tr>
+<tr><td class="c">约数</td><td class="en">approximately / roughly / nearly / around + 数字</td></tr>
 </table>
 
-<h2 id="sec4">二、作文素材（Writing）</h2>
-
-<h3 id="sec5">① 常用句型（高分句式）</h3>
+<h3 id="secB3">③ 分析段（原因 / 意义）</h3>
 <table>
-<tr><th>功能</th><th>句型 / 模板</th><th>例句</th></tr>
-<tr><td>开头引出话题</td><td>&nbsp;</td><td></td></tr>
-<tr><td>图表 / 现象描述</td><td>&nbsp;</td><td></td></tr>
-<tr><td>原因分析</td><td>&nbsp;</td><td></td></tr>
-<tr><td>举例论证</td><td>&nbsp;</td><td></td></tr>
-<tr><td>让步 / 转折</td><td>&nbsp;</td><td></td></tr>
-<tr><td>结尾总结 / 呼吁</td><td>&nbsp;</td><td></td></tr>
+<tr><th>功能</th><th>句库</th></tr>
+<tr><td class="c">引出原因</td><td class="en">Several factors may account for this phenomenon. / There are a number of reasons behind this trend.</td></tr>
+<tr><td class="c">原因一</td><td class="en">To begin with / First and foremost, ... , which is mainly attributed to ...</td></tr>
+<tr><td class="c">原因二</td><td class="en">What's more / In addition, another contributing factor is that ...</td></tr>
+<tr><td class="c">举例</td><td class="en">Take ... as an example. / A case in point is that ...</td></tr>
+<tr><td class="c">说明意义</td><td class="en">This trend not only reflects ... but also indicates that ...</td></tr>
 </table>
 
-<h3 id="sec6">② 亮点词汇 / 高级替换</h3>
+<h3 id="secB4">④ 结论建议段</h3>
+<table>
+<tr><th>功能</th><th>句库</th></tr>
+<tr><td class="c">总结趋势</td><td class="en">In light of the analysis above, we can safely draw the conclusion that ...</td></tr>
+<tr><td class="c">提出建议</td><td class="en">It is high time that we took effective measures to ... &nbsp;(用虚拟语气加分)</td></tr>
+<tr><td class="c">呼吁/展望</td><td class="en">Only by doing so can we ... . / I firmly believe that ... will continue to improve.</td></tr>
+</table>
+<div class="tip"><b>加分点：</b>结尾用 <span class="en">It is high time that we took ...</span>（that 从句用过去式，虚拟语气）或 <span class="en">Only by ... can we ...</span>（部分倒装）能显著提分。</div>
+
+<h3 id="secB5">⑤ 万能过渡 / 逻辑连接</h3>
+<table>
+<tr><th>关系</th><th>连接词 / 短语</th></tr>
+<tr><td class="c">递进</td><td class="en">moreover / furthermore / in addition / what's more</td></tr>
+<tr><td class="c">转折</td><td class="en">however / nevertheless / nonetheless / on the contrary</td></tr>
+<tr><td class="c">因果</td><td class="en">therefore / consequently / as a result / thus / hence</td></tr>
+<tr><td class="c">举例</td><td class="en">for instance / for example / a case in point</td></tr>
+<tr><td class="c">总结</td><td class="en">in conclusion / to sum up / in brief / all in all</td></tr>
+<tr><td class="c">让步</td><td class="en">although / even though / despite / in spite of</td></tr>
+</table>
+
+<h3 id="secB6">⑥ 亮点词汇 · 高级替换</h3>
 <table>
 <tr><th>普通表达</th><th>高级替换</th><th>备注</th></tr>
-<tr><td>&nbsp;</td><td></td><td></td></tr>
-<tr><td>&nbsp;</td><td></td><td></td></tr>
-<tr><td>&nbsp;</td><td></td><td></td></tr>
+<tr><td class="en">very important</td><td class="en">of great significance / vital / crucial</td><td class="c">提分</td></tr>
+<tr><td class="en">a lot of people</td><td class="en">a considerable number of / a multitude of</td><td class="c">—</td></tr>
+<tr><td class="en">more and more</td><td class="en">an increasing number of / a growing proportion of</td><td class="c">图表常用</td></tr>
+<tr><td class="en">think</td><td class="en">hold / maintain / argue / be convinced that</td><td class="c">观点句</td></tr>
+<tr><td class="en">show</td><td class="en">reveal / demonstrate / indicate / illustrate</td><td class="c">描述段</td></tr>
+<tr><td class="en">cause</td><td class="en">give rise to / lead to / contribute to / result in</td><td class="c">分析段</td></tr>
+<tr><td class="en">in my opinion</td><td class="en">from my perspective / as far as I am concerned</td><td class="c">—</td></tr>
+<tr><td class="en">get better</td><td class="en">improve / enhance / promote</td><td class="c">—</td></tr>
+<tr><td class="en">problem</td><td class="en">issue / challenge / dilemma</td><td class="c">—</td></tr>
+<tr><td class="en">ways</td><td class="en">approaches / measures / strategies</td><td class="c">建议段</td></tr>
 </table>
 
-<h3 id="sec7">③ 话题素材（观点 / 论据）</h3>
+<!-- ===================== 翻译 ===================== -->
+<h2 id="secC">三、翻译</h2>
+<p class="small">英二翻译 = <b>英译汉</b>：一段约 150 词的英语短文，译成中文，15 分。考的是<b>准确、通顺、完整</b>——不是逐字直译。</p>
+
+<h3 id="secC1">① 题型与评分</h3>
+<ul>
+<li><b>形式：</b>一整段短文全文翻译（约 150 词），非划线句。</li>
+<li><b>题材：</b>偏生活/社会/科普/文化，难度低于英一。</li>
+<li><b>评分：</b>分点给分——<b>准确达意</b>（主）+ <b>通顺流畅</b>（次）。漏译、错译、名词语序错位都扣分。</li>
+<li><b>时间：</b>建议 20–25 分钟。先通读抓大意，再逐句处理。</li>
+</ul>
+
+<h3 id="secC2">② 四步翻译法</h3>
 <table>
-<tr><th>话题</th><th>观点 / 论据</th><th>可套用句型</th></tr>
-<tr><td>&nbsp;</td><td></td><td></td></tr>
-<tr><td>&nbsp;</td><td></td><td></td></tr>
-<tr><td>&nbsp;</td><td></td><td></td></tr>
+<tr><th>步骤</th><th>做法</th></tr>
+<tr><td class="c">1 通读</td><td>读完整段，抓住<b>主题 + 时间线 + 逻辑关系</b>（转折/因果）。</td></tr>
+<tr><td class="c">2 断句</td><td>按逗号、连词、从句把长句切成短意群，逐块理解。</td></tr>
+<tr><td class="c">3 翻译</td><td>先直译出主干（主谓宾），再补修饰成分，调整语序成中文习惯。</td></tr>
+<tr><td class="c">4 润色</td><td>回头通读，改掉欧化句式，补上省略的主语/关联词，保证通顺。</td></tr>
 </table>
 
-<h3 id="sec8">④ 作文模板</h3>
+<h3 id="secC3">③ 六大核心技巧</h3>
+<table>
+<tr><th>技巧</th><th>要点</th><th>例子</th></tr>
+<tr><td class="c">定语从句</td><td>短定从→放名词前作定语；长定从→拆成独立句（“这……”）</td><td class="en">people who work in cities → 在城市工作的人</td></tr>
+<tr><td class="c">被动语态</td><td>中文少用“被”，改用“人们/我们/据……”或无主句</td><td class="en">It is widely believed that... → 人们普遍认为……</td></tr>
+<tr><td class="c">状语位置</td><td>英语状语多后置，中文习惯前置（时间/地点/方式）</td><td class="en">He left suddenly. → 他忽然离开了。</td></tr>
+<tr><td class="c">抽象名词</td><td>“the + 抽象名词”常需转译成动词或短句</td><td class="en">the improvement of living standards → 生活水平的提高</td></tr>
+<tr><td class="c">长句拆分</td><td>一个长英文句→拆成几个中文小句，用“，”衔接</td><td class="en">…which means…because… → 这意味着……，因为……</td></tr>
+<tr><td class="c">代词还原</td><td>it / they / this / that 常需还原成具体名词，避免“它/这”堆叠</td><td class="en">This explains why... → 这一现象解释了……</td></tr>
+</table>
+<div class="tip"><b>口诀：</b>主谓宾先落地，修饰语按中文习惯搬位，长句拆、被动转、代词还原、“翻译腔”全改掉。</div>
+
+<h3 id="secC4">④ 高频加分表达对照</h3>
+<table>
+<tr><th>英文</th><th>推荐译法（自然中文）</th></tr>
+<tr><td class="en">in terms of</td><td>从……方面来看 / 就……而言</td></tr>
+<tr><td class="en">play a vital role in</td><td>在……中起关键作用</td></tr>
+<tr><td class="en">give rise to</td><td>引起 / 导致 / 催生</td></tr>
+<tr><td class="en">take ... into account</td><td>把……考虑在内</td></tr>
+<tr><td class="en">make the most of</td><td>充分利用</td></tr>
+<tr><td class="en">be subject to</td><td>受制于 / 取决于 / 容易遭受</td></tr>
+<tr><td class="en">as a result of</td><td>由于 / 因为（后接名词）</td></tr>
+<tr><td class="en">contribute to</td><td>有助于 / 促成</td></tr>
+<tr><td class="en">be attributed to</td><td>归因于</td></tr>
+<tr><td class="en">at the expense of</td><td>以……为代价</td></tr>
+</table>
+
+<h3 id="secC5">⑤ 常见扣分点</h3>
 <ul>
-<li><span class="field">书信 / 通知类：</span></li>
-<li><span class="field">图表 / 图画类：</span></li>
-<li><span class="field">议论 / 观点类：</span></li>
+<li><b>漏译：</b>整句或关键信息没译出，直接扣大分。</li>
+<li><b>硬译“翻译腔”：</b>如把 <span class="en">It is important that...</span> 译成“它是重要的，那……”——要改成“重要的是……”。</li>
+<li><b>语序僵化：</b>定语/状语位置照搬英文，读起来别扭。</li>
+<li><b>指代不清：</b>“它/他/这”堆一堆，不还原名词。</li>
+<li><b>专有名词乱译：</b>人名、机构名按约定俗成，拿不准可音译加原词或保持原样。</li>
+<li><b>时态/逻辑丢失：</b>中文虽无时态，但要用“已经/正在/将要”“因为/所以”把逻辑补上。</li>
 </ul>
 
-<h2 id="sec9">三、其他积累</h2>
-<ul>
-<li><span class="field">长难句分析：</span></li>
-<li><span class="field">翻译技巧 / 生僻表达：</span></li>
-<li><span class="field">易错语法点：</span></li>
-</ul>
+<!-- ===================== 生词本 ===================== -->
+<h2 id="secV">四、生词本 / 其他积累</h2>
+<p class="small">滚动补充：阅读/翻译里遇到的生词、易混词、长难句。字段：单词 / 音标 · 词性 · 释义（常见+少见）· 例句 · 来源。</p>
+<table>
+<tr><th>单词</th><th>音标</th><th>词性</th><th>释义</th><th>例句 / 搭配</th><th>来源</th></tr>
+<tr><td><b>insidious</b></td><td>/ɪnˈsɪdiəs/</td><td>adj.</td><td>常见：阴险的、狡猾的<br><b>少见：潜伏的、暗中为害的；不知不觉中恶化的</b></td><td class="en">an insidious disease 隐匿性疾病<br>the insidious effects of stress 压力的隐蔽危害</td><td>外刊</td></tr>
+<tr><td><b>prejudice</b></td><td>/ˈpredʒudɪs/</td><td>n./v.</td><td>常见：偏见、成见<br><b>少见（n.）：损害、不利</b>；固定 to the prejudice of 损害…；without prejudice to 不损害…</td><td class="en">racial prejudice 种族偏见<br>without prejudice to our rights 不损害我们的权利</td><td>真题/法律</td></tr>
+<tr><td><b>inferiority</b></td><td>/ɪnˌfɪəriˈɒrəti/</td><td>n.</td><td>常见：低劣、劣势<br><b>少见：下位、次等身份（与 superiority 相对）</b></td><td class="en">a sense of inferiority 自卑感<br>inferiority complex 自卑情结</td><td>写作</td></tr>
+<tr><td><b>security</b></td><td>/sɪˈkjʊərəti/</td><td>n.</td><td>常见：安全、保障、保安<br><b>少见：证券（常用复数 securities）；抵押品、担保（物）</b></td><td class="en">government securities 政府证券<br>lend money on security 以抵押放贷</td><td>外刊/经济</td></tr>
+<tr><td><b>evaporate</b></td><td>/ɪˈvæpəreɪt/</td><td>v.</td><td>常见：蒸发、汽化<br><b>少见/引申：（希望、信心）逐渐消失、破灭；（人）悄悄消失</b></td><td class="en">Water evaporates in the sun.<br>My enthusiasm soon evaporated. 我的热情很快消失</td><td>真题</td></tr>
+<tr><td><b>subtle</b></td><td>/ˈsʌtl/</td><td>adj.</td><td>常见：微妙的、细微的、难以察觉的<br><b>少见：敏锐的、洞察力强的（subtle mind）；巧妙的、精巧的</b></td><td class="en">a subtle distinction 微妙的区别<br>a subtle observer 敏锐的观察者</td><td>外刊</td></tr>
+<tr><td><b>devaluing</b></td><td>/ˌdiːˈvæljuɪŋ/</td><td>v.-ing</td><td>常见：贬低、轻视<br><b>少见/经济：使（货币）贬值</b></td><td class="en">devaluing women's work 贬低女性的劳动<br>devalue the currency 使货币贬值</td><td>考研经济类</td></tr>
+<tr><td><b>reluctant</b></td><td>/rɪˈlʌktənt/</td><td>adj.</td><td>常见：不情愿的、勉强的<br><b>少见/书面：抵抗的、反抗的（词源 struggle against）</b></td><td class="en">be reluctant to do sth. 不愿做某事<br>a reluctant acceptance 勉强的接受</td><td>高频</td></tr>
+</table>
 
 <div class="warn">
 <b>复习建议</b>
 <ul>
-<li>生词按「出现频率」分级，高频词优先，配合例句记搭配而非孤立背单词。</li>
-<li>作文素材按话题归类，背「句型框架」而非整篇模板，写作时灵活替换关键词。</li>
-<li>每周回看一次本页，把已掌握的条目删除或标灰，保持精简。</li>
+<li>作文素材背「句型框架」而非整篇模板，写作时替换关键词即可；每种文体各背 2–3 个成品句。</li>
+<li>大作文把 P1 描述句、P2 原因句、P3 结论句各背熟一套，考场上只做“填空”。</li>
+<li>翻译每天练 1 段（真题/外刊），重点复盘“翻译腔”和漏译，而不是只看答案。</li>
+<li>每周回看一次本页，已掌握条目标灰或删除，保持精简。</li>
 </ul>
 </div>
 
