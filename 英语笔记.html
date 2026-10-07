@@ -49,7 +49,7 @@
 .toc-row{display:flex;gap:16px;align-items:flex-start;justify-content:center;max-width:1100px;margin:18px auto;flex-wrap:wrap;}
 .toc-row .tocbox{margin:0;flex:1 1 600px;max-width:920px;}
 .vocab-quick{flex:0 0 auto;}
-.vocab-quick>summary{list-style:none;cursor:pointer;display:flex;flex-direction:column;justify-content:center;align-items:center;
+.vocab-quick>summary{list-style:none;cursor:pointer;touch-action:manipulation;-webkit-user-select:none;user-select:none;display:flex;flex-direction:column;justify-content:center;align-items:center;
   background:linear-gradient(135deg,#2c5c8a,#3b82c4);color:#fff;border-radius:12px;
   padding:16px 22px;min-width:190px;text-align:center;font-weight:700;font-size:16px;
   box-shadow:0 4px 14px rgba(44,92,138,.35);transition:transform .15s,box-shadow .15s;}
@@ -63,6 +63,8 @@
 .vocab-quick a{display:block;padding:5px 10px;color:#2c5c8a;text-decoration:none;border-radius:6px;
   font-family:Georgia,"Times New Roman",serif;font-size:14px;}
 .vocab-quick a:hover{background:#eef4fa;}
+@keyframes vq-flash{0%,100%{box-shadow:0 0 0 0 rgba(44,92,138,0);}35%{box-shadow:0 0 0 5px rgba(44,92,138,.30);}}
+.vq-flash{animation:vq-flash 1.3s ease;border-radius:6px;}
 @media(max-width:680px){.toc-row{flex-direction:column;}.vocab-quick{width:100%;}.vocab-quick>summary{min-width:0;}}
 </style>
 </head>
@@ -99,7 +101,7 @@
 <li class="lvl2"><a href="#secV">四、生词本 / 积累</a></li>
 </ul></nav>
 <details class="vocab-quick">
-<summary>📖 生词速览<span class="vq-sub">23 词 · 点此展开目录</span></summary>
+<summary>📖 生词速览<span class="vq-sub">23 词 · 单击展开 / 双击跳转</span></summary>
 <ul>
 <li><a href="#w-insidious">insidious</a></li>
 <li><a href="#w-prejudice">prejudice</a></li>
@@ -359,6 +361,38 @@
     ],
     throwOnError: false
   });
+
+  /* 生词速览按钮：单击展开/收起，双击跳转到生词本表格并高亮 */
+  (function(){
+    var vq = document.querySelector('.vocab-quick');
+    if(!vq) return;
+    var sum = vq.querySelector('summary');
+    var timer = null, lastTap = 0;
+    function jump(){
+      var target = document.getElementById('secV');
+      if(!target) return;
+      vq.open = false;
+      target.scrollIntoView({behavior:'smooth', block:'start'});
+      target.classList.remove('vq-flash');
+      void target.offsetWidth;
+      target.classList.add('vq-flash');
+      setTimeout(function(){ target.classList.remove('vq-flash'); }, 1400);
+    }
+    sum.addEventListener('click', function(e){
+      e.preventDefault();
+      var now = Date.now();
+      if(now - lastTap < 320){        /* 双击：取消单击的定时，执行跳转 */
+        lastTap = 0;
+        if(timer){ clearTimeout(timer); timer = null; }
+        jump();
+        return;
+      }
+      lastTap = now;
+      if(timer){ clearTimeout(timer); timer = null; }
+      timer = setTimeout(function(){ timer = null; vq.open = !vq.open; }, 300);
+    });
+    sum.addEventListener('dblclick', function(e){ e.preventDefault(); });
+  })();
 </script>
 </body>
 </html>
