@@ -5,53 +5,137 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>学习笔记</title>
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#2c5c8a">
+<meta name="theme-color" content="#0b1220">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="学习笔记">
 <style>
+:root{
+  --ink:#e9f1ff; --muted:#8ea3c0; --line:rgba(255,255,255,.10);
+  --glass:rgba(255,255,255,.055); --glass2:rgba(255,255,255,.09);
+}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-body{margin:0;font-family:-apple-system,"Noto Sans CJK SC","Microsoft YaHei",sans-serif;
-  background:linear-gradient(160deg,#1f3b57,#2c5c8a 60%,#3a7ab0);min-height:100vh;color:#fff;
-  padding:26px 18px calc(26px + env(safe-area-inset-bottom));}
-h1{margin:8px 0 2px;font-size:23px;}
-.sub{opacity:.85;font-size:13px;margin-bottom:22px;}
-.cards{display:grid;gap:14px;max-width:560px;margin:0 auto;}
-a.card{display:flex;align-items:center;gap:14px;text-decoration:none;color:#1f2937;
-  background:#fff;border-radius:16px;padding:18px 18px;box-shadow:0 6px 20px rgba(0,0,0,.18);}
-a.card:active{transform:scale(.98);}
-.ic{flex:0 0 auto;width:52px;height:52px;border-radius:13px;display:flex;align-items:center;
-  justify-content:center;font-size:26px;color:#fff;}
-.c1{background:linear-gradient(135deg,#2c5c8a,#3a7ab0);}
-.c2{background:linear-gradient(135deg,#8a5a2c,#c08a3a);}
-.c3{background:linear-gradient(135deg,#2c7a5a,#3aa07a);}
-.t{font-size:16px;font-weight:600;}
-.d{font-size:12.5px;color:#6b7280;margin-top:3px;}
-.arrow{margin-left:auto;color:#cbd5e1;font-size:20px;}
-.tip{max-width:560px;margin:22px auto 0;font-size:12px;line-height:1.7;opacity:.8;text-align:center;}
+html,body{height:100%;}
+body{
+  margin:0;min-height:100vh;color:var(--ink);
+  font-family:-apple-system,"Noto Sans CJK SC","Microsoft YaHei",system-ui,sans-serif;
+  background:#0b1220;overflow-x:hidden;
+  padding:calc(30px + env(safe-area-inset-top)) 18px calc(30px + env(safe-area-inset-bottom));
+}
+/* —— 深空 + 极光背景 —— */
+body::before{
+  content:"";position:fixed;inset:-25%;z-index:-2;
+  background:
+    radial-gradient(38% 40% at 18% 12%, rgba(56,132,255,.30), transparent 62%),
+    radial-gradient(34% 38% at 88% 22%, rgba(160,86,255,.26), transparent 60%),
+    radial-gradient(40% 42% at 62% 92%, rgba(0,224,180,.22), transparent 62%),
+    linear-gradient(165deg,#0a1120,#0d1730 55%,#0b1220);
+  filter:blur(6px);animation:drift 22s ease-in-out infinite alternate;
+}
+body::after{ /* 顶部高光 + 细网格 */
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(120% 60% at 50% -12%, rgba(255,255,255,.14), transparent 55%),
+    linear-gradient(rgba(255,255,255,.028) 1px, transparent 1px) 0 0/100% 42px,
+    linear-gradient(90deg, rgba(255,255,255,.028) 1px, transparent 1px) 0 0/42px 100%;
+  mask-image:linear-gradient(#000, transparent 78%);
+}
+@keyframes drift{
+  0%{transform:translate3d(0,0,0) scale(1);}
+  100%{transform:translate3d(0,-3%,0) scale(1.07);}
+}
+@media (prefers-reduced-motion:reduce){body::before{animation:none;}}
+
+.wrap{max-width:660px;margin:0 auto;}
+/* —— 头部 —— */
+header{margin:6px 0 20px;}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:#9db4d6;border:1px solid var(--line);border-radius:999px;
+  padding:6px 12px;background:var(--glass);backdrop-filter:blur(8px);}
+.eyebrow i{width:7px;height:7px;border-radius:50%;background:#48e6a8;box-shadow:0 0 10px #48e6a8;}
+h1{margin:16px 0 6px;font-size:38px;line-height:1.06;font-weight:800;letter-spacing:-.5px;
+  background:linear-gradient(100deg,#ffffff 0%,#9fc3ff 46%,#c9a6ff 78%,#7ef0d0 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;}
+.sub{color:var(--muted);font-size:13.5px;}
+/* —— 统计条 —— */
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 22px;}
+.chip{display:flex;align-items:baseline;gap:6px;font-size:12px;color:#bcd0ea;
+  border:1px solid var(--line);border-radius:999px;padding:6px 13px;background:var(--glass);
+  backdrop-filter:blur(8px);}
+.chip b{font-size:14px;color:#fff;font-weight:700;}
+/* —— 卡片 —— */
+.cards{display:grid;gap:14px;}
+.card{
+  position:relative;display:flex;align-items:center;gap:16px;text-decoration:none;color:var(--ink);
+  padding:18px;border-radius:20px;border:1px solid var(--line);
+  background:linear-gradient(180deg,var(--glass2),var(--glass));
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  box-shadow:0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.07);
+  transition:transform .22s cubic-bezier(.2,.7,.2,1), border-color .22s, box-shadow .22s;
+  overflow:hidden;
+}
+.card::after{ /* 悬停时的一抹流光 */
+  content:"";position:absolute;inset:0;border-radius:inherit;opacity:0;transition:opacity .25s;
+  background:radial-gradient(90% 130% at 12% 0%, var(--accent-a), transparent 60%);
+  pointer-events:none;
+}
+.card:hover{transform:translateY(-5px);border-color:var(--accent-line);
+  box-shadow:0 18px 44px rgba(0,0,0,.5), 0 0 0 1px var(--accent-line), 0 0 34px -6px var(--accent-glow);}
+.card:hover::after{opacity:1;}
+.card:active{transform:translateY(-1px) scale(.99);}
+.ic{position:relative;flex:0 0 auto;width:56px;height:56px;border-radius:16px;
+  display:flex;align-items:center;justify-content:center;font-size:25px;font-weight:700;color:#fff;
+  background:linear-gradient(135deg,var(--accent-a),var(--accent-b));
+  box-shadow:0 8px 22px -6px var(--accent-glow), inset 0 1px 0 rgba(255,255,255,.35);}
+.txt{position:relative;min-width:0;}
+.t{font-size:16.5px;font-weight:700;letter-spacing:.2px;}
+.d{font-size:12.5px;color:var(--muted);margin-top:4px;}
+.arrow{position:relative;margin-left:auto;flex:0 0 auto;color:#7f93b0;font-size:22px;
+  transition:transform .22s,color .22s;}
+.card:hover .arrow{transform:translateX(4px);color:#fff;}
+/* 各科主题色 */
+.k408{--accent-a:rgba(58,122,208,.55);--accent-b:rgba(96,168,255,.30);--accent-line:rgba(96,168,255,.55);--accent-glow:rgba(72,140,255,.55);}
+.kmath{--accent-a:rgba(214,150,58,.55);--accent-b:rgba(255,196,102,.28);--accent-line:rgba(255,190,90,.55);--accent-glow:rgba(255,178,60,.5);}
+.keng{--accent-a:rgba(46,176,138,.55);--accent-b:rgba(102,240,196,.28);--accent-line:rgba(90,232,186,.55);--accent-glow:rgba(70,228,176,.5);}
+/* —— 页脚 —— */
+.tip{max-width:660px;margin:24px auto 0;color:#7b8fab;font-size:12px;line-height:1.75;text-align:center;}
+.tip b{color:#a8bcd8;font-weight:600;}
+@media(max-width:420px){h1{font-size:31px;}.ic{width:50px;height:50px;font-size:22px;}}
 </style></head>
 <body>
-<h1>学习笔记</h1>
-<div class="sub">考研 408 · 数学二 · 英语 · 离线随时看</div>
-<div class="cards">
-  <a class="card" href="408考点笔记.html">
-    <span class="ic c1">🗂</span>
-    <span><span class="t">408 考点笔记</span><div class="d">157 个考点 · 可勾选掌握状态</div></span>
-    <span class="arrow">›</span>
-  </a>
-  <a class="card" href="数学笔记.html">
-    <span class="ic c2">∑</span>
-    <span><span class="t">数学二 笔记</span><div class="d">等价无穷小 · 泰勒 · 导数公式</div></span>
-    <span class="arrow">›</span>
-  </a>
-  <a class="card" href="英语笔记.html">
-    <span class="ic c3">A</span>
-    <span><span class="t">英语 笔记</span><div class="d">生词本 · 作文素材</div></span>
-    <span class="arrow">›</span>
-  </a>
+<div class="wrap">
+  <header>
+    <span class="eyebrow"><i></i>Study Notes · 离线可用</span>
+    <h1>学习笔记</h1>
+    <div class="sub">考研 408 · 数学二 · 英语（二）——随时翻，随手背</div>
+    <div class="stats">
+      <span class="chip"><b>3</b> 门学科</span>
+      <span class="chip"><b>157</b> 个 408 考点</span>
+      <span class="chip"><b>PWA</b> 断网可读</span>
+    </div>
+  </header>
+
+  <div class="cards">
+    <a class="card k408" href="408考点笔记.html">
+      <span class="ic">🗂</span>
+      <span class="txt"><span class="t">408 考点笔记</span><div class="d">157 个考点 · 可勾选掌握状态</div></span>
+      <span class="arrow">›</span>
+    </a>
+    <a class="card kmath" href="数学笔记.html">
+      <span class="ic">∑</span>
+      <span class="txt"><span class="t">数学二 笔记</span><div class="d">等价无穷小 · 泰勒 · 导数公式</div></span>
+      <span class="arrow">›</span>
+    </a>
+    <a class="card keng" href="英语笔记.html">
+      <span class="ic">A</span>
+      <span class="txt"><span class="t">英语 笔记</span><div class="d">生词本 · 作文素材 · 翻译</div></span>
+      <span class="arrow">›</span>
+    </a>
+  </div>
+
+  <div class="tip">提示：用浏览器菜单「<b>添加到主屏幕 / 安装应用</b>」，即可像 App 一样一键打开。</div>
 </div>
-<div class="tip">提示：用浏览器菜单「添加到主屏幕 / 安装应用」，即可像 App 一样一键打开。</div>
 <script>
 if('serviceWorker' in navigator){ navigator.serviceWorker.register('sw.js').catch(()=>{}); }
 </script>
