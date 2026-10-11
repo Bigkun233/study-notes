@@ -309,12 +309,42 @@
 
 <div class="ch">
 <h3 id="sec5">4. 多元函数微分学</h3>
+
+<h4>① 核心定义 / 定理</h4>
 <ul>
-<li><span class="field">① 定义/定理：</span></li>
-<li><span class="field">② 必背公式：</span></li>
-<li><span class="field">③ 常考题型：</span></li>
-<li><span class="field">④ 易错点：</span></li>
+<li><b>偏导数定义</b>：\(f_x(x_0,y_0)=\lim\limits_{\Delta x\to0}\dfrac{f(x_0+\Delta x,\,y_0)-f(x_0,y_0)}{\Delta x}\)——<b>只让一个变量动，其余全冻结成常数</b>。</li>
+<li><b>全微分</b>：\(dz=f_x\,dx+f_y\,dy\)；<b>可微 \(\Rightarrow\) 偏导存在</b>（反之不成立）。</li>
+<li><b>可微判定</b>：\(\Delta z-(f_x\Delta x+f_y\Delta y)=o(\rho)\)，其中 \(\rho=\sqrt{\Delta x^2+\Delta y^2}\)。</li>
+<li><b>复合函数链式法则</b>（多元复合，画树状图逐条相乘）。</li>
 </ul>
+
+<h4>② 必背公式</h4>
+<ul>
+<li><b>链式法则</b>：\(z=z(u,v),\ u=u(x,y),\ v=v(x,y)\) \(\Rightarrow\) \(z_x=z_u u_x+z_v v_x\)，\(z_y=z_u u_y+z_v v_y\)。</li>
+<li><b>全微分形式不变性</b>：无论 \(u,v\) 是自变量还是中间变量，\(dz=z_u\,du+z_v\,dv\) 恒成立。</li>
+<li><b>隐函数求导</b>（\(F(x,y,z)=0\)）：\(\dfrac{\partial z}{\partial x}=-\dfrac{F_x}{F_z}\)，\(\dfrac{\partial z}{\partial y}=-\dfrac{F_y}{F_z}\)。</li>
+<li><b>二阶混合偏导</b>：\(f_{xy}\) 与 \(f_{yx}\) 在（二阶偏导连续时）<b>相等</b>，可用来验算。</li>
+</ul>
+
+<h4>③ 常考题型</h4>
+<ul>
+<li>求一阶、二阶偏导（含复合、抽象函数）。</li>
+<li>多元复合函数链式求导（先画树状图，再逐条相乘、同类相加）。</li>
+<li>隐函数求偏导（公式法 \(-F_x/F_z\) 或两边直接对变量求导）。</li>
+<li>全微分、可微性判定（选择题高频）。</li>
+<li>多元函数极值 / 条件极值（拉格朗日乘数法）。</li>
+</ul>
+
+<div class="warn">
+<b>④ 易错点</b>
+<ul>
+<li><b>对 \(x\) 求偏导时，把 \(y\) 也当成 \(x\) 的函数去链式求导</b>（本鲸今天亲眼见主人翻车😤）——<b>偏导的本质是「只让一个变量动，其余全当常数」</b>；除非题目明确给出 \(y=y(x)\) 或是个复合结构，否则 \(y\) 就是常数，\(y'_x=0\)。</li>
+<li>偏导 vs 全导要分清：<b>全导</b>（所有变量都在变，如 \(z=f(x,y),\ y=g(x)\)）才把变量的依赖关系全带上链式；<b>偏导</b>只走一个方向。</li>
+<li>冻结成常数的变量，其导数直接为 \(0\)，别手痒去求导。</li>
+<li>\(f_{xy}\ne f_{yx}\) 只有在偏导<b>不连续</b>时才可能发生，一般题默认相等，可用其一验算。</li>
+<li>链式法则别漏乘内层（如 \(\sin(xy)\) 对 \(x\) 求偏导要乘 \((xy)'_x=y\)）。</li>
+</ul>
+</div>
 </div>
 
 <div class="ch">
