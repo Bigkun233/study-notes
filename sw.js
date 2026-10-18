@@ -1,7 +1,7 @@
-const CACHE = "study-notes-v17";
+const CACHE = "study-notes-v19";
 const ASSETS = ["./","./index.html","./manifest.json","./408考点笔记.html","./数学笔记.html","./英语笔记.html",
   "./icon-192.png","./icon-512.png","./apple-touch-icon.png",
-  "./assets/katex.min.css","./assets/katex.min.js","./assets/auto-render.min.js"];
+  "./assets/edit-mode.css","./assets/edit-mode.js","./assets/katex.min.css","./assets/katex.min.js","./assets/auto-render.min.js"];
 
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)).then(()=>self.skipWaiting()));
