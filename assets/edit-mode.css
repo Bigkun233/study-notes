@@ -1,0 +1,135 @@
+/* ===== 笔记编辑模式 v1 ===== */
+@media screen{
+  body{padding-bottom:calc(78px + env(safe-area-inset-bottom)) !important;}
+}
+
+#em-bar{
+  position:fixed; z-index:9998; left:50%; bottom:calc(14px + env(safe-area-inset-bottom));
+  transform:translateX(-50%);
+  display:flex; gap:6px; padding:7px 8px; border-radius:16px;
+  background:rgba(18,26,42,.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+  box-shadow:0 8px 28px rgba(0,0,0,.38), 0 0 0 1px rgba(255,255,255,.10);
+  font-family:-apple-system,"Noto Sans CJK SC","Microsoft YaHei",system-ui,sans-serif;
+  font-size:13px; line-height:1; white-space:nowrap;
+  max-width:calc(100vw - 20px); overflow-x:auto;
+}
+#em-bar::-webkit-scrollbar{display:none}
+#em-bar .em-b{
+  appearance:none; border:0; border-radius:11px; padding:9px 11px; cursor:pointer;
+  background:rgba(255,255,255,.10); color:#e9f1ff; font-size:13px; font-family:inherit;
+  transition:background .15s, transform .1s;
+}
+#em-bar .em-b:active{transform:scale(.94)}
+#em-bar .em-b.on{background:#3b82f6; color:#fff; font-weight:600}
+#em-bar .em-b.primary{background:#2c5c8a; color:#fff; font-weight:600}
+#em-bar .em-b:disabled{opacity:.35}
+
+/* 编辑态提示条 */
+#em-hint{
+  position:fixed; z-index:9997; left:50%; bottom:calc(66px + env(safe-area-inset-bottom));
+  transform:translateX(-50%);
+  max-width:calc(100vw - 24px);
+  padding:7px 13px; border-radius:12px; font-size:12px; line-height:1.5;
+  background:rgba(44,92,138,.94); color:#fff; text-align:center;
+  box-shadow:0 6px 20px rgba(0,0,0,.3);
+  font-family:-apple-system,"Noto Sans CJK SC","Microsoft YaHei",system-ui,sans-serif;
+  display:none;
+}
+body.em-editing #em-hint{display:block}
+
+/* 可编辑区域的视觉反馈 */
+body.em-editing h1,body.em-editing h2,body.em-editing h3,body.em-editing h4,
+body.em-editing p,body.em-editing li,body.em-editing td,body.em-editing th,
+body.em-editing .note,body.em-editing .warn{outline:1px dashed rgba(44,92,138,.28); outline-offset:3px;}
+body.em-editing h1:focus,body.em-editing h2:focus,body.em-editing h3:focus,body.em-editing h4:focus,
+body.em-editing p:focus,body.em-editing li:focus,body.em-editing td:focus,body.em-editing th:focus,
+body.em-editing .note:focus,body.em-editing .warn:focus{outline:2px solid #3b82f6; outline-offset:3px; background:rgba(59,130,246,.06);}
+body.em-editing .katex{cursor:pointer; background:rgba(44,92,138,.07); border-radius:4px;}
+body.em-editing .katex:hover{background:rgba(44,92,138,.16);}
+
+/* 源码模式 */
+#em-src{
+  position:fixed; inset:0; z-index:9999; display:none; flex-direction:column;
+  background:#0f172a; color:#dbeafe;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+body.em-src-on #em-src{display:flex}
+#em-src .em-src-top{
+  display:flex; align-items:center; gap:8px; padding:10px 12px calc(10px);
+  padding-top:calc(10px + env(safe-area-inset-top));
+  border-bottom:1px solid rgba(255,255,255,.12); font-size:12px; color:#93b4d8;
+  font-family:-apple-system,"Noto Sans CJK SC",system-ui,sans-serif;
+}
+#em-src textarea{
+  flex:1; width:100%; border:0; outline:0; resize:none;
+  padding:12px; background:transparent; color:#dbeafe;
+  font-family:inherit; font-size:13px; line-height:1.7;
+  padding-bottom:calc(12px + env(safe-area-inset-bottom));
+}
+
+/* TeX 编辑弹层 */
+#em-tex{
+  position:fixed; inset:0; z-index:10000; display:none;
+  background:rgba(6,12,24,.72); backdrop-filter:blur(4px);
+  align-items:center; justify-content:center; padding:20px;
+  font-family:-apple-system,"Noto Sans CJK SC",system-ui,sans-serif;
+}
+#em-tex.on{display:flex}
+#em-tex .em-tex-box{
+  width:100%; max-width:520px; background:#fff; border-radius:16px; padding:16px;
+  box-shadow:0 20px 60px rgba(0,0,0,.5);
+}
+#em-tex .em-tex-t{font-size:14px; font-weight:700; color:#2c5c8a; margin-bottom:8px;}
+#em-tex textarea{
+  width:100%; min-height:110px; border:1px solid #cbd5e1; border-radius:10px;
+  padding:10px; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:14px;
+  line-height:1.6; color:#0f172a; resize:vertical; outline:none;
+}
+#em-tex textarea:focus{border-color:#3b82f6; box-shadow:0 0 0 3px rgba(59,130,246,.15)}
+#em-tex .em-tex-btns{display:flex; gap:8px; justify-content:flex-end; margin-top:12px;}
+#em-tex button{
+  border:0; border-radius:10px; padding:9px 16px; font-size:14px; cursor:pointer;
+  background:#eef2f7; color:#334155; font-family:inherit;
+}
+#em-tex button.ok{background:#2c5c8a; color:#fff; font-weight:600;}
+
+/* 导出弹层 */
+#em-out{
+  position:fixed; inset:0; z-index:10000; display:none;
+  background:rgba(6,12,24,.72); backdrop-filter:blur(4px);
+  align-items:center; justify-content:center; padding:16px;
+  font-family:-apple-system,"Noto Sans CJK SC",system-ui,sans-serif;
+}
+#em-out.on{display:flex}
+#em-out .em-out-box{
+  width:100%; max-width:560px; background:#fff; border-radius:16px; padding:14px;
+  box-shadow:0 20px 60px rgba(0,0,0,.5);
+}
+#em-out .em-out-t{font-size:14px; font-weight:700; color:#2c5c8a; margin-bottom:8px;}
+#em-out textarea{
+  width:100%; height:34vh; border:1px solid #cbd5e1; border-radius:10px; padding:8px;
+  font-family:ui-monospace,Menlo,Consolas,monospace; font-size:11px; line-height:1.5;
+  color:#334155; resize:none; outline:none; background:#f8fafc;
+}
+#em-out .em-out-btns{display:flex; gap:8px; justify-content:flex-end; margin-top:10px;}
+#em-out button{
+  border:0; border-radius:10px; padding:9px 16px; font-size:14px; cursor:pointer;
+  background:#eef2f7; color:#334155; font-family:inherit;
+}
+#em-out button.ok{background:#2c5c8a; color:#fff; font-weight:600;}
+#em-out .em-out-tip{margin-top:8px; font-size:11px; color:#94a3b8; text-align:center;}
+
+/* toast */
+#em-toast{
+  position:fixed; z-index:10001; left:50%; top:18%;
+  transform:translateX(-50%) translateY(-8px);
+  background:rgba(15,23,42,.94); color:#fff; padding:10px 18px; border-radius:12px;
+  font-size:13px; opacity:0; pointer-events:none; transition:opacity .22s, transform .22s;
+  font-family:-apple-system,"Noto Sans CJK SC",system-ui,sans-serif;
+}
+#em-toast.on{opacity:1; transform:translateX(-50%) translateY(0);}
+
+@media print{
+  #em-bar,#em-hint,#em-src,#em-tex,#em-toast,#em-out{display:none !important;}
+  body.em-editing *{outline:none !important;}
+}
