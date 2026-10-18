@@ -2,11 +2,13 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 <title>数学二 · 复习笔记</title>
 <link rel="stylesheet" href="assets/katex.min.css">
 <script src="assets/katex.min.js"></script>
 <script src="assets/auto-render.min.js"></script>
+<link rel="stylesheet" href="assets/edit-mode.css?v=9">
 <style>
   @page { margin: 18mm 16mm; }
   body { font-family: "Noto Serif CJK SC", serif; font-size: 15pt; line-height: 1.8; color: #1a1a1a; }
@@ -386,7 +388,7 @@
 <li><b>按行（列）展开</b>：\(|A|=\sum\limits_{k=1}^{n}a_{ik}A_{ik}=\sum\limits_{k=1}^{n}a_{kj}A_{kj}\)（\(A_{ij}\) 为代数余子式）。<b>混乘为 0</b>：\(\sum\limits_{k}a_{ik}A_{jk}=0\ (i\neq j)\)。</li>
 <li><b>正方的乘/数乘/逆/伴随</b>：
   \(|AB|=|A|\,|B|\)；\(|kA|=k^{n}|A|\)；\(|A^{-1}|=\dfrac{1}{|A|}\)；\(|A^{*}|=|A|^{\,n-1}\)。</li>
-<li><b>特殊型</b>：范德蒙德行列式 \(\prod\limits_{1\le i<j\le n}(x_j-x_i)\)；副对角线行列式 \(=(-1)^{\frac{n(n-1)}{2}}\cdot(\text{副对角之积})\)；\(\begin{vmatrix}A&O\\O&B\end{vmatrix}=|A|\,|B|\)，\(O\)、\(C\) 互换时副分块多一个符号 \((-1)^{mn}\)。</li>
+<li><b>特殊型</b>：范德蒙德行列式 \(\prod\limits_{1\le i&lt;j\le n}(x_j-x_i)\)；副对角线行列式 \(=(-1)^{\frac{n(n-1)}{2}}\cdot(\text{副对角之积})\)；\(\begin{vmatrix}A&O\\O&B\end{vmatrix}=|A|\,|B|\)，\(O\)、\(C\) 互换时副分块多一个符号 \((-1)^{mn}\)。</li>
 </ul>
 
 <h4>③ 常考题型</h4>
@@ -461,7 +463,7 @@
 <h4>② 必背公式 / 判定</h4>
 <ul>
 <li>把向量按<b>列</b>拼成矩阵 \(A=(α_1,\dots,α_s)\)：
-  \(\alpha_1,\dots,\alpha_s\) 线性相关 \(\iff Ax=0\) 有非零解 \(\iff r(A)<s\)；线性无关 \(\iff r(A)=s\)。</li>
+  \(\alpha_1,\dots,\alpha_s\) 线性相关 \(\iff Ax=0\) 有非零解 \(\iff r(A)&lt;s\)；线性无关 \(\iff r(A)=s\)。</li>
 <li>\(\beta\) 可由 \(\alpha_1,\dots,\alpha_s\) 线性表示 \(\iff r(\alpha_1,\dots,\alpha_s)=r(\alpha_1,\dots,\alpha_s,\beta)\)；且<b>表示唯一</b> \(\iff \alpha_1,\dots,\alpha_s\) 线性无关。</li>
 <li>等价的向量组秩相等；向量组与它的极大无关组等价。</li>
 </ul>
@@ -490,10 +492,10 @@
 
 <h4>① 核心定义 / 定理</h4>
 <ul>
-<li><b>齐次 \(Ax=0\)</b>：必有零解；有非零解 \(\iff r(A)<n\)；基础解系含 \(n-r(A)\) 个线性无关解。</li>
+<li><b>齐次 \(Ax=0\)</b>：必有零解；有非零解 \(\iff r(A)&lt;n\)；基础解系含 \(n-r(A)\) 个线性无关解。</li>
 <li><b>非齐次 \(Ax=b\)</b>：<b>有解</b> \(\iff r(A)=r(A\mid b)\)。此时
-  若 \(r(A)=r(A\mid b)=n\)，<b>唯一解</b>；若 \(=r<n\)，<b>无穷多解</b>（自由未知量 \(n-r\) 个）。
-  \(r(A)<r(A\mid b)\) 则<b>无解</b>。</li>
+  若 \(r(A)=r(A\mid b)=n\)，<b>唯一解</b>；若 \(=r&lt;n\)，<b>无穷多解</b>（自由未知量 \(n-r\) 个）。
+  \(r(A)&lt;r(A\mid b)\) 则<b>无解</b>。</li>
 <li><b>解的结构</b>：非齐次通解 \(=\) 一个特解 \(+\) 对应齐次的通解。</li>
 </ul>
 
@@ -578,7 +580,7 @@
 <li><b>正定的充要条件</b>（\(A\) 对称）：
   \(A\) 的特征值全 \(>0\)；或 <b>各阶顺序主子式全 \(>0\)</b>；或正惯性指数 \(=n\)；或存在可逆 \(C\) 使 \(A=C^{T}C\)。</li>
 <li><b>合同</b>：存在可逆 \(C\) 使 \(C^{T}AC=B\)，记 \(A\simeq B\)。实对称矩阵合同 \(\iff\) 有相同的正、负惯性指数（即同秩且 \(p\) 相同）。</li>
-<li><b>负定</b>：\(-A\) 正定；等价于奇数阶顺序主子式 \(<0\)、偶数阶 \(>0\)。</li>
+<li><b>负定</b>：\(-A\) 正定；等价于奇数阶顺序主子式 \(&lt;0\)、偶数阶 \(>0\)。</li>
 </ul>
 
 <h4>③ 常考题型</h4>
@@ -825,5 +827,6 @@
     throwOnError: false
   });
 </script>
+<script src="assets/edit-mode.js?v=9"></script>
 </body>
 </html>
