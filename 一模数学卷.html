@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<title>一模数学卷 · 解题思路</title>
+<link rel="stylesheet" href="assets/katex.min.css">
+<script src="assets/katex.min.js"></script>
+<script src="assets/auto-render.min.js"></script>
+<link rel="stylesheet" href="assets/edit-mode.css?v=9">
+<style>
+  @page { margin: 18mm 16mm; }
+  body { font-family: "Noto Serif CJK SC", serif; font-size: 15pt; line-height: 1.8; color: #1a1a1a; }
+  h1 { font-size: 26pt; text-align: center; border-bottom: 2px solid #2c5c8a; padding-bottom: 8px; margin-bottom: 4px; }
+  .subtitle { text-align: center; color: #666; font-size: 13pt; margin-bottom: 16px; }
+  h2 { font-size: 20pt; color: #2c5c8a; border-left: 5px solid #2c5c8a; padding-left: 8px; margin-top: 24px; margin-bottom: 10px; }
+  h3 { font-size: 17pt; color: #333; margin: 16px 0 6px 0; padding-bottom: 2px; border-bottom: 1px dashed #bbb; }
+  h4 { font-size: 15.5pt; color: #2c5c8a; margin: 14px 0 4px 0; }
+  .note { background: #f2f6fa; border: 1px solid #cfe0ee; border-radius: 4px; padding: 8px 12px; font-size: 13.5pt; color: #444; margin-bottom: 14px; }
+  .warn { background: #fdf3f3; border: 1px solid #f0c9c9; border-radius: 4px; padding: 8px 12px; font-size: 13.5pt; color: #7a2a2a; margin: 8px 0; }
+  ul { margin: 4px 0 8px 0; padding-left: 24px; }
+  li { margin: 4px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 8px 0; font-size: 14pt; }
+  th, td { border: 1px solid #999; padding: 6px 9px; text-align: center; }
+  th { background: #e8f0f7; }
+  td.l { text-align: left; }
+  .small { font-size: 12.5pt; color: #555; }
+  .katex { font-size: 1.2em; }
+  .katex-display { margin: 0.6em 0; }
+  .q { border: 1px solid #dbe4ee; border-radius: 10px; padding: 12px 16px; margin: 14px 0; background: #fcfdfe; }
+  .qh { font-size: 15.5pt; font-weight: 700; color: #2c5c8a; margin: 0 0 6px; }
+  .stem { font-size: 14pt; color: #333; background: #f6f8fa; border-left: 3px solid #9db8d2; padding: 6px 10px; border-radius: 4px; margin-bottom: 8px; }
+  .row { font-size: 14pt; margin: 4px 0; }
+  .tag { display: inline-block; font-size: 12.5pt; font-weight: 700; color: #fff; background: #2c5c8a;
+         border-radius: 4px; padding: 0 6px; margin-right: 6px; }
+  .tag.b { background: #b8600f; }
+  .tag.c { background: #a33; }
+  .ans { background: #eef7ee; border: 1px solid #bcd9bc; border-radius: 6px; padding: 6px 10px; font-weight: 700; color: #1d5b1d; margin-top: 8px; }
+  .tocbox{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 18px;
+    margin:18px auto;max-width:900px;box-shadow:0 1px 4px rgba(0,0,0,.06);
+    font-family:-apple-system,"Noto Sans CJK SC","Microsoft YaHei",sans-serif;
+    font-size:14px;line-height:1.75;color:#1f2937;}
+  .tocbox .toc-t{font-weight:700;font-size:15px;color:#2c5c8a;margin:0 0 8px;
+    padding-bottom:6px;border-bottom:1px solid #e2e8f0;}
+  .tocbox ul{list-style:none;margin:0;padding:0;}
+  .tocbox li{margin:4px 0;}
+  .tocbox a{color:#1f2937;text-decoration:none;border-bottom:1px dashed #cbd5e1;}
+  .tocbox a:hover{color:#2c5c8a;border-bottom-color:#2c5c8a;}
+  .tocbox li.lvl2{font-weight:600;}
+  .tocbox li.lvl3{margin-left:1.4em;font-size:13px;font-weight:400;color:#4b5563;}
+  .tocbox li.lvl3 a{color:#4b5563;}
+</style>
+</head>
+<body>
+
+<h1>一模数学卷 · 解题思路</h1>
+<div class="subtitle">2027 全国硕士研究生入学统一考试 · 数学二 · 模拟卷一（科目代码 302）</div>
+
+<div class="note">
+<b>怎么用这一页：</b>每题四栏 —— <b>思路</b>（看到题先想什么）→ <b>关键步骤</b>（真正算的那几步）→ <b>易错点</b>（考场上最容易丢分的地方）→ <b>答案</b>。<br>
+先只看「思路」，自己想一遍；卡住了再看「关键步骤」。<b>不要从头读到尾</b>，那样等于看小说。
+</div>
+
+<nav class="tocbox"><div class="toc-t">📑 目录</div><ul>
+<li class="lvl2"><a href="#sec1">一、选择题（1~10，每题 5 分）</a></li>
+<li class="lvl2"><a href="#sec2">二、填空题（11~16，每题 5 分）</a></li>
+<li class="lvl2"><a href="#sec3">三、解答题（17~22，共 70 分）· 待补</a></li>
+<li class="lvl2"><a href="#sec4">📌 答案速查表</a></li>
+</ul></nav>
+
+<h2 id="sec1">一、选择题（1~10 小题，每小题 5 分，共 50 分）</h2>
+
+<div class="q">
+<div class="qh">（1）无穷间断点的个数</div>
+<div class="stem">\(f(x)=\dfrac{x^{2}-x}{|x|(x-1)}\,e^{\frac{1}{x-2}}\)，求 \(f\) 的无穷间断点的个数。（A）0　（B）1　（C）2　（D）3</div>
+<div class="row"><span class="tag">思路</span>先<b>化简</b>再找间断点。分子 \(x^2-x=x(x-1)\)，与分母的 \((x-1)\) 能约掉——约完只剩 \(\dfrac{x}{|x|}\)，函数立刻变得极其简单。</div>
+<div class="row"><span class="tag b">关键步骤</span>
+<ul>
+<li>\(x\neq 1\) 时 \(\dfrac{x^2-x}{|x|(x-1)}=\dfrac{x(x-1)}{|x|(x-1)}=\dfrac{x}{|x|}=\operatorname{sgn}x\)，故 \(f(x)=\operatorname{sgn}x\cdot e^{\frac{1}{x-2}}\)。</li>
+<li>可疑点只有 \(x=0,\;1,\;2\)（无定义处）。</li>
+<li>\(x\to 0^{\pm}\)：\(\operatorname{sgn}x\to \pm 1\)，\(e^{\frac1{x-2}}\to e^{-\frac12}\)（有限）⇒ 左右极限为 \(\pm e^{-\frac12}\)，<b>跳跃间断点（第一类）</b>。</li>
+<li>\(x\to 1\)：约分后极限为 \(e^{-1}\) ⇒ <b>可去间断点</b>。</li>
+<li>\(x\to 2^{+}\)：\(\dfrac{1}{x-2}\to+\infty\)，\(e^{\frac1{x-2}}\to+\infty\) ⇒ <b>无穷间断点</b>；\(x\to 2^{-}\) 时该因子趋于 \(0\)。</li>
+</ul></div>
+<div class="row"><span class="tag c">易错点</span>① 把 \(x=0\) 的跳跃误判成无穷；② 忘了 \(x=1\) 约分后其实可去；③ 只在 \(x\to2^+\) 一侧无穷也算"无穷间断点"，<b>不要求两侧</b>。</div>
+<div class="ans">答案：（B）1 个（只有 \(x=2\)）</div>
+</div>
+
+<div class="q">
+<div class="qh">（2）变限积分方程的实根个数</div>
+<div class="stem">方程 \(\displaystyle\int_{-\pi}^{x} t\ln\!\left(2+\sin^{2}t\right)dt=0\) 的实根个数为（　）（A）1　（B）2　（C）3　（D）4</div>
+<div class="row"><span class="tag">思路</span>把左端看成函数 \(\Phi(x)\)，<b>求导看单调性</b>，再用端点值定位。这是"变限积分 + 零点个数"的标准套路。</div>
+<div class="row"><span class="tag b">关键步骤</span>
+<ul>
+<li>\(\Phi'(x)=x\ln\!\left(2+\sin^{2}x\right)\)，而 \(\ln(2+\sin^2x)\ge \ln 2\gt 0\)，故 \(\Phi'\) 与 \(x\) 同号。</li>
+<li>⇒ \(\Phi\) 在 \((-\infty,0)\) 上<b>严格减</b>，在 \((0,+\infty)\) 上<b>严格增</b>。最小值点 \(x=0\)。</li>
+<li>\(\Phi(-\pi)=0\)（积分上下限相同）⇒ \(x=-\pi\) 是一根；在 \((-\infty,-\pi)\) 上 \(\Phi\gt 0\)，在 \((-\pi,0)\) 上 \(\Phi\lt 0\)，负半轴无其他根。</li>
+<li>\(\Phi(0)=\int_{-\pi}^{0}t\ln(2+\sin^2t)\,dt\lt 0\)（被积函数在 \((-\pi,0)\) 上为负）；又 \(x\to+\infty\) 时被积函数 \(\sim t\ln 2\to+\infty\)，\(\Phi\to+\infty\)。</li>
+<li>⇒ 正半轴<b>恰有一根</b>。共 2 根。</li>
+</ul></div>
+<div class="row"><span class="tag c">易错点</span>① 想直接算积分（算不出来，也不该算）；② 漏掉下限端点 \(x=-\pi\) 这根；③ 忽略 \(\ln(2+\sin^2x)\) 恒正这个"符号开关"。</div>
+<div class="ans">答案：（B）2 个</div>
+</div>
+
+<div class="q">
+<div class="qh">（3）用 \(f(x)\lt xf'(x)\) 造单调函数</div>
+<div class="stem">设 \(f(x)\) 可导，\(f(x)\gt 0\)，当 \(0\lt a\lt x\lt b\) 时，有 \(f(x)\lt xf'(x)\)，则（　）<br>
+（A）\(bf(a)\gt af(b)\)　（B）\(abf(x)\gt x^{2}f(b)\)　（C）\(af(a)\lt xf(x)\)　（D）\(abf(x)\lt x^{2}f(a)\)</div>
+<div class="row"><span class="tag">思路</span>看到 \(xf'-f\) 就想到 \(\left(\dfrac{f}{x}\right)'=\dfrac{xf'-f}{x^{2}}\)。条件 \(f\lt xf'\) 就是在说 <b>\(\dfrac{f(x)}{x}\) 单调递增</b>。</div>
+<div class="row"><span class="tag b">关键步骤</span>
+<ul>
+<li>条件 ⇒ \(\left(\dfrac{f}{x}\right)'\gt 0\) 在 \((a,b)\) 上成立 ⇒ \(\dfrac{f(x)}{x}\) 在 \([a,b]\) 上递增；又 \(f\gt 0,\;xf'\gt f\gt 0\) ⇒ \(f\) 也递增。</li>
+<li>由 \(\dfrac{f(a)}{a}\lt \dfrac{f(x)}{x}\lt \dfrac{f(b)}{b}\)：<br>
+（A）\(bf(a)\gt af(b)\iff \dfrac{f(a)}{a}\gt\dfrac{f(b)}{b}\)，<b>反了</b>，错。<br>
+（B）由 \(\dfrac{f(x)}{x}\lt\dfrac{f(b)}{b}\) 得 \(bf(x)\lt xf(b)\)，两边乘 \(a\gt0\)：\(abf(x)\lt axf(b)\lt x^{2}f(b)\)（末步用 \(a\lt x\)），故（B）错。<br>
+（D）由 \(\dfrac{f(a)}{a}\lt\dfrac{f(x)}{x}\) 得 \(af(x)\gt xf(a)\)，两边乘 \(b\gt x\)：\(abf(x)\gt bxf(a)\gt x^{2}f(a)\)，故（D）错。</li>
+<li>（C）\(af(a)\lt xf(x)\)：\(a\lt x\) 且 \(0\lt f(a)\lt f(x)\)，两个正数分别变大，乘积必变大 —— 成立。</li>
+</ul></div>
+<div class="row"><span class="tag c">易错点</span>不等式乘正数才不变号——这题所有量都为正，可以放心乘，但要写清"因为 \(f\gt0,x\gt0\)"。三条错误选项都栽在方向反了。</div>
+<div class="ans">答案：（C）</div>
+</div>
+
+<div class="q">
+<div class="qh">（4）\(f(0)=f(1)\)、\(f''\neq 0\) 能推出什么</div>
+<div class="stem">设 \(f\) 在 \([0,1]\) 上二阶可导，\(f(0)=f(1)\)，\(f''(x)\neq 0\)，则下列正确的是（　）<br>
+（A）存在 \(\xi\in(0,1)\) 使 \(f(\xi)=0\)　（B）在 \((0,1)\) 内 \(f'(x)\neq 0\)<br>
+（C）存在唯一一点 \(\xi\in(0,1)\) 使 \(f'(\xi)=0\)　（D）至少存在两个不同点 \(\xi_1,\xi_2\) 使 \(f'(\xi_1)=f'(\xi_2)=0\)</div>
+<div class="row"><span class="tag">思路</span>两个关键词：<b>端点相等 → 罗尔</b>；<b>\(f''\neq0\) → \(f'\) 严格单调</b>（因为 \(f''\) 有介值性，恒不为 0 就恒正或恒负）。罗尔给"存在"，严格单调给"唯一"。</div>
+<div class="row"><span class="tag b">关键步骤</span>
+<ul>
+<li>\(f(0)=f(1)\) 且 \(f\) 在 \([0,1]\) 连续、\((0,1)\) 可导 ⇒ 存在 \(\xi\in(0,1)\)，\(f'(\xi)=0\)。</li>
+<li>\(f''\neq0\) 且 \(f''\) 具介值性 ⇒ \(f''\) 在 \((0,1)\) 上恒正或恒负 ⇒ \(f'\) <b>严格单调</b> ⇒ 零点至多一个。</li>
+<li>合起来：<b>存在且唯一</b>。</li>
+</ul></div>
+<div class="row"><span class="tag c">易错点</span>① 误以为 \(f(0)=f(1)\) 能推出 \(f\) 有零点（如 \(f\equiv2\)，一个零点都没有，A 错）；② 以为 \(f'\neq0\)（\(f=x^2-x\) 满足条件但 \(f'(\frac12)=0\)，B 错）；③ 忽略"\(f''\neq0\) ⇒ 不变号"这一步，就只能得"存在"而说不出"唯一"。</div>
+<div class="ans">答案：（C）</div>
+</div>
+
+<div class="q">
+<div class="qh">（5）反常积分收敛的参数范围</div>
+<div class="stem">设 \(I=\displaystyle\int_{0}^{+\infty}\frac{dx}{(1+x^{a})\ln(1+x^{b})}\)，其中 \(a\gt0,b\gt0\)，若该积分收敛，则必有（　）<br>
+（A）\(0\lt a\lt1,\;0\lt b\lt1\)　（B）\(0\lt a\lt1,\;b\gt1\)　（C）\(a\gt1,\;0\lt b\lt1\)　（D）\(a\gt1,\;b\gt1\)</div>
+<div class="row"><span class="tag">思路</span>两个"坏点"：\(x\to0^{+}\)（\(\ln(1+x^b)\to0\) 造成发散）和 \(x\to+\infty\)。<b>在 \(x=1\) 处劈成两段</b>，各自做等价无穷小/等价无穷大比较，得到"收敛 ⇔ 两个条件同时成立"。</div>
+<div class="row"><span class="tag b">关键步骤</span>
+<ul>
+<li><b>\(x\to0^{+}\)</b>：\(1+x^{a}\to1\)，\(\ln(1+x^{b})\sim x^{b}\) ⇒ 被积函数 \(\sim \dfrac{1}{x^{b}}\)。\(\displaystyle\int_0^{1}\frac{dx}{x^{b}}\) 收敛 \(\iff b\lt1\)。</li>
+<li><b>\(x\to+\infty\)</b>：\(1+x^{a}\sim x^{a}\)，\(\ln(1+x^{b})\sim b\ln x\) ⇒ 被积函数 \(\sim \dfrac{1}{b\,x^{a}\ln x}\)。\(\displaystyle\int^{+\infty}\frac{dx}{x^{a}\ln x}\) 收敛 \(\iff a\gt1\)（\(a=1\) 时 \(\int \frac{dx}{x\ln x}=\ln\ln x\) 发散）。</li>
+<li>两段都收敛才算收敛 ⇒ \(a\gt1\) 且 \(0\lt b\lt1\)。</li>
+</ul></div>
+<div class="row"><span class="tag c">易错点</span>① 只盯 \(+\infty\) 一端，漏掉 \(0\) 附近；② 把 \(\ln(1+x^{b})\sim x^{b}\) 记成 \(\sim b x^{b}\)（多乘了 b 不影响判阶，但 \(+\infty\) 端必须保留 \(\ln x\) 这个"对数因子"）；③ 记混 \(p\)-积分判据：\(\int_0^1 x^{-p}\) 收敛要 \(p\lt1\)，\(\int^{+\infty}x^{-p}\) 收敛要 \(p\gt1\)。</div>
+<div class="ans">答案：（C）\(a\gt1,\;0\lt b\lt1\)</div>
+</div>
+
+<div class="q">
+<div class="qh">（6）充分 / 必要条件判定</div>
+<div class="stem">函数 \(f(x)\) 在 \(x=0\) 的某邻域内有定义，则"\(\lim\limits_{x\to0}f(x)\) 存在"是"\(\lim\limits_{x\to0}\dfrac{|f(x)|}{x}=0\)"的（　）<br>
+（A）充分必要条件　（B）充分非必要条件　（C）必要非充分条件　（D）既非充分也非必要条件</div>
+<div class="row"><span class="tag">思路</span>判定"A 是 B 的什么条件"，就做两件事：<b>B ⇒ A 吗？</b>（A 必要）<b>A ⇒ B 吗？</b>（A 充分）。找一个反例或一个推导即可。</div>
+<div class="row"><span class="tag b">关键步骤</span>
+<ul>
+<li><b>B ⇒ A（必要）</b>：若 \(\dfrac{|f(x)|}{x}\to0\)，则 \(|f(x)|=|x|\cdot\dfrac{|f(x)|}{x}\to0\)，故 \(f(x)\to0\)，即 \(\lim f(x)\) 存在（=0）。✔ 所以是<b>必要</b>条件。</li>
+<li><b>A ⇒ B（充分）？</b>反例：\(f(x)=x\)，\(\lim\limits_{x\to0}f(x)=0\) 存在，但 \(\dfrac{|f(x)|}{x}=\dfrac{|x|}{x}\) 在 0 两侧为 \(\pm1\)，极限不存在。✘ 不充分。</li>
+</ul></div>
+<div class="row"><span class="tag c">易错点</span>看到"存在"就以为能推出具体值——存在只保证有限，不保证是 0；而 B 的结论比"存在"强得多（要求极限恰为 0 且衰减够快）。</div>
+<div class="ans">答案：（C）必要非充分条件</div>
+</div>
+
+<div class="q">
+<div class="qh">（7）二元函数在原点：可微性与极值</div>
+<div class="stem">设 \(f(x,y)=\begin{cases}\dfrac{x^{2}y}{x^{2}+y^{2}}, & (x,y)\neq(0,0)\\[2mm] 0, & (x,y)=(0,0)\end{cases}\)，则 \(f\) 在 \((0,0)\) 处（　）<br>
+（A）可微，且取极值　（B）可微，但不取极值　（C）不可微，但取极值　（D）不可微，也不取极值</div>
+<div class="row"><span class="tag">思路</span>分两步走：<b>先看可微</b>（用 \(f-\text{线性部分}=o(\rho)\) 或极坐标），<b>再看极值</b>（沿两条不同路径看符号是否一致）。顺序不能反：不可微时"极值"要用定义验证。</div>
+<div class="row"><span class="tag b">关键步骤</span>
+<ul>
+<li>\(f_x(0,0)=\lim\limits_{h\to0}\dfrac{f(h,0)-0}{h}=0\)，同理 \(f_y(0,0)=0\)。</li>
+<li>可微性：令 \(x=r\cos\theta,\;y=r\sin\theta\)，则 \(f=\dfrac{r^{3}\cos^{2}\theta\sin\theta}{r^{2}}=r\cos^{2}\theta\sin\theta\)，从而
+\(\left|\dfrac{f-f(0,0)-0\cdot x-0\cdot y}{\rho}\right|=\left|\cos^{2}\theta\sin\theta\right|\le 1\)，且整体是 \(o(1)\cdot\) 有界 ⇒ 差商 \(\to 0\)。<b>故可微</b>。</li>
+<li>极值：\(f(x,0)=0\)，\(f(0,y)=0\)；但 \(f(x,x)=\dfrac{x^{3}}{2x^{2}}=\dfrac{x}{2}\)，在 \(x\gt0\) 为正、\(x\lt0\) 为负 ⇒ 原点任何邻域内 \(f\) 都取到正值和负值 ⇒ <b>不取极值</b>。</li>
+</ul></div>
+<div class="row"><span class="tag c">易错点</span>① 用"偏导存在"当"可微"（不够，必须验证 \(o(\rho)\)）；② 只沿坐标轴看 \(f=0\) 就断言"取得极小值 0"——必须再找一条路径检验变号；③ 与 \(\dfrac{xy}{x^2+y^2}\)（在原点不连续、更不可微）搞混。</div>
+<div class="ans">答案：（B）可微，但不取极值</div>
+</div>
+
+<div class="q">
+<div class="qh">（8）分块矩阵的伴随矩阵</div>
+<div class="stem">设 \(A,B,C\) 均为 3 阶矩阵，\(A^{*},B^{*}\) 分别为 \(A,B\) 的伴随矩阵，若 \(|A|=2,\;|B|=3\)，则分块矩阵 \(M=\begin{pmatrix}C&A\\ B&O\end{pmatrix}\) 的伴随矩阵为（　）<br>
+（A）\(\begin{pmatrix}A^{*}CB^{*}&2A^{*}\\ 3B^{*}&O\end{pmatrix}\)　（B）\(\begin{pmatrix}-A^{*}CB^{*}&2B^{*}\\ 3A^{*}&O\end{pmatrix}\)<br>
+（C）\(\begin{pmatrix}O&-2A^{*}\\ -3B^{*}&A^{*}CB^{*}\end{pmatrix}\)　（D）\(\begin{pmatrix}O&-2B^{*}\\ -3A^{*}&A^{*}CB^{*}\end{pmatrix}\)</div>
+<div class="row"><span class="tag">思路</span>别硬算 6 阶伴随。<b>伴随矩阵 = 行列式 × 逆矩阵</b>：\(M^{*}=|M|\,M^{-1}\)。所以只要 (i) 求 \(|M|\)，(ii) 用分块求逆公式写出 \(M^{-1}\)。</div>
+<div class="row"><span class="tag b">关键步骤</span>
+<ul>
+<li>\(|M|=\begin{vmatrix}C&A\\ B&O\end{vmatrix}\)。交换两个块行（每个"块行"含 3 行）得 \((-1)^{3\cdot3}=-1\) 倍，即 \(|M|=-|A||B|=-6\)。</li>
+<li>设 \(M^{-1}=\begin{pmatrix}P&Q\\ R&S\end{pmatrix}\)，由 \(\begin{pmatrix}C&A\\B&O\end{pmatrix}\begin{pmatrix}P&Q\\R&S\end{pmatrix}=\begin{pmatrix}E&O\\O&E\end{pmatrix}\)：<br>
+左下：\(BP=O\Rightarrow P=O\)；右下：\(BQ=E\Rightarrow Q=B^{-1}\)；<br>
+左上：\(CP+AR=E\Rightarrow R=A^{-1}\)；右上：\(CQ+AS=O\Rightarrow S=-A^{-1}CB^{-1}\)。</li>
+<li>故 \(M^{-1}=\begin{pmatrix}O&B^{-1}\\ A^{-1}&-A^{-1}CB^{-1}\end{pmatrix}\)，再乘 \(|M|=-6\)，并用 \(A^{*}=|A|A^{-1}\Rightarrow A^{-1}=\dfrac{A^{*}}{2}\)、\(B^{-1}=\dfrac{B^{*}}{3}\)：</li>
+<li>\(M^{*}=-6\begin{pmatrix}O&B^{*}/3\\ A^{*}/2&-\frac{1}{6}A^{*}CB^{*}\end{pmatrix}=\begin{pmatrix}O&-2B^{*}\\ -3A^{*}&A^{*}CB^{*}\end{pmatrix}\)。</li>
+</ul></div>
+<div class="row"><span class="tag c">易错点</span>① 忘掉 \(|M|=-|A||B|\) 的那个负号（块行交换 3 行 ⇒ \((-1)^9\)）；② 伴随与逆的系数搞反：\(A^{*}=|A|A^{-1}\)，所以 \(A^{-1}\) 乘 \(|M|\) 后系数是 \(-|B|\)，不是 \(-|A|\)；③ 分块求逆的四个方程漏一条（\(S\) 容易算错）。</div>
+<div class="ans">答案：（D）</div>
+</div>
+
+<div class="q">
+<div class="qh">（9）\(Ax=b\) 有解的充要条件</div>
+<div class="stem">设 \(A\) 是 \(m\times n\) 矩阵，则非齐次线性方程组 \(Ax=b\) 有解的充分必要条件是（　）<br>
+（A）\(r(A)=r(A^{T})=m\)　（B）\(r(A)=r(A^{T})=n\)<br>
+（C）\(r(A)=r\begin{pmatrix}A^{T}\\ b^{T}\end{pmatrix}=m\)　（D）\(A^{T}x=0\) 与 \(\begin{pmatrix}A^{T}\\ b^{T}\end{pmatrix}x=0\) 同解</div>
+<div class="row"><span class="tag">思路</span>有解 \(\iff b\in\operatorname{Col}(A)\)。而"\(b\) 属于列空间"最好用<b>正交补</b>来翻译：\(\operatorname{Col}(A)=\big(N(A^{T})\big)^{\perp}\)。于是 \(b\) 在列空间 ⇔ 凡是正交于列空间的向量都与 \(b\) 正交 ⇔ 在 \(A^Tx=0\) 的解上再加一条 \(b^Tx=0\) <b>不改变解集</b>。</div>
+<div class="row"><span class="tag b">关键步骤</span>
+<ul>
+<li>\(b\in\operatorname{Col}(A)\iff b\perp N(A^{T})\iff\) 对一切满足 \(A^{T}x=0\) 的 \(x\)，都有 \(b^{T}x=0\)。</li>
+<li>而"对一切 \(A^Tx=0\) 的 \(x\) 都有 \(b^Tx=0\)"正好等价于：方程组 \(A^{T}x=0\) 与 \(\begin{pmatrix}A^{T}\\ b^{T}\end{pmatrix}x=0\) <b>同解</b>（后者比前者只多一个约束，约束没用就说明同解）。</li>
+<li>其余选项：\(r(A)=m\)（行满秩）只保证"对任意 \(b\) 都有解"，是充分不必要；\(r(A)=n\) 与之无关。</li>
+</ul></div>
+<div class="row"><span class="tag c">易错点</span>① 把"有解"和"对任意 \(b\) 有解"混淆（后者才是行满秩）；② 记不住 \(A^Tx=0\) 与列空间的正交补关系；③ 忘了 \(r(A)=r(A^{T})\) 恒成立，选项里的这个等号本身没信息量。</div>
+<div class="ans">答案：（D）</div>
+</div>
+
+<div class="q">
+<div class="qh">（10）换一组正交基后的标准形</div>
+<div class="stem">设二次型 \(f(x_1,x_2,x_3)\) 在正交变换 \(x=Py\) 下的标准形为 \(y_1^{2}+y_2^{2}-2y_3^{2}\)，其中 \(P=(e_1,e_2,e_3)\)。若 \(Q=(-e_3,e_2,e_1)\)，则 \(f\) 在正交变换 \(x=Qy\) 下的标准形为（　）<br>
+（A）\(2y_1^{2}-y_2^{2}+y_3^{2}\)　（B）\(2y_1^{2}+y_2^{2}-y_3^{2}\)<br>
+（C）\(-2y_1^{2}+y_2^{2}+y_3^{2}\)　（D）\(-2y_1^{2}-y_2^{2}+y_3^{2}\)</div>
+<div class="row"><span class="tag">思路</span>标准形的系数跟着<b>特征向量（列向量）走</b>，不跟着"位置"走。\(Q\) 只是把 \(P\) 的三列重排（并给第一列添负号），所以只要搞清"新的 \(y_i\) 对应原来哪一列"。</div>
+<div class="row"><span class="tag b">关键步骤</span>
+<ul>
+<li>\(x=Py\) 时 \(f=y_1^2+y_2^2-2y_3^2\) ⇒ \(e_1,e_2,e_3\) 对应的特征值是 \(1,1,-2\)。</li>
+<li>\(Q=(-e_3,e_2,e_1)\) ⇒ 新基的第 1 列是 \(-e_3\)（特征值仍 \(-2\)），第 2 列是 \(e_2\)（值 \(1\)），第 3 列是 \(e_1\)（值 \(1\)）。</li>
+<li>所以在 \(x=Qz\) 下：\(f=-2z_1^{2}+z_2^{2}+z_3^{2}\)（把哑变量写成 \(y\) 即 \(-2y_1^2+y_2^2+y_3^2\)）。</li>
+</ul></div>
+<div class="row"><span class="tag c">易错点</span>① 以为"交换 \(y_1,y_3\)"要动系数顺序却不动特征向量——正确做法是<b>跟着列向量</b>；② 给 \(e_3\) 加负号不影响特征值（\(A(-e_3)=-2(-e_3)\)），别以为会变号；③ 把 \(Q\) 看成"列置换矩阵乘在右边"后算乱。</div>
+<div class="ans">答案：（C）\(-2y_1^{2}+y_2^{2}+y_3^{2}\)</div>
+</div>
+
+<h2 id="sec2">二、填空题（11~16 小题，每小题 5 分，共 30 分）</h2>
+
+<div class="q">
+<div class="qh">（11）含参积分的极限</div>
+<div class="stem">设 \(f(x)\) 连续，且 \(f(1)=0,\;f'(1)=2\)，则 \(\lim\limits_{x\to1}\dfrac{\int_{1}^{x}f(xt)\,dt}{x-1-\ln x}=\) ______ 。</div>
+<div class="row"><span class="tag">思路</span>先把积分里的 \(x\) <b>换元搬到积分限上</b>，再判断分子分母各自是几阶零：分母 \(x-1-\ln x\) 在 \(x=1\) 是<b>二阶</b>零，所以分子必须也是二阶零，那就洛必达两次。</div>
+<div class="row"><span class="tag b">关键步骤</span>
+<ul>
+<li>令 \(u=xt\)，\(dt=du/x\)，\(t:1\to x\) 对应 \(u:x\to x^{2}\)：\(\displaystyle\int_1^x f(xt)dt=\frac1x\int_x^{x^2}f(u)\,du\)。记 \(J(x)=\int_x^{x^2}f(u)du\)，则分子 \(N=\dfrac{J}{x}\)。</li>
+<li>\(J(1)=0\)，\(J'(x)=2x f(x^2)-f(x)\)，故 \(J'(1)=2f(1)-f(1)=f(1)=0\)；</li>
+<li>\(N'=\dfrac{xJ'-J}{x^{2}}\)，\(N'(1)=\dfrac{1\cdot0-0}{1}=0\)。</li>
+<li>\(J''(x)=2f(x^{2})+4x^{2}f'(x^{2})-f'(x)\)，\(J''(1)=2\cdot0+4\cdot2-2=6\)；</li>
+<li>\(N''=\dfrac{J''}{x}-\dfrac{2J'}{x^{2}}+\dfrac{2J}{x^{3}}\)，\(N''(1)=6\)。</li>
+<li>分母 \(D=x-1-\ln x\)：\(D(1)=D'(1)=0\)，\(D''(1)=1\)。两次洛必达 ⇒ 原式 \(=\dfrac{N''(1)}{D''(1)}=6\)。</li>
+</ul></div>
+<div class="row"><span class="tag c">易错点</span>① 换元后忘了前面的 \(\dfrac1x\)（这一步最容易漏，漏了就变成 \(f(1)\) 相关的东西）；② 只洛一次就停，或没检查 \(D'(1)=0\)；③ 把 \(f'(1)=2\) 当摆设——它正好在 \(J''\) 里发挥作用。</div>
+<div class="ans">答案：\(6\)</div>
+</div>
+
+<div class="q">
+<div class="qh">（12）参数方程确定的函数的差商极限</div>
+<div class="stem">设 \(y=f(x)\) 由参数方程 \(\begin{cases}x=t^{2}+1\\ y=4t-t^{2}\end{cases}\;(t\ge0)\) 确定，则 \(\lim\limits_{n\to\infty}n\left[f\!\left(\dfrac{2n+1}{n}\right)-3\right]=\) ______ 。</div>
+<div class="row"><span class="tag">思路</span>\(\dfrac{2n+1}{n}=2+\dfrac1n\)，所以这是"在 \(x=2\) 处求导数"的差商：\(n[f(2+\frac1n)-f(2)]\to f'(2)\)。只要验证 \(f(2)=3\)，再用 \(\dfrac{dy}{dx}=\dfrac{dy/dt}{dx/dt}\)。</div>
+<div class="row"><span class="tag b">关键步骤</span>
+<ul>
+<li>\(x=2\Rightarrow t^{2}+1=2\Rightarrow t=1\)（\(t\ge0\)）；此时 \(y=4-1=3\)，即 \(f(2)=3\)。</li>
+<li>\(\dfrac{dy}{dx}=\dfrac{4-2t}{2t}\)，在 \(t=1\) 处 \(=\dfrac{2}{2}=1\)，即 \(f'(2)=1\)。</li>
+<li>\(n\left[f\left(2+\frac1n\right)-f(2)\right]=\dfrac{f(2+\frac1n)-f(2)}{\frac1n}\to f'(2)=1\)。</li>
+</ul></div>
+<div class="row"><span class="tag c">易错点</span>① 忘了先从 \(x=2\) 反解 \(t\)（只取 \(t=1\)，别把 \(t=-1\) 也写进来）；② 导数算成 \(\dfrac{dx/dt}{dy/dt}\)；③ 把 \(\dfrac{2n+1}{n}\) 看成 \(2n+1\)。</div>
+<div class="ans">答案：\(1\)</div>
+</div>
+
+<div class="q">
+<div class="qh">（13）由特解形式反求参数与通解</div>
+<div class="stem">\(y''-3y'+ay=-5e^{-x}\) 的特解形式为 \(Axe^{-x}\)，则该方程的通解为 \(y=\) ______ 。</div>
+<div class="row"><span class="tag">思路</span>"特解带 \(x\) 因子" = <b>共振</b> = \(-1\) 是特征根。由此定 \(a\)；再把 \(y_p=Axe^{-x}\) 代回定 \(A\)；最后拼上齐次通解。</div>
+<div class="row"><span class="tag b">关键步骤</span>
+<ul>
+<li>特征方程 \(r^{2}-3r+a=0\)。\(-1\) 是根 ⇒ \(1+3+a=0\Rightarrow a=-4\)。此时 \(r^{2}-3r-4=(r-4)(r+1)\)，根为 \(4,-1\)。</li>
+<li>设 \(y_p=Axe^{-x}\)：\(y_p'=Ae^{-x}(1-x)\)，\(y_p''=Ae^{-x}(x-2)\)。代入（\(a=-4\)）：<br>
+\(e^{-x}\big[A(x-2)-3A(1-x)-4Ax\big]=Ae^{-x}\cdot(-5)=-5Ae^{-x}\)。</li>
+<li>与右端 \(-5e^{-x}\) 比较 ⇒ \(A=1\)，即 \(y_p=xe^{-x}\)。</li>
+<li>通解：\(y=C_1e^{4x}+C_2e^{-x}+xe^{-x}\)。</li>
+</ul></div>
+<div class="row"><span class="tag c">易错点</span>① 忘了"共振要乘 \(x\)"直接设 \(Ae^{-x}\)（题目已经给了 \(Ax e^{-x}\)，反向利用即可）；② 代入时 \(a\) 还写成未知数导致算不出 \(A\)；③ 通解里 \(C_2e^{-x}\) 与特解 \(xe^{-x}\) 是同族，别合并错。</div>
+<div class="ans">答案：\(a=-4\)，\(\;y=C_1e^{4x}+C_2e^{-x}+xe^{-x}\)</div>
+</div>
+
+<div class="q">
+<div class="qh">（14）隐函数 + 全微分</div>
+<div class="stem">设 \(u=x^{2}+y^{2}+z^{2}\)，其中 \(z=z(x,y)\) 由方程 \(xz+e^{y}=e-1\) 确定，则 \(\left.du\right|_{(-1,1,1)}=\) ______ 。</div>
+<div class="row"><span class="tag">思路</span>这是"<b>先对方程全微分，再代点</b>"的题。千万不要先解出 \(z\) 的偏导再代——直接对 \(F(x,y,z)=0\) 求全微分，把 \(dx,dy,dz\) 的线性关系写出来更快。</div>
+<div class="row"><span class="tag b">关键步骤</span>
+<ul>
+<li>点 \((-1,1,1)\) 满足方程：\((-1)\cdot1+e^{1}=e-1\) ✔（说明点在曲面上）。</li>
+<li>对 \(xz+e^{y}=e-1\) 全微分：\(z\,dx+x\,dz+e^{y}dy=0\)。</li>
+<li>代入 \(x=-1,\;z=1,\;e^{y}=e\)：\(dx-dz+e\,dy=0\Rightarrow dz=dx+e\,dy\)。</li>
+<li>对 \(u=x^{2}+y^{2}+z^{2}\) 全微分：\(du=2x\,dx+2y\,dy+2z\,dz\)。在 \((-1,1,1)\)：\(du=-2dx+2dy+2dz\)。</li>
+<li>代入 \(dz\)：\(du=-2dx+2dy+2(dx+e\,dy)=2(1+e)\,dy\)。</li>
+</ul></div>
+<div class="row"><span class="tag c">易错点</span>① 忘记先验证点是否在曲面上；② 隐函数求导把 \(e^{y}\) 当成对 \(x\) 的常数（它是 \(y\) 的函数，微分要带 \(e^y dy\)）；③ \(du\) 里的 \(dz\) 不替换掉就交卷；④ 结果里 \(dx\) 恰好抵消——如果没抵消，说明前面算错了（这是个自检点）。</div>
+<div class="ans">答案：\(2(1+e)\,dy\)</div>
+</div>
+
+<div class="q">
+<div class="qh">（15）二重积分定义的函数求阶</div>
+<div class="stem">设 \(F(x)=\displaystyle\int_{e^{-x^{2}}}^{1}dv\int_{-\ln v}^{x^{2}}f(u)\,du\)，其中 \(f\) 为连续函数，则 \(\lim\limits_{x\to0}\dfrac{F(x)}{x^{3}}=\) ______ 。</div>
+<div class="row"><span class="tag">思路</span>不要真去积。看<b>积分区域有多大</b>：当 \(x\to0\) 时，外层区间长度 \(1-e^{-x^{2}}\sim x^{2}\)，内层区间长度 \(x^{2}-(-\ln v)=x^{2}+\ln v\) 也是 \(O(x^{2})\)。所以 \(F\) 是<b>四阶</b>小量，除以 \(x^{3}\) 必然趋于 0。</div>
+<div class="row"><span class="tag b">关键步骤</span>
+<ul>
+<li>在区域上 \(-\ln v\in[0,x^{2}]\)、\(u\in[-\ln v,\,x^{2}]\)，故 \(|u|\le x^{2}\)，\(f\) 有界：\(|f(u)|\le M\)。</li>
+<li>内层：\(\left|\displaystyle\int_{-\ln v}^{x^{2}}f(u)du\right|\le M\big(x^{2}+\ln v\big)\)。</li>
+<li>外层：\(|F(x)|\le M\displaystyle\int_{e^{-x^{2}}}^{1}\big(x^{2}+\ln v\big)dv\)。令 \(v=e^{-s}\)（\(s:x^{2}\to0\)）：<br>
+\(\displaystyle\int_0^{x^{2}}e^{-s}(x^{2}-s)\,ds\le\int_0^{x^{2}}(x^{2}-s)\,ds=\frac{x^{4}}{2}\)。</li>
+<li>⇒ \(|F(x)|\le \dfrac{M}{2}x^{4}\) ⇒ \(\left|\dfrac{F(x)}{x^{3}}\right|\le\dfrac{M}{2}|x|\to0\)。</li>
+</ul></div>
+<div class="row"><span class="tag c">易错点</span>① 上来就洛必达（对 \(v\) 的积分里含 \(x\)，直接求导很容易错）；② 误以为区域是二维的"面积 \(\sim x^2\)"——它的面积确实是 \(O(x^4)\)，因为两条边都是 \(O(x^2)\)；③ 想用 \(f(0)\) 具体值（题目没给 \(f(0)\)，答案必须与 \(f\) 无关，这本身就是个提示）。</div>
+<div class="ans">答案：\(0\)</div>
+</div>
+
+<div class="q">
+<div class="qh">（16）实对称矩阵：行和为 0 + 交换型条件</div>
+<div class="stem">设 \(A\) 是 3 阶实对称矩阵，且各行元素之和均为 0，\(\alpha,\beta\) 是线性无关的 3 维列向量，且满足 \(A\alpha=3\beta,\;A\beta=3\alpha\)，则 \(|A+4E|=\) ______ 。</div>
+<div class="row"><span class="tag">思路</span>两条信息各给一个特征值方向：<b>行和为 0</b> ⇒ \(A(1,1,1)^{T}=0\)；<b>\(A\alpha=3\beta,\;A\beta=3\alpha\)</b> ⇒ 在 \(\operatorname{span}\{\alpha,\beta\}\) 上 \(A^{2}=9E\) ⇒ 特征值 \(\pm3\)。<b>实对称 ⇒ 可正交对角化</b>，三个特征值就齐了。</div>
+<div class="row"><span class="tag b">关键步骤</span>
+<ul>
+<li>各行元素之和为 0 ⇒ \(A\begin{pmatrix}1\\1\\1\end{pmatrix}=0\)，即 \(\lambda_1=0\)。</li>
+<li>\(A^{2}\alpha=A(3\beta)=9\alpha\)，\(A^{2}\beta=9\beta\) ⇒ \(A(\alpha+\beta)=3(\alpha+\beta)\)，\(A(\alpha-\beta)=-3(\alpha-\beta)\)，得 \(\lambda_2=3,\;\lambda_3=-3\)（\(\alpha\pm\beta\neq0\) 因 \(\alpha,\beta\) 线性无关）。</li>
+<li>\(A\) 实对称可对角化，特征值恰为 \(0,3,-3\)。</li>
+<li>\(|A+4E|=(0+4)(3+4)(-3+4)=4\cdot7\cdot1=28\)。</li>
+</ul></div>
+<div class="row"><span class="tag c">易错点</span>① 忘记"实对称 ⇒ 可对角化"，只拿到两个特征值就卡住；② 把 \(A\alpha=3\beta\) 直接当成"\(\alpha\) 是特征向量"（不是！要组合成 \(\alpha\pm\beta\)）；③ \(|A+4E|\) 用 \((3+4)^2\) 这种错误合并。</div>
+<div class="ans">答案：\(28\)</div>
+</div>
+
+<h2 id="sec3">三、解答题（17~22，共 70 分）</h2>
+<div class="note">
+这一节<b>还在整理中</b>（题面含图形，需要逐题核对方程与区域）。目前已经锁定的题面轮廓见下面列表，正式解析随后补上：
+<ul>
+<li><b>（17）</b>曲线 \(y=\cdots\) 与 \(y=x^{3}\) 的渐近线 / 切线综合题。</li>
+<li><b>（18）</b>\(f(x)=\displaystyle\int_0^x t|x-t|\,dt-\dfrac{x^{2}}{6}\)，讨论单调性 / 极值 / 零点。</li>
+<li><b>（19）</b>分片函数在圆域 \(x^{2}+y^{2}\le1\) 与外部上的二重积分。</li>
+<li><b>（20）</b>由 \(\dfrac{\partial^{2}z}{\partial x\partial y}\)、\(z(x,0)\)、\(\dfrac{\partial z}{\partial y}(0,y)\) 反解 \(z\)，再求极值。</li>
+<li><b>（21）</b>曲率 \(=\dfrac{1}{|PQ|}\)（法线段长）建立微分方程，配合 \((1,1)\) 处切线水平。</li>
+<li><b>（22）</b>\(A=\begin{pmatrix}1&1&a\\1&1&1\\a&1&1\end{pmatrix}\) 有二重特征值 1，求 \(a\) 并用正交变换化标准形。</li>
+</ul>
+</div>
+
+<h2 id="sec4">📌 答案速查表</h2>
+<table>
+<tr><th>选择题</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th></tr>
+<tr><td>答案</td><td>B</td><td>B</td><td>C</td><td>C</td><td>C</td><td>C</td><td>B</td><td>D</td><td>D</td><td>C</td></tr>
+</table>
+<table>
+<tr><th>填空题</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th><th>16</th></tr>
+<tr><td>答案</td><td>\(6\)</td><td>\(1\)</td><td>\(a=-4,\;y=C_1e^{4x}+C_2e^{-x}+xe^{-x}\)</td><td>\(2(1+e)dy\)</td><td>\(0\)</td><td>\(28\)</td></tr>
+</table>
+
+<div class="warn">
+<b>复盘提示（按错因分类，不是按题号）：</b>
+<ul>
+<li><b>A 知识缺口</b>：8（伴随矩阵与分块求逆）、9（列空间 = 零空间正交补）、16（实对称 ⇒ 可对角化）——这三题是"没串起来"，回去把线代第 2、4、5 章各过一遍。</li>
+<li><b>B 计算卡壳</b>：1、5、11、14——都是"先化简/先换元/先定阶"再算的类型，卡在没化简就硬算。</li>
+<li><b>C 节奏与取舍</b>：2、15 这类"看阶数就能秒"的题不该花时间硬积；考场上先判阶、再决定要不要算。</li>
+</ul>
+</div>
+
+<script>
+  renderMathInElement(document.body, {
+    delimiters: [
+      {left: "\\[", right: "\\]", display: true},
+      {left: "$$", right: "$$", display: true},
+      {left: "\\(", right: "\\)", display: false}
+    ],
+    throwOnError: false
+  });
+</script>
+<script src="assets/edit-mode.js?v=9"></script>
+</body>
+</html>
