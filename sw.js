@@ -1,4 +1,4 @@
-const CACHE = "study-notes-v20";
+const CACHE = "study-notes-v21";
 const ASSETS = ["./","./index.html","./manifest.json","./408考点笔记.html","./数学笔记.html","./英语笔记.html","./一模数学卷.html",
   "./icon-192.png","./icon-512.png","./apple-touch-icon.png",
   "./assets/edit-mode.css","./assets/edit-mode.js","./assets/katex.min.css","./assets/katex.min.js","./assets/auto-render.min.js"];
