@@ -1,0 +1,217 @@
+/* ===== 考研日程 HUD 组件（嵌入笔记页） v1 ===== */
+.kysch-host{margin:18px 0 6px;}
+@media screen{ .kysch-host{ margin-top:16px; } }
+
+/* —— 内嵌 HUD 条 —— */
+.kysch-strip{
+  position:relative; overflow:hidden; border-radius:18px; padding:14px 16px 15px;
+  background:
+    radial-gradient(120% 160% at 8% 0%, rgba(34,211,238,.20), transparent 58%),
+    radial-gradient(110% 150% at 96% 100%, rgba(168,85,247,.22), transparent 62%),
+    linear-gradient(160deg,#080d18,#0b1222 55%,#0a0f1c);
+  border:1px solid rgba(94,234,212,.28);
+  box-shadow:0 14px 40px -18px rgba(8,18,34,.85), inset 0 1px 0 rgba(255,255,255,.06);
+  color:#e6f1ff; font-family:-apple-system,"Noto Sans CJK SC","Microsoft YaHei",system-ui,sans-serif;
+  isolation:isolate;
+}
+.kysch-strip::before{ /* 网格 */
+  content:""; position:absolute; inset:0; z-index:0; pointer-events:none; opacity:.5;
+  background:
+    repeating-linear-gradient(90deg, rgba(120,200,255,.07) 0 1px, transparent 1px 34px),
+    repeating-linear-gradient(0deg, rgba(120,200,255,.055) 0 1px, transparent 1px 34px);
+  mask-image:radial-gradient(120% 100% at 50% 0%, #000 40%, transparent 88%);
+}
+.kysch-strip::after{ /* 顶部扫描线 */
+  content:""; position:absolute; left:0; right:0; top:0; height:1px; z-index:1;
+  background:linear-gradient(90deg,transparent,rgba(94,234,212,.9),rgba(168,85,247,.85),transparent);
+}
+.kysch-row{position:relative; z-index:2; display:flex; align-items:center; gap:14px;}
+.kysch-big{flex:0 0 auto; text-align:center; line-height:1;}
+.kysch-big .lbl{font-size:9.5px; letter-spacing:.22em; color:#7fd6e8; font-weight:700;}
+.kysch-big .num{
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:38px; font-weight:800; letter-spacing:-1px; margin-top:3px;
+  background:linear-gradient(170deg,#ffffff,#7ee7ff 52%,#b98cff);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  text-shadow:0 0 24px rgba(80,220,255,.25);
+}
+.kysch-big .unit{font-size:10px; color:#8fa6c4; margin-top:2px; letter-spacing:.1em;}
+.kysch-mid{flex:1 1 auto; min-width:0;}
+.kysch-title{font-size:12px; color:#9fb6d4; letter-spacing:.06em; display:flex; gap:7px; align-items:center;}
+.kysch-title b{color:#fff; font-size:13px; letter-spacing:0;}
+.kysch-title i{width:6px;height:6px;border-radius:50%;background:#5eead4;box-shadow:0 0 9px #5eead4;flex:0 0 auto;}
+.kysch-meta{display:flex; gap:6px; flex-wrap:wrap; margin-top:8px;}
+.kysch-tag{
+  font-size:10.5px; padding:3px 9px; border-radius:999px; white-space:nowrap;
+  border:1px solid rgba(120,190,255,.22); background:rgba(120,190,255,.09); color:#bcd6f2;
+  font-variant-numeric:tabular-nums;
+}
+.kysch-tag.hot{border-color:rgba(250,204,21,.4); background:rgba(250,204,21,.12); color:#ffe08a;}
+.kysch-tag b{color:#fff; font-weight:800;}
+.kysch-prog{height:5px; border-radius:99px; background:rgba(255,255,255,.10); margin-top:9px; overflow:hidden;}
+.kysch-prog i{display:block; height:100%; border-radius:99px;
+  background:linear-gradient(90deg,#5eead4,#60a5fa 55%,#c084fc); transition:width .45s;
+  box-shadow:0 0 12px rgba(96,165,250,.7);}
+.kysch-open{
+  flex:0 0 auto; border:1px solid rgba(94,234,212,.45); border-radius:13px;
+  background:linear-gradient(160deg, rgba(34,211,238,.18), rgba(168,85,247,.20));
+  color:#dff8ff; font-family:inherit; font-size:12.5px; font-weight:700; letter-spacing:.04em;
+  padding:9px 13px; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:3px;
+}
+.kysch-open:active{transform:scale(.96);}
+.kysch-open em{font-style:normal; font-size:15px;}
+
+/* —— 悬浮入口 —— */
+.kysch-fab{
+  position:fixed; z-index:9990; right:14px; bottom:calc(86px + env(safe-area-inset-bottom));
+  width:50px; height:50px; border-radius:16px; border:1px solid rgba(94,234,212,.42);
+  background:linear-gradient(160deg,#0a1424,#101c31); color:#9df3ff; font-size:20px;
+  display:flex; align-items:center; justify-content:center; cursor:pointer;
+  box-shadow:0 10px 26px -8px rgba(0,0,0,.7), 0 0 0 1px rgba(94,234,212,.14);
+  font-family:inherit;
+}
+.kysch-fab span{
+  position:absolute; right:-4px; top:-4px; min-width:18px; height:18px; border-radius:9px;
+  background:linear-gradient(140deg,#22d3ee,#6366f1); color:#04101f; font-size:10px; font-weight:800;
+  display:flex; align-items:center; justify-content:center; padding:0 5px; letter-spacing:0;
+}
+.kysch-fab.zero{display:none;}
+
+/* —— 全屏 HUD 面板 —— */
+.kysch-ov{
+  position:fixed; inset:0; z-index:10050; display:none;
+  background:
+    radial-gradient(90% 50% at 12% 0%, rgba(34,211,238,.13), transparent 60%),
+    radial-gradient(80% 50% at 92% 8%, rgba(168,85,247,.16), transparent 62%),
+    #060a13;
+  color:#e6f1ff; font-family:-apple-system,"Noto Sans CJK SC","Microsoft YaHei",system-ui,sans-serif;
+  flex-direction:column;
+}
+.kysch-ov.on{display:flex;}
+.kysch-ov::before{
+  content:""; position:absolute; inset:0; pointer-events:none; opacity:.55;
+  background:
+    repeating-linear-gradient(90deg, rgba(120,200,255,.06) 0 1px, transparent 1px 40px),
+    repeating-linear-gradient(0deg, rgba(120,200,255,.045) 0 1px, transparent 1px 40px);
+  mask-image:radial-gradient(120% 70% at 50% 0%, #000 30%, transparent 85%);
+}
+.kysch-hd{
+  position:relative; z-index:2; flex:0 0 auto; display:flex; align-items:center; gap:10px;
+  padding:calc(12px + env(safe-area-inset-top)) 14px 10px;
+}
+.kysch-hd .t{font-size:15px; font-weight:800; letter-spacing:.14em; color:#9df3ff;}
+.kysch-hd .d{font-size:10.5px; color:#7f95b4; letter-spacing:.06em; margin-top:2px;}
+.kysch-x{
+  margin-left:auto; width:34px; height:34px; border-radius:11px; flex:0 0 auto;
+  border:1px solid rgba(148,180,220,.24); background:rgba(148,180,220,.08);
+  color:#c9dbf2; font-size:15px; cursor:pointer; font-family:inherit;
+}
+.kysch-body{
+  position:relative; z-index:2; flex:1 1 auto; overflow-y:auto; -webkit-overflow-scrolling:touch;
+  padding:2px 12px calc(16px + env(safe-area-inset-bottom));
+}
+.kysch-card{
+  border:1px solid rgba(120,190,255,.18); border-radius:16px; background:rgba(12,20,34,.72);
+  backdrop-filter:blur(8px); padding:10px 8px 11px; margin-bottom:11px;
+}
+.kysch-calhd{display:flex; align-items:center; padding:2px 6px 8px; gap:8px;}
+.kysch-calhd .m{font-size:15px; font-weight:800; font-family:ui-monospace,Menlo,monospace; color:#9df3ff; letter-spacing:.06em;}
+.kysch-calhd .m small{font-size:10px; color:#6f86a6; font-weight:500; margin-left:6px; font-family:inherit; letter-spacing:0;}
+.kysch-nav{margin-left:auto; display:flex; gap:6px;}
+.kysch-nav button{
+  width:30px; height:30px; border-radius:9px; cursor:pointer; font-family:inherit;
+  border:1px solid rgba(148,180,220,.22); background:rgba(148,180,220,.07); color:#a8c6e6; font-size:14px;
+}
+.kysch-nav button:disabled{opacity:.28;}
+.kysch-nav button.tdy{width:auto; padding:0 10px; font-size:11px; font-weight:700; color:#9df3ff;}
+
+.kysch-wk{display:grid; grid-template-columns:repeat(7,1fr); gap:3px; padding:0 4px 5px;}
+.kysch-wk span{text-align:center; font-size:10px; color:#5f7594; font-weight:700; letter-spacing:.06em;}
+.kysch-wk span.we{color:#8f7ad6;}
+.kysch-grid{display:grid; grid-template-columns:repeat(7,1fr); gap:3px; padding:0 4px;}
+.kd{
+  position:relative; min-height:50px; border-radius:10px; cursor:pointer; font-family:inherit;
+  border:1px solid rgba(120,190,255,.10); background:rgba(255,255,255,.028); color:#c9dbf2;
+  display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding:5px 2px 4px;
+}
+.kd .n{font-size:13.5px; font-weight:700; line-height:1.1; font-variant-numeric:tabular-nums;}
+.kd .c{font-size:9px; margin-top:2px; color:#5f7594; font-weight:700; letter-spacing:.02em;}
+.kd.pad{background:transparent; border-color:transparent; cursor:default; opacity:.18;}
+.kd.out{background:transparent; border-color:transparent; cursor:default; opacity:.30;}
+.kd.out .n{color:#64789a; font-weight:500;}
+.kd.we .n{color:#b9a6f0;}
+.kd.part{background:rgba(250,204,21,.12); border-color:rgba(250,204,21,.35);}
+.kd.part .c{color:#facc15;}
+.kd.full{background:rgba(52,211,153,.14); border-color:rgba(52,211,153,.42);}
+.kd.full .c{color:#34d399;}
+.kd.zero{background:rgba(248,113,113,.11); border-color:rgba(248,113,113,.34);}
+.kd.zero .c{color:#f87171;}
+.kd.today{border-color:#22d3ee; box-shadow:0 0 0 1px rgba(34,211,238,.6), 0 0 16px -2px rgba(34,211,238,.55);}
+.kd.today .n{color:#04121f; background:#22d3ee; border-radius:99px; padding:0 6px; min-width:20px; text-align:center;}
+.kd.exam{background:linear-gradient(160deg,rgba(250,204,21,.30),rgba(249,115,22,.18)); border-color:rgba(250,204,21,.75);}
+.kd.exam .n{color:#ffe9a8; font-weight:800;}
+.kd.exam::after{content:"EXAM"; position:absolute; bottom:3px; font-size:7.5px; letter-spacing:.1em; color:#ffd166; font-weight:800;}
+
+.kysch-lg{display:flex; flex-wrap:wrap; gap:9px; padding:8px 8px 0; font-size:10px; color:#6f86a6;}
+.kysch-lg i{display:inline-block; width:8px; height:8px; border-radius:3px; margin-right:4px; vertical-align:-1px; border:1px solid transparent;}
+.kysch-lg .a{background:rgba(52,211,153,.2); border-color:rgba(52,211,153,.5);}
+.kysch-lg .b{background:rgba(250,204,21,.2); border-color:rgba(250,204,21,.5);}
+.kysch-lg .c{background:rgba(248,113,113,.18); border-color:rgba(248,113,113,.5);}
+.kysch-lg .d{background:rgba(250,204,21,.3); border-color:rgba(250,204,21,.8);}
+
+/* 任务列表 */
+.kysch-sec{
+  font-size:10.5px; font-weight:800; letter-spacing:.14em; color:#6f86a6;
+  padding:8px 6px 6px; display:flex; align-items:center; gap:7px;
+}
+.kysch-sec em{font-style:normal; font-size:9.5px; letter-spacing:0; color:#9df3ff;
+  border:1px solid rgba(94,234,212,.35); background:rgba(94,234,212,.10); border-radius:99px; padding:1px 7px;}
+.kysch-task{
+  display:flex; align-items:flex-start; gap:9px; padding:9px 10px; margin:4px 0;
+  border:1px solid rgba(120,190,255,.14); border-radius:11px; background:rgba(255,255,255,.035);
+}
+.kysch-task.ok{background:rgba(52,211,153,.055); border-color:rgba(52,211,153,.26);}
+.kysch-ck{
+  flex:0 0 auto; width:21px; height:21px; border-radius:6px; margin-top:1px; cursor:pointer; padding:0;
+  border:1.5px solid rgba(140,190,240,.45); background:rgba(140,190,240,.08); color:transparent;
+  font-size:12px; line-height:1; display:flex; align-items:center; justify-content:center; font-family:inherit;
+}
+.kysch-task.ok .kysch-ck{background:linear-gradient(140deg,#34d399,#22d3ee); border-color:transparent; color:#04121f; font-weight:800;}
+.kysch-tx{flex:1 1 auto; font-size:13.5px; line-height:1.55; color:#dbe9fb; word-break:break-word; cursor:pointer;}
+.kysch-task.ok .kysch-tx{color:#6f8ba8; text-decoration:line-through;}
+.kysch-badge{display:inline-block; font-size:9px; color:#ffe08a; border:1px solid rgba(250,204,21,.4);
+  background:rgba(250,204,21,.12); border-radius:99px; padding:0 6px; margin-right:5px; vertical-align:1px; letter-spacing:.05em;}
+.kysch-done{display:block; font-size:9.5px; color:#4f9d84; margin-top:2px; letter-spacing:.04em;}
+.kysch-del{flex:0 0 auto; border:none; background:transparent; color:#42566f; font-size:13px; cursor:pointer; line-height:1; padding:2px; font-family:inherit;}
+.kysch-empty{text-align:center; color:#5f7594; font-size:12px; padding:16px 0 8px; line-height:1.8;}
+
+.kysch-add{display:flex; gap:8px; padding:9px 4px 4px;}
+.kysch-add input{
+  flex:1 1 auto; border:1px solid rgba(120,190,255,.28); border-radius:11px; padding:10px 12px;
+  font-size:13.5px; font-family:inherit; outline:none; color:#e6f1ff;
+  background:rgba(255,255,255,.05);
+}
+.kysch-add input::placeholder{color:#5f7594;}
+.kysch-add input:focus{border-color:#22d3ee; background:rgba(34,211,238,.07);}
+.kysch-add button{
+  flex:0 0 auto; border:none; border-radius:11px; padding:0 16px; font-size:17px; font-weight:800;
+  background:linear-gradient(140deg,#22d3ee,#6366f1); color:#04121f; cursor:pointer; font-family:inherit;
+}
+.kysch-ptxt{font-size:10.5px; color:#6f86a6; padding:2px 6px 0; font-variant-numeric:tabular-nums;}
+.kysch-ptxt b{color:#9df3ff;}
+
+/* toast */
+.kysch-toast{
+  position:fixed; left:50%; bottom:calc(24px + env(safe-area-inset-bottom)); transform:translate(-50%,10px);
+  z-index:10100; background:rgba(10,20,34,.95); color:#dff8ff; font-size:12px; padding:8px 16px;
+  border-radius:99px; border:1px solid rgba(94,234,212,.35); opacity:0; pointer-events:none;
+  transition:opacity .2s,transform .2s; white-space:nowrap;
+  font-family:-apple-system,"Noto Sans CJK SC",system-ui,sans-serif;
+}
+.kysch-toast.on{opacity:1; transform:translate(-50%,0);}
+
+@media(max-width:400px){
+  .kysch-big .num{font-size:32px;}
+  .kd{min-height:44px;} .kd .n{font-size:12.5px;}
+  .kysch-open{padding:8px 10px; font-size:11.5px;}
+}
