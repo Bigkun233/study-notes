@@ -76,6 +76,8 @@
     host.className = "kysch-host";
     document.body.insertBefore(host, document.body.firstChild);
   }
+  // data-kysch="bare" → 不渲染顶部条和悬浮按钮，只保留全屏面板（供首页入口调用）
+  var BARE = (host.getAttribute("data-kysch") || "").toLowerCase() === "bare";
   host.classList.add("kysch-host");
 
   host.innerHTML =
@@ -99,12 +101,17 @@
       '</div>' +
     '</div>';
 
-  var fab = document.createElement("button");
-  fab.className = "kysch-fab";
-  fab.id = "kysch-fab";
-  fab.setAttribute("aria-label", "打开日程表");
-  fab.innerHTML = '▤<span id="kysch-fabn">0</span>';
-  document.body.appendChild(fab);
+  var fab = null;
+  if (!BARE) {
+    fab = document.createElement("button");
+    fab.className = "kysch-fab";
+    fab.id = "kysch-fab";
+    fab.setAttribute("aria-label", "打开日程表");
+    fab.innerHTML = '▤<span id="kysch-fabn">0</span>';
+    document.body.appendChild(fab);
+  } else {
+    host.innerHTML = "";
+  }
 
   var ov = document.createElement("div");
   ov.className = "kysch-ov";
@@ -157,9 +164,10 @@
   var $ = function (id) { return document.getElementById(id); };
 
   /* ---------- 顶部条 ---------- */
+  var statsCache = null, onStats = null;
   function renderStrip() {
     var left = spanDays(todayStr, EXAM);
-    $("kysch-num").textContent = left >= 0 ? left : "0";
+    if (!BARE) $("kysch-num").textContent = left >= 0 ? left : "0";
 
     var a = activeOn(todayStr), todo = 0, carry = 0;
     for (var i = 0; i < a.all.length; i++) if (!doneAsOf(a.all[i], todayStr)) todo++;
@@ -168,19 +176,27 @@
     var doneAll = 0;
     for (var k = 0; k < DB.tasks.length; k++) if (DB.tasks[k].done) doneAll++;
 
-    $("kysch-todo").textContent = todo;
-    $("kysch-carry").textContent = carry;
-    $("kysch-cdone").textContent = doneAll;
-    $("kysch-call").textContent = DB.tasks.length;
+    var tTodo = $("kysch-todo"), tCarry = $("kysch-carry");
+    var tDone = $("kysch-cdone"), tAll = $("kysch-call"), tBar = $("kysch-bar");
+    if (tTodo) tTodo.textContent = todo;
+    if (tCarry) tCarry.textContent = carry;
+    if (tDone) tDone.textContent = doneAll;
+    if (tAll) tAll.textContent = DB.tasks.length;
 
-    var span = Math.max(1, spanDays(START, EXAM));
-    var pct = Math.max(0, Math.min(100, (spanDays(START, todayStr) / span) * 100));
-    if (left < 0) pct = 100;
-    $("kysch-bar").style.width = pct.toFixed(1) + "%";
+    if (tBar) {
+      var span = Math.max(1, spanDays(START, EXAM));
+      var pct = Math.max(0, Math.min(100, (spanDays(START, todayStr) / span) * 100));
+      if (left < 0) pct = 100;
+      tBar.style.width = pct.toFixed(1) + "%";
+    }
 
-    var fabN = $("kysch-fabn");
-    if (todo > 0) { fab.classList.remove("zero"); fabN.textContent = todo > 99 ? "99+" : todo; }
-    else fab.classList.add("zero");
+    statsCache = { days: (left >= 0 ? left : 0), todo: todo, carry: carry, done: doneAll, total: DB.tasks.length };
+    if (fab) {
+      var fabN = $("kysch-fabn");
+      if (todo > 0) { fab.classList.remove("zero"); fabN.textContent = todo > 99 ? "99+" : todo; }
+      else fab.classList.add("zero");
+    }
+    if (typeof onStats === "function") { try { onStats(statsCache); } catch (e) {} }
   }
 
   /* ---------- 日历 ---------- */
@@ -329,8 +345,9 @@
   }
 
   /* ---------- 事件 ---------- */
-  $("kysch-open").addEventListener("click", function () { open(); });
-  fab.addEventListener("click", function () { open(); });
+  var openBtn = $("kysch-open");
+  if (openBtn) openBtn.addEventListener("click", function () { open(); });
+  if (fab) fab.addEventListener("click", function () { open(); });
   $("kysch-x").addEventListener("click", close);
 
   $("kysch-grid").addEventListener("click", function (e) {
@@ -403,6 +420,14 @@
 
   load();
   renderAll();
+
+  window.KySch = {
+    open: open,
+    close: close,
+    stats: function () { return statsCache; },
+    onStats: function (fn) { onStats = fn; if (statsCache) { try { fn(statsCache); } catch (e) {} } },
+    refresh: renderAll
+  };
 
   setInterval(function () {
     var now = fmt(new Date());
