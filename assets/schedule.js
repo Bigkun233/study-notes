@@ -26,7 +26,7 @@
   }
 
   /* ---------- 数据 ---------- */
-  var DB = { tasks: [] };
+  var DB = { tasks: [], tomb: {} };
   function load() {
     try {
       var raw = localStorage.getItem(KEY);
@@ -36,10 +36,14 @@
         DB.tasks = d.tasks.filter(function (t) {
           return t && t.id && t.date && typeof t.text === "string";
         }).map(function (t) {
-          return { id: t.id, text: t.text, date: t.date, done: !!t.done,
-                   doneOn: t.doneOn || null, ts: t.ts || Date.now() };
+          var o = { id: t.id, text: t.text, date: t.date, done: !!t.done,
+                    doneOn: t.doneOn || null, ts: t.ts || Date.now(),
+                    up: t.up || t.ts || Date.now() };
+          if (t.type === "week") o.type = "week";
+          return o;
         });
       }
+      if (d && d.tomb && typeof d.tomb === "object") DB.tomb = d.tomb;
     } catch (e) {}
   }
   function save() {
@@ -409,6 +413,7 @@
     if (!t) return;
     if (t.done) { t.done = false; t.doneOn = null; }
     else { t.done = true; t.doneOn = todayStr; }
+    t.up = Date.now();
     save(); renderAll();
     if (ov.classList.contains("on") && curTab === "week") renderWeek();
     toast(t.done ? "本周目标达成 ✓" : "已取消");
@@ -420,7 +425,7 @@
     if (!v) return;
     if (isDup(v, "week")) return;
     DB.tasks.push({ id: uid(), text: v, type: "week", date: curWeek,
-                    done: false, doneOn: null, ts: Date.now() });
+                    done: false, doneOn: null, ts: Date.now(), up: Date.now() });
     inp.value = "";
     save(); renderAll(); renderWeek();
     toast("已加入本周");
@@ -446,6 +451,7 @@
     if (!t) return;
     if (t.done) { t.done = false; t.doneOn = null; }
     else { t.done = true; t.doneOn = curDay; }
+    t.up = Date.now();
     save(); renderAll();
   }
   function del(id) {
@@ -453,6 +459,7 @@
     if (!t) return;
     if (!window.confirm(isWeekTask(t) ? "删掉这条周目标？" : "删掉这条任务？")) return;
     DB.tasks = DB.tasks.filter(function (x) { return x.id !== id; });
+    DB.tomb[id] = Date.now();
     save(); renderAll(); toast("已删除");
   }
   function edit(id) {
@@ -462,7 +469,7 @@
     if (v === null) return;
     v = v.replace(/\s+/g, " ").trim();
     if (!v || v === t.text) return;
-    t.text = v; save(); renderAll(); toast("已修改");
+    t.text = v; t.up = Date.now(); save(); renderAll(); toast("已修改");
   }
   var lastAdd = { text: "", scope: "", ts: 0 };
   function isDup(v, scope) {
@@ -477,7 +484,8 @@
     var v = inp.value.replace(/\s+/g, " ").trim();
     if (!v) return;
     if (isDup(v, "day")) return;
-    DB.tasks.push({ id: uid(), text: v, date: curDay, done: false, doneOn: null, ts: Date.now() });
+    DB.tasks.push({ id: uid(), text: v, date: curDay, done: false, doneOn: null,
+                    ts: Date.now(), up: Date.now() });
     inp.value = "";
     save(); renderAll();
     var b = document.querySelector(".kysch-body");
@@ -647,7 +655,62 @@
   load();
   renderAll();
 
+  /* ---------- 跨设备同步 API ---------- */
+  function snapshot() {
+    return { v: 1, ts: Date.now(), tasks: DB.tasks, tomb: DB.tomb || {} };
+  }
+  function mergeRemote(remote) {
+    if (!remote || !Array.isArray(remote.tasks)) return 0;
+    var byId = {}, tomb = {};
+    var t0 = DB.tomb || {}, t1 = remote.tomb || {};
+    for (var a in t0) tomb[a] = t0[a];
+    for (var b in t1) if (!tomb[b] || t1[b] > tomb[b]) tomb[b] = t1[b];
+
+    for (var i = 0; i < DB.tasks.length; i++) byId[DB.tasks[i].id] = DB.tasks[i];
+
+    var changed = 0;
+    for (var j = 0; j < remote.tasks.length; j++) {
+      var r = remote.tasks[j];
+      if (!r || !r.id || !r.date || typeof r.text !== "string") continue;
+      var c = byId[r.id];
+      if (!c) {
+        var o = { id: r.id, text: r.text, date: r.date, done: !!r.done,
+                  doneOn: r.doneOn || null, ts: r.ts || Date.now(),
+                  up: r.up || r.ts || Date.now() };
+        if (r.type === "week") o.type = "week";
+        byId[r.id] = o;
+        changed++;
+        continue;
+      }
+      var cu = c.up || c.ts || 0, ru = r.up || r.ts || 0;
+      if (ru > cu) {
+        c.text = r.text;
+        c.date = r.date;
+        c.done = !!r.done;
+        c.doneOn = r.doneOn || null;
+        c.ts = r.ts || c.ts;
+        c.up = ru;
+        if (r.type === "week") c.type = "week"; else delete c.type;
+        changed++;
+      }
+    }
+
+    var list = [];
+    for (var id in byId) {
+      var t = byId[id];
+      if (tomb[id] && tomb[id] >= (t.up || t.ts || 0)) continue;
+      list.push(t);
+    }
+    DB.tasks = list;
+    DB.tomb = tomb;
+    if (changed) { save(); renderAll(); }
+    return changed;
+  }
+
   window.KySch = {
+    snapshot: snapshot,
+    merge: mergeRemote,
+    reload: function () { load(); renderAll(); },
     open: open,
     close: close,
     stats: function () { return statsCache; },
