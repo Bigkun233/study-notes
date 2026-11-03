@@ -98,12 +98,29 @@ h1{margin:16px 0 6px;font-size:38px;line-height:1.06;font-weight:800;letter-spac
 .k408{--accent-a:rgba(58,122,208,.55);--accent-b:rgba(96,168,255,.30);--accent-line:rgba(96,168,255,.55);--accent-glow:rgba(72,140,255,.55);}
 .kmath{--accent-a:rgba(214,150,58,.55);--accent-b:rgba(255,196,102,.28);--accent-line:rgba(255,190,90,.55);--accent-glow:rgba(255,178,60,.5);}
 .keng{--accent-a:rgba(46,176,138,.55);--accent-b:rgba(102,240,196,.28);--accent-line:rgba(90,232,186,.55);--accent-glow:rgba(70,228,176,.5);}
+.kplan{--accent-a:rgba(34,211,238,.50);--accent-b:rgba(168,85,247,.28);--accent-line:rgba(94,234,212,.55);--accent-glow:rgba(56,213,255,.55);}
+/* 日程卡 · HUD 角标 */
+.card.kplan{background:
+   radial-gradient(120% 150% at 8% 0%, rgba(34,211,238,.13), transparent 58%),
+   radial-gradient(110% 150% at 100% 100%, rgba(168,85,247,.14), transparent 62%),
+   linear-gradient(180deg,var(--glass2),var(--glass));}
+.card.kplan .ic{background:linear-gradient(135deg,#0e2233,#152c47);border:1px solid rgba(94,234,212,.45);
+  box-shadow:0 8px 24px -8px rgba(56,213,255,.6), inset 0 1px 0 rgba(255,255,255,.12);}
+.dday{margin-left:auto;flex:0 0 auto;text-align:right;padding-right:8px;}
+.dday .n{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:24px;font-weight:800;
+  letter-spacing:-1px;line-height:1;background:linear-gradient(170deg,#fff,#7ee7ff 55%,#b98cff);
+  -webkit-background-clip:text;background-clip:text;color:transparent;}
+.dday .u{font-size:9px;letter-spacing:.16em;color:#7fd6e8;font-weight:700;margin-top:3px;}
+.dday .td{font-size:10px;color:#8ea3c0;margin-top:4px;letter-spacing:.02em;}
+.dday .td b{color:#5eead4;font-weight:800;}
 /* —— 页脚 —— */
 .tip{max-width:660px;margin:24px auto 0;color:#7b8fab;font-size:12px;line-height:1.75;text-align:center;}
 .tip b{color:#a8bcd8;font-weight:600;}
 @media(max-width:420px){h1{font-size:31px;}.ic{width:50px;height:50px;font-size:22px;}}
-</style></head>
+</style>
+<link rel="stylesheet" href="assets/schedule.css?v=2"></head>
 <body>
+<div data-kysch="bare"></div>
 <div class="wrap">
   <header>
     <span class="eyebrow"><i></i>Study Notes · 离线可用</span>
@@ -112,7 +129,7 @@ h1{margin:16px 0 6px;font-size:38px;line-height:1.06;font-weight:800;letter-spac
     <div class="stats">
       <span class="chip"><b>3</b> 门学科</span>
       <span class="chip"><b>157</b> 个 408 考点</span>
-      <span class="chip"><b>📅</b> 笔记内自带日程</span>
+      <span class="chip"><b id="chip-dday">--</b> 天倒计时</span>
     </div>
   </header>
 
@@ -132,11 +149,42 @@ h1{margin:16px 0 6px;font-size:38px;line-height:1.06;font-weight:800;letter-spac
       <span class="txt"><span class="t">英语 笔记</span><div class="d">生词本 · 作文素材 · 翻译</div></span>
       <span class="arrow">›</span>
     </a>
+    <a class="card kplan" id="schedule-card" href="javascript:void(0)">
+      <span class="ic">📅</span>
+      <span class="txt"><span class="t">考研日程 · 打卡</span><div class="d">日历排任务 · 未完成自动顺延</div></span>
+      <span class="dday"><div class="n" id="dd-n">--</div><div class="u">DAYS LEFT</div><div class="td" id="dd-t">今日 <b>0</b> 项</div></span>
+      <span class="arrow">›</span>
+    </a>
   </div>
 
   <div class="tip">提示：用浏览器菜单「<b>添加到主屏幕 / 安装应用</b>」，即可像 App 一样一键打开。</div>
 </div>
 <script>
 if('serviceWorker' in navigator){ navigator.serviceWorker.register('sw.js').catch(()=>{}); }
+
+/* 日程入口：首页卡片 → 直接弹 HUD 面板 */
+(function(){
+  var card=document.getElementById('schedule-card');
+  if(!card) return;
+  card.addEventListener('click',function(e){
+    e.preventDefault();
+    if(window.KySch){ KySch.open(); }
+    else { location.href='408考点笔记.html'; }
+  });
+  function paint(s){
+    if(!s) return;
+    document.getElementById('dd-n').textContent=s.days;
+    document.getElementById('dd-t').innerHTML='今日 <b>'+s.todo+'</b> 项'+(s.carry?' · 顺延 '+s.carry:'');
+    var c=document.getElementById('chip-dday');
+    if(c) c.textContent=s.days;
+  }
+  if(window.KySch){ KySch.onStats(paint); paint(KySch.stats()); }
+  else {
+    document.addEventListener('DOMContentLoaded',function(){
+      if(window.KySch){ KySch.onStats(paint); paint(KySch.stats()); }
+    });
+  }
+})();
 </script>
+<script src="assets/schedule.js?v=2"></script>
 </body></html>
