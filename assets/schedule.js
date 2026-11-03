@@ -1,0 +1,411 @@
+/* ===== 考研日程 HUD 组件（嵌入笔记页） v1 =====
+   用法：
+     <link rel="stylesheet" href="assets/schedule.css?v=1">
+     <div data-kysch></div>          ← 想放哪就放哪（不写就自动插到 <body> 开头）
+     <script src="assets/schedule.js?v=1"></script>
+   数据：localStorage  key = kaoyan_schedule_v1
+*/
+(function () {
+  "use strict";
+  if (window.__kyschInited) return;
+  window.__kyschInited = true;
+
+  var START = "2026-11-03";
+  var EXAM = "2026-12-19";
+  var KEY = "kaoyan_schedule_v1";
+
+  function pad(n) { return n < 10 ? "0" + n : "" + n; }
+  function fmt(d) { return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); }
+  function parseDay(s) { var p = s.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function spanDays(a, b) { return Math.round((parseDay(b) - parseDay(a)) / 86400000); }
+  function mmdd(s) { var p = s.split("-"); return (+p[1]) + "/" + (+p[2]); }
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  /* ---------- 数据 ---------- */
+  var DB = { tasks: [] };
+  function load() {
+    try {
+      var raw = localStorage.getItem(KEY);
+      if (!raw) return;
+      var d = JSON.parse(raw);
+      if (d && Array.isArray(d.tasks)) {
+        DB.tasks = d.tasks.filter(function (t) {
+          return t && t.id && t.date && typeof t.text === "string";
+        }).map(function (t) {
+          return { id: t.id, text: t.text, date: t.date, done: !!t.done,
+                   doneOn: t.doneOn || null, ts: t.ts || Date.now() };
+        });
+      }
+    } catch (e) {}
+  }
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(DB)); }
+    catch (e) { toast("保存失败：存储不可用"); }
+  }
+  function uid() { return "t" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
+
+  var todayStr = fmt(new Date());
+  var curDay = todayStr;
+
+  function activeOn(day) {
+    var out = { today: [], carry: [] };
+    for (var i = 0; i < DB.tasks.length; i++) {
+      var t = DB.tasks[i];
+      if (t.date === day) out.today.push(t);
+      else if (t.date < day && (!t.done || (t.doneOn && t.doneOn > day))) out.carry.push(t);
+    }
+    out.all = out.today.concat(out.carry);
+    return out;
+  }
+  function doneAsOf(t, day) { return !!(t.done && t.doneOn && t.doneOn <= day); }
+  function dayStat(day) {
+    var a = activeOn(day), done = 0;
+    for (var i = 0; i < a.all.length; i++) if (doneAsOf(a.all[i], day)) done++;
+    return { total: a.all.length, done: done };
+  }
+
+  /* ---------- 骨架 ---------- */
+  var host = document.querySelector("[data-kysch]");
+  if (!host) {
+    host = document.createElement("div");
+    host.setAttribute("data-kysch", "");
+    host.className = "kysch-host";
+    document.body.insertBefore(host, document.body.firstChild);
+  }
+  host.classList.add("kysch-host");
+
+  host.innerHTML =
+    '<div class="kysch-strip">' +
+      '<div class="kysch-row">' +
+        '<div class="kysch-big">' +
+          '<div class="lbl">D-DAY</div>' +
+          '<div class="num" id="kysch-num">--</div>' +
+          '<div class="unit">DAYS LEFT</div>' +
+        '</div>' +
+        '<div class="kysch-mid">' +
+          '<div class="kysch-title"><i></i><b>考研倒计时 · 每日任务</b></div>' +
+          '<div class="kysch-meta">' +
+            '<span class="kysch-tag">今日 <b id="kysch-todo">0</b></span>' +
+            '<span class="kysch-tag hot">顺延 <b id="kysch-carry">0</b></span>' +
+            '<span class="kysch-tag">完成 <b id="kysch-cdone">0</b>/<b id="kysch-call">0</b></span>' +
+          '</div>' +
+          '<div class="kysch-prog"><i id="kysch-bar"></i></div>' +
+        '</div>' +
+        '<button class="kysch-open" id="kysch-open" aria-label="打开日程表"><em>▤</em>日程</button>' +
+      '</div>' +
+    '</div>';
+
+  var fab = document.createElement("button");
+  fab.className = "kysch-fab";
+  fab.id = "kysch-fab";
+  fab.setAttribute("aria-label", "打开日程表");
+  fab.innerHTML = '▤<span id="kysch-fabn">0</span>';
+  document.body.appendChild(fab);
+
+  var ov = document.createElement("div");
+  ov.className = "kysch-ov";
+  ov.id = "kysch-ov";
+  ov.innerHTML =
+    '<div class="kysch-hd">' +
+      '<div><div class="t">SCHEDULE</div><div class="d" id="kysch-hdsub">考研日程</div></div>' +
+      '<button class="kysch-x" id="kysch-x" aria-label="关闭">✕</button>' +
+    '</div>' +
+    '<div class="kysch-body">' +
+      '<div class="kysch-card">' +
+        '<div class="kysch-calhd">' +
+          '<div class="m"><span id="kysch-ym"></span><small id="kysch-ymsub"></small></div>' +
+          '<div class="kysch-nav">' +
+            '<button id="kysch-prev" aria-label="上个月">‹</button>' +
+            '<button id="kysch-today" class="tdy">今天</button>' +
+            '<button id="kysch-next" aria-label="下个月">›</button>' +
+          '</div>' +
+        '</div>' +
+        '<div class="kysch-wk"><span class="we">日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span class="we">六</span></div>' +
+        '<div class="kysch-grid" id="kysch-grid"></div>' +
+        '<div class="kysch-lg">' +
+          '<span><i class="a"></i>全完成</span><span><i class="b"></i>部分</span>' +
+          '<span><i class="c"></i>有遗漏</span><span><i class="d"></i>考试日</span>' +
+        '</div>' +
+      '</div>' +
+      '<div class="kysch-card">' +
+        '<div class="kysch-ptxt" id="kysch-daysub"></div>' +
+        '<div id="kysch-list"></div>' +
+        '<div class="kysch-add">' +
+          '<input id="kysch-input" type="text" maxlength="120" placeholder="写一个任务…" enterkeyhint="done" autocomplete="off">' +
+          '<button id="kysch-addbtn" aria-label="添加">＋</button>' +
+        '</div>' +
+      '</div>' +
+      '<div class="kysch-ptxt" style="text-align:center;padding:2px 0 6px">未完成的任务会自动顺延到下一天 · 长按任务文字可修改</div>' +
+    '</div>';
+  document.body.appendChild(ov);
+
+  var toastEl = document.createElement("div");
+  toastEl.className = "kysch-toast";
+  document.body.appendChild(toastEl);
+  var tid = null;
+  function toast(msg) {
+    toastEl.textContent = msg;
+    toastEl.classList.add("on");
+    clearTimeout(tid);
+    tid = setTimeout(function () { toastEl.classList.remove("on"); }, 1800);
+  }
+
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* ---------- 顶部条 ---------- */
+  function renderStrip() {
+    var left = spanDays(todayStr, EXAM);
+    $("kysch-num").textContent = left >= 0 ? left : "0";
+
+    var a = activeOn(todayStr), todo = 0, carry = 0;
+    for (var i = 0; i < a.all.length; i++) if (!doneAsOf(a.all[i], todayStr)) todo++;
+    for (var j = 0; j < a.carry.length; j++) if (!doneAsOf(a.carry[j], todayStr)) carry++;
+
+    var doneAll = 0;
+    for (var k = 0; k < DB.tasks.length; k++) if (DB.tasks[k].done) doneAll++;
+
+    $("kysch-todo").textContent = todo;
+    $("kysch-carry").textContent = carry;
+    $("kysch-cdone").textContent = doneAll;
+    $("kysch-call").textContent = DB.tasks.length;
+
+    var span = Math.max(1, spanDays(START, EXAM));
+    var pct = Math.max(0, Math.min(100, (spanDays(START, todayStr) / span) * 100));
+    if (left < 0) pct = 100;
+    $("kysch-bar").style.width = pct.toFixed(1) + "%";
+
+    var fabN = $("kysch-fabn");
+    if (todo > 0) { fab.classList.remove("zero"); fabN.textContent = todo > 99 ? "99+" : todo; }
+    else fab.classList.add("zero");
+  }
+
+  /* ---------- 日历 ---------- */
+  var viewY, viewM;
+  (function () {
+    var base = parseDay(todayStr);
+    if (todayStr < START) base = parseDay(START);
+    if (todayStr > EXAM) base = parseDay(EXAM);
+    viewY = base.getFullYear(); viewM = base.getMonth();
+  })();
+  function mi(y, m) { return y * 12 + m; }
+  var minIdx = mi(parseDay(START).getFullYear(), parseDay(START).getMonth());
+  var maxIdx = mi(parseDay(EXAM).getFullYear(), parseDay(EXAM).getMonth());
+
+  function renderCal() {
+    $("kysch-ym").textContent = viewY + "." + pad(viewM + 1);
+    var sub = [];
+    if (todayStr >= START && todayStr <= EXAM &&
+        mi(viewY, viewM) === mi(parseDay(todayStr).getFullYear(), parseDay(todayStr).getMonth())) sub.push("本月");
+    if (viewY === 2026 && viewM === 11) sub.push("冲刺");
+    $("kysch-ymsub").textContent = sub.join(" · ");
+
+    var idx = mi(viewY, viewM);
+    $("kysch-prev").disabled = idx <= minIdx;
+    $("kysch-next").disabled = idx >= maxIdx;
+
+    var startWk = new Date(viewY, viewM, 1).getDay();
+    var dim = new Date(viewY, viewM + 1, 0).getDate();
+    var html = "";
+    for (var i = 0; i < startWk; i++) html += '<div class="kd pad"></div>';
+
+    for (var d = 1; d <= dim; d++) {
+      var ds = viewY + "-" + pad(viewM + 1) + "-" + pad(d);
+      var dow = new Date(viewY, viewM, d).getDay();
+      var cls = "kd";
+      if (dow === 0 || dow === 6) cls += " we";
+
+      if (ds < START || ds > EXAM) {
+        cls += " out";
+        html += '<div class="' + cls + '"><span class="n">' + d + "</span></div>";
+        continue;
+      }
+      var st = dayStat(ds);
+      if (ds === EXAM) cls += " exam";
+      else if (st.total > 0) {
+        if (st.done >= st.total) cls += " full";
+        else if (st.done === 0) cls += " zero";
+        else cls += " part";
+      }
+      if (ds === todayStr) cls += " today";
+      var txt = ds === EXAM ? "" : (st.total > 0 ? st.done + "/" + st.total : "");
+      html += '<button class="' + cls + '" data-d="' + ds + '"><span class="n">' + d + "</span>" +
+              (txt ? '<span class="c">' + txt + "</span>" : "") + "</button>";
+    }
+    $("kysch-grid").innerHTML = html;
+  }
+
+  /* ---------- 当天列表 ---------- */
+  var WK = "日一二三四五六";
+  function renderList() {
+    var a = activeOn(curDay);
+    var left = spanDays(curDay, EXAM);
+    var sub = [];
+    if (curDay === todayStr) sub.push("今天");
+    if (left > 0) sub.push("距考试 " + left + " 天");
+    else if (left === 0) sub.push("考试日 · 稳住");
+    $("kysch-daysub").innerHTML = "<b>" + mmdd(curDay) + " " + "周" + WK[parseDay(curDay).getDay()] +
+      "</b> · " + sub.join(" · ");
+    $("kysch-hdsub").textContent = curDay.replace(/-/g, ".") + " · 周" + WK[parseDay(curDay).getDay()];
+
+    var html = "";
+    if (a.carry.length) {
+      var cd = 0;
+      for (var i = 0; i < a.carry.length; i++) if (doneAsOf(a.carry[i], curDay)) cd++;
+      html += '<div class="kysch-sec">⟳ 顺延任务 <em>' + cd + "/" + a.carry.length + "</em></div>";
+      html += a.carry.map(function (t) { return row(t, true); }).join("");
+    }
+    html += '<div class="kysch-sec">✍ 今日任务 <em>' + a.today.length + "</em></div>";
+    if (a.today.length) html += a.today.map(function (t) { return row(t, false); }).join("");
+    else html += '<div class="kysch-empty">今天还没写任务<br>下面输入框加一条 ↓</div>';
+
+    if (!a.carry.length && !a.today.length) {
+      html = '<div class="kysch-empty">🧘 这一天是空白的<br>想好要做什么，就写下来</div>';
+    }
+    $("kysch-list").innerHTML = html;
+  }
+
+  function row(t, isCarry) {
+    var ok = doneAsOf(t, curDay);
+    var badge = isCarry ? '<span class="kysch-badge">⟳ ' + mmdd(t.date) + "</span>" : "";
+    var doneon = (ok && t.doneOn !== curDay) ? '<span class="kysch-done">' + mmdd(t.doneOn) + " 完成</span>" : "";
+    return '<div class="kysch-task' + (ok ? " ok" : "") + '" data-id="' + t.id + '">' +
+      '<button class="kysch-ck" data-act="toggle" aria-label="完成">' + (ok ? "✓" : "") + "</button>" +
+      '<div class="kysch-tx" data-act="toggle">' + badge + esc(t.text) + doneon + "</div>" +
+      '<button class="kysch-del" data-act="del" aria-label="删除">✕</button>' +
+      "</div>";
+  }
+
+  function find(id) {
+    for (var i = 0; i < DB.tasks.length; i++) if (DB.tasks[i].id === id) return DB.tasks[i];
+    return null;
+  }
+  function toggle(id) {
+    var t = find(id);
+    if (!t) return;
+    if (t.done) { t.done = false; t.doneOn = null; }
+    else { t.done = true; t.doneOn = curDay; }
+    save(); renderAll();
+  }
+  function del(id) {
+    if (!window.confirm("删掉这条任务？")) return;
+    DB.tasks = DB.tasks.filter(function (t) { return t.id !== id; });
+    save(); renderAll(); toast("已删除");
+  }
+  function edit(id) {
+    var t = find(id);
+    if (!t) return;
+    var v = window.prompt("修改任务内容：", t.text);
+    if (v === null) return;
+    v = v.replace(/\s+/g, " ").trim();
+    if (!v || v === t.text) return;
+    t.text = v; save(); renderAll(); toast("已修改");
+  }
+  function add() {
+    var inp = $("kysch-input");
+    var v = inp.value.replace(/\s+/g, " ").trim();
+    if (!v) return;
+    DB.tasks.push({ id: uid(), text: v, date: curDay, done: false, doneOn: null, ts: Date.now() });
+    inp.value = "";
+    save(); renderAll();
+    var b = document.querySelector(".kysch-body");
+    if (b) b.scrollTop = b.scrollHeight;
+  }
+
+  /* ---------- 打开 / 关闭 ---------- */
+  function open(day) {
+    if (day) curDay = day;
+    else curDay = (todayStr < START ? START : (todayStr > EXAM ? EXAM : todayStr));
+    renderList(); renderCal();
+    ov.classList.add("on");
+    document.documentElement.style.overflow = "hidden";
+  }
+  function close() {
+    ov.classList.remove("on");
+    document.documentElement.style.overflow = "";
+  }
+
+  /* ---------- 事件 ---------- */
+  $("kysch-open").addEventListener("click", function () { open(); });
+  fab.addEventListener("click", function () { open(); });
+  $("kysch-x").addEventListener("click", close);
+
+  $("kysch-grid").addEventListener("click", function (e) {
+    var el = e.target.closest("button.kd");
+    if (!el || el.classList.contains("pad") || el.classList.contains("out")) return;
+    var ds = el.getAttribute("data-d");
+    if (!ds) return;
+    curDay = ds;
+    renderList();
+    document.querySelector(".kysch-body").scrollTop = 0;
+  });
+
+  var pressTimer = null, pressFired = false;
+  var listEl = $("kysch-list");
+  listEl.addEventListener("click", function (e) {
+    var el = e.target.closest("[data-act]");
+    if (!el) return;
+    var r = el.closest(".kysch-task");
+    if (!r) return;
+    var id = r.getAttribute("data-id");
+    if (pressFired && el.getAttribute("data-act") === "toggle") { pressFired = false; return; }
+    if (el.getAttribute("data-act") === "del") del(id);
+    else toggle(id);
+  });
+  listEl.addEventListener("pointerdown", function (e) {
+    var tx = e.target.closest(".kysch-tx");
+    if (!tx) return;
+    var r = tx.closest(".kysch-task");
+    if (!r) return;
+    pressFired = false;
+    clearTimeout(pressTimer);
+    var id = r.getAttribute("data-id");
+    pressTimer = setTimeout(function () {
+      pressFired = true;
+      if (navigator.vibrate) { try { navigator.vibrate(12); } catch (err) {} }
+      edit(id);
+    }, 550);
+  });
+  ["pointerup", "pointercancel", "pointerleave", "pointermove", "scroll"].forEach(function (ev) {
+    listEl.addEventListener(ev, function () { clearTimeout(pressTimer); }, { passive: true });
+  });
+
+  $("kysch-addbtn").addEventListener("click", add);
+  $("kysch-input").addEventListener("keydown", function (e) {
+    if (e.key === "Enter") { e.preventDefault(); add(); }
+  });
+
+  $("kysch-prev").addEventListener("click", function () {
+    if (mi(viewY, viewM) - 1 < minIdx) return;
+    viewM--; if (viewM < 0) { viewM = 11; viewY--; } renderCal();
+  });
+  $("kysch-next").addEventListener("click", function () {
+    if (mi(viewY, viewM) + 1 > maxIdx) return;
+    viewM++; if (viewM > 11) { viewM = 0; viewY++; } renderCal();
+  });
+  $("kysch-today").addEventListener("click", function () {
+    var base = parseDay(todayStr);
+    if (todayStr < START) base = parseDay(START);
+    if (todayStr > EXAM) base = parseDay(EXAM);
+    viewY = base.getFullYear(); viewM = base.getMonth();
+    curDay = todayStr < START ? START : (todayStr > EXAM ? EXAM : todayStr);
+    renderCal(); renderList();
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && ov.classList.contains("on")) close();
+  });
+
+  function renderAll() { renderStrip(); renderCal(); if (ov.classList.contains("on")) renderList(); }
+
+  load();
+  renderAll();
+
+  setInterval(function () {
+    var now = fmt(new Date());
+    if (now !== todayStr) { todayStr = now; renderAll(); }
+  }, 60000);
+})();
