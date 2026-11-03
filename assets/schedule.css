@@ -200,6 +200,37 @@
 .kysch-ptxt{font-size:10.5px; color:#6f86a6; padding:2px 6px 0; font-variant-numeric:tabular-nums;}
 .kysch-ptxt b{color:#9df3ff;}
 
+
+/* —— 日 / 周 切换 —— */
+.kysch-tabs{
+  position:relative; z-index:2; flex:0 0 auto; display:flex; gap:8px;
+  padding:0 12px 9px;
+}
+.kysch-tabs button{
+  flex:1 1 0; position:relative; cursor:pointer; font-family:inherit;
+  display:flex; align-items:center; justify-content:center; gap:7px;
+  border:1px solid rgba(120,190,255,.16); border-radius:12px; padding:8px 10px;
+  background:rgba(255,255,255,.035); color:#7f95b4; transition:all .18s;
+}
+.kysch-tabs button b{
+  font-family:ui-monospace,Menlo,monospace; font-size:14px; font-weight:800; letter-spacing:.04em;
+}
+.kysch-tabs button span{font-size:11.5px; letter-spacing:.06em; font-weight:600;}
+.kysch-tabs button.on{
+  color:#04121f; border-color:transparent;
+  background:linear-gradient(135deg,#22d3ee,#60a5fa 60%,#a855f7);
+  box-shadow:0 6px 20px -8px rgba(56,213,255,.85);
+}
+.kysch-tabs button.on b{color:#04121f;}
+.kysch-view{display:block;}
+
+/* 周进度条 */
+.kysch-wprog{height:6px; border-radius:99px; background:rgba(255,255,255,.09);
+  margin:6px 6px 0; overflow:hidden;}
+.kysch-wprog i{display:block; height:100%; border-radius:99px; width:0;
+  background:linear-gradient(90deg,#a855f7,#22d3ee); transition:width .4s;
+  box-shadow:0 0 12px rgba(168,85,247,.6);}
+
 /* toast */
 .kysch-toast{
   position:fixed; left:50%; bottom:calc(24px + env(safe-area-inset-bottom)); transform:translate(-50%,10px);
